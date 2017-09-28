@@ -1,0 +1,113 @@
+<head>
+    <title>PoE Item Creator</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="resources/html2canvas.min.js"></script>
+</head>
+
+<body>
+    <div class="site">
+        <div class="sidebar" id="sidebar">
+            <span>
+                <span class="h1">Path of Exile Item Creator</span>
+            <span class="buttons" style="float: right;">
+                    <button onclick="popupimport()" class="nostyle"><img src="resources/ic_content_paste_black_24px.svg" alt="I"/></button>
+                    <button onclick="save()" class="nostyle"><img src="resources/ic_photo_camera_black_24px.svg" alt="S"/></button>
+                </span>
+            </span>
+            <div class="spacer" style="height:20px;"></div>
+            <div style="margin-bottom: 15px">
+                <div style="margin: 20px 0;">
+                    <span class="h2">Properties</span>
+                    <button class="nostyle" onclick="reset()"><img src="resources/ic_refresh_black_24px.svg" alt="Reset"/></button>
+                    <br/>
+                </div>
+                <span>
+                    <select id="itemrarity">
+                        <option value="normal" class="col-normal">Normal</option>
+                        <option value="magic" class="col-magic">Magic</option>
+                        <option value="rare" class="col-rare">Rare</option>
+                        <option value="unique" class="col-unique" selected>Unique</option>
+                        <option value="currency" class="col-currency">Currency</option>
+                        <option value="gem" class="col-gem">Skill Gem</option>
+                        <option value="prophecy" class="col-prophecy">Prophecy</option>
+                    </select>
+                    <input type="text" class="Name" id="name1" value="Belly of the Beast"></input>
+                    <input type="text" class="BaseType" id="name2" value="Full Wyrmscale"></input>
+                </span>
+                <ul id="properties" class="properties">
+                    <li id="i0">
+                        <button onclick="remove(0)" class="nostyle" style="width: 36px; height: 36px; padding: 0;"><img src="resources/ic_close_black_24px.svg" alt="X"/></button>
+                        <div class="spacing-30">
+                            <select id="proptype0" onchange="updateval(0)" val='augquant'>
+                                <option value="desc">Item Type</option>
+                                <option value="qual">Affix</option>
+                                <option value="quant">Stat</option>
+                                <option value="augquant" selected>Augmented Stat</option>
+                                <option value="flavor">Unique Flavor Text</option>
+                                <option value="gflavor">Gray Flavor Text</option>
+                                <option value="sep">Separator</option>
+                                <option value="master">Crafted Mod</option>
+                                <option value="statreq">Stat Requirements</option>
+                                <option value="vaal">Corrupted</option>
+                            </select>
+                            <input type="text" id="name0" value="Quality"></input>
+                            <input type="text" id="value0" value="+20%"></input>
+                        </div>
+                    </li>
+                    <button onclick="add()" class="nostyle" style="width: 36px; height: 36px; padding: 0; margin-top: 15px;"><img src="resources/ic_add_black_24px.svg" alt="+"/></button>
+                </ul>
+            </div>
+            <span><button onclick="render()" style="float: right;">Render</button></span>
+            <span class="disclaimer">This site is fan-made and not affiliated with Grinding Gear Games.</span>
+        </div>
+        <div class="canvas">
+            <div class="item unique" id="item">
+                <div class="itemheader double" id="itemheader">
+                    <span class="left"></span>
+                    <div class="itemheader-name">
+                        <span class="itemheader-name-line1" id="name1o">Belly of the Beast</span>
+                        <span class="itemheader-name-line2" id="name2o">Full Wyrmscale</span>
+                    </div>
+                    <span class="right"></span>
+                </div>
+                <div class="itembody" id="itembody">
+                    <div class="property gray-blue"><span class="prop-gray prop-name">Quality</span><span class="prop-blue prop-val">+20%</span></div>
+                    <div class="property gray-blue"><span class="prop-gray prop-name">Armour</span><span class="prop-blue prop-val">767</span></div>
+                    <div class="property gray-blue"><span class="prop-gray prop-name">Evasion Rating</span><span class="prop-blue prop-val">305</span></div>
+                    <div class="sep"></div>
+                    <div class="property prop-statreq"><span class="prop-gray prop-statreq-list">Requires Level <span class="prop-white">70</span>, <span class="prop-white">146</span>                        Str, <span class="prop-white">111</span> Dex, <span class="prop-white">90</span> Int</span>
+                    </div>
+                    <div class="sep"></div>
+                    <div class="property blue"><span class="prop-blue">182% increased Armour</span></div>
+                    <div class="property blue"><span class="prop-blue">40% increased maximum Life</span></div>
+                    <div class="property blue"><span class="prop-blue">+15% to all Elemental Resistances</span></div>
+                    <div class="property blue"><span class="prop-blue">50% increased Flask Life Recovery rate</span></div>
+                    <div class="property blue"><span class="prop-blue">Extra gore</span></div>
+                    <div class="sep"></div>
+                    <div class="unique-flavor">There is no safer place</div>
+                    <div class="unique-flavor">Than the Belly of the Beast</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="importmodal" class="modal">
+        <div class="modal-content">
+            <div class="modal-grid">
+                <span>
+                    <span class="h1">Import/Export Item</span>
+                    <span class="buttons" style="float: right;">
+                        <button onclick="closeimport()" class="nostyle"><img src="resources/ic_close_black_24px.svg" alt="X"/></button>
+                    </span>
+                </span>
+                    <textarea placeholder="Paste item data here. Item data is acceptable from either this web app or the Path of Exile game client."></textarea>
+                <span>
+                    <span>
+                        <button onclick="exp()">Export</button>
+                        <button onclick="importbtn()" style="float: right;">Import</button>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
