@@ -28,22 +28,29 @@ function filter(item) {
     return item.tagName !== 'i';
 }
 
+var saveC = function (p) {
+    setTimeout(() => {
+        html2canvas(item, {
+            onrendered: function (canvas) {
+                let win = window.open(canvas.toDataURL(), '_blank');
+                win.focus();
+                if(p) p.appendChild(imageo);
+            }
+        });
+    }, 200);
+};
+
 var save = function () {
-    if (imageo.src != '') {
+    if (imageo.src != window.location.href) {
         let r = confirm('The built-in screenshotting feature does not currently work with item images. To keep the image, use a screenshotting tool like Snipping Tool or Grab.\nDo you want to remove the image and use the built-in screenshotting tool?');
         if (r == true) {
             let p = imageo.parentElement;
             imageo.remove();
-            setTimeout(() => {
-                html2canvas(item, {
-                    onrendered: function (canvas) {
-                        let win = window.open(canvas.toDataURL(), '_blank');
-                        win.focus();
-                        p.appendChild(imageo);
-                    }
-                });
-            }, 500);
+            saveC(p);
         }
+    }
+    else {
+        saveC();
     }
 };
 
@@ -165,6 +172,11 @@ var render = function () {
 
 var remove = function (index) {
     document.querySelector(`li#i${index}`).remove();
+};
+
+var removeimage = function () {
+    document.querySelector('input#image').value = '';
+    document.querySelector('img#imageo').src = '';
 };
 
 var add = function (o, i) {
