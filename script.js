@@ -32,15 +32,17 @@ var save = function () {
     if (imageo.src != '') {
         let r = confirm('The built-in screenshotting feature does not currently work with item images. To keep the image, use a screenshotting tool like Snipping Tool or Grab.\nDo you want to remove the image and use the built-in screenshotting tool?');
         if (r == true) {
-            imageo.src = '';
+            let p = imageo.parentElement;
+            imageo.remove();
             setTimeout(() => {
                 html2canvas(item, {
                     onrendered: function (canvas) {
                         let win = window.open(canvas.toDataURL(), '_blank');
                         win.focus();
+                        p.appendChild(imageo);
                     }
                 });
-            }, 2);
+            }, 500);
         }
     }
 };
