@@ -3,6 +3,7 @@
   src: url("resources/Fontin-SmallCaps.woff") format("woff"); }
 
 body {
+  font-family: sans-serif;
   margin: 0; }
 
 .h1 {
@@ -33,7 +34,8 @@ button:not(.nostyle) {
 
 select,
 input,
-button {
+button,
+span.imageselect {
   margin: 0 5px; }
 
 select[val='desc'] ~ input[id^='name'], select[val='qual'] ~ input[id^='name'], select[val$='flavor'] ~ input[id^='name'], select[val='master'] ~ input[id^='name'], select[val='statreq'] ~ input[id^='name'], select[val='vaal'] ~ input[id^='name'] {
@@ -272,6 +274,9 @@ ul {
     .currency .itemheader .left,
     .currency .itemheader .right {
       background-image: url("resources/itemheader_currency.png"); }
+
+img#imageo {
+  max-width: 156px; }
 
 .modal {
   background-color: rgba(0, 0, 0, 0.4);
