@@ -24,6 +24,8 @@ const templates = [
 ];
 /*eslint-enable quotes*/
 
+var highestAfterID;
+
 function filter(item) {
     return item.tagName !== 'i';
 }
@@ -199,6 +201,7 @@ var add = function (o, i) {
 
     let rembtn = document.createElement('button');
     rembtn.setAttribute('onclick', `remove(${index})`);
+    rembtn.setAttribute('data-tooltip', 'Remove Property');
     rembtn.className = 'nostyle';
     rembtn.style = 'width: 36px; height: 36px; padding: 0;';
 
@@ -232,18 +235,38 @@ var add = function (o, i) {
     valueinput.type = 'text';
     valueinput.id = `value${index}`;
     spacer.appendChild(valueinput);
+    
+    let addbtn = document.createElement('button');
+    addbtn.className = 'add-after nostyle';
+    addbtn.style = 'width: 36px; height: 36px; padding: 0';
+    addbtn.setAttribute('onclick', `add_after(${index})`);
+    addbtn.setAttribute('data-tooltip', 'Add Property');
+    
+    let addbtnimg = document.createElement('img');
+    addbtnimg.src = 'resources/ic_add_black_24px.svg';
+    addbtnimg.alt = '+';
+    addbtn.appendChild(addbtnimg);
+    spacer.appendChild(addbtn);
     li.appendChild(spacer);
 
     if (!o) {
-        let btn = document.querySelector('ul#properties > button');
+        //let btn = document.querySelector('ul#properties > button');
         let props = document.querySelector('ul#properties');
-        props.removeChild(btn);
+        //props.removeChild(btn);
         props.appendChild(li);
-        props.appendChild(btn);
+        //props.appendChild(btn);
     }
     else {
         return li;
     }
+};
+
+var add_after = function (index) {
+    if(!(highestAfterID > -1)) highestAfterID = Number(document.querySelector('#properties li:last-of-type').id.substr(1));
+    let li = add(true, highestAfterID);
+    let el = document.querySelector(`#i${index}`);
+    el.parentNode.insertBefore(li, el.nextSibling);
+    highestAfterID++;
 };
 
 var reset = function (o) {
@@ -280,9 +303,9 @@ var im = function (json) {
     document.querySelector('input#name2').value = base;
     document.querySelector('input#image').value = image;
 
-    let btn = document.querySelector('ul#properties > button');
+    //let btn = document.querySelector('ul#properties > button');
     let props = document.querySelector('ul#properties');
-    props.removeChild(btn);
+    //props.removeChild(btn);
     for (var i = 0; i < item.properties.length; i++) {
         let li = add(true, i - 1);
         props.appendChild(li);
@@ -295,7 +318,7 @@ var im = function (json) {
         }
         updateval(i);
     }
-    props.appendChild(btn);
+    //props.appendChild(btn);
     render();
 };
 

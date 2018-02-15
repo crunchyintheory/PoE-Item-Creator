@@ -28,9 +28,42 @@ body {
   padding: 25; }
 
 button:not(.nostyle) {
-  border: 0;
   font-size: 17px;
   padding: 8px; }
+
+button.add-after {
+  top: 0; }
+
+button[data-tooltip].weird-tooltip::after {
+  display: block;
+  right: initial;
+  top: initial;
+  transform: translatex(-50%); }
+
+button[data-tooltip]::after {
+  background: #000000;
+  border-radius: 3px;
+  color: #fff;
+  content: attr(data-tooltip);
+  margin-left: 10px;
+  margin-top: 3px;
+  opacity: 0;
+  padding: 5px 8px;
+  pointer-events: none;
+  position: absolute;
+  right: 50%;
+  text-align: center;
+  top: 100%;
+  transform: translateX(50%);
+  transition: visibility 0s, opacity .25s linear;
+  visibility: hidden;
+  white-space: pre;
+  word-wrap: break-word;
+  z-index: 1; }
+
+button[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible; }
 
 select,
 input,
@@ -56,7 +89,7 @@ li {
   li > *:nth-child(2) {
     display: flex;
     margin-left: 46px; }
-  li .spacing-30 * {
+  li .spacing-30 *:not(img) {
     margin-top: -25px;
     width: 30%; }
 

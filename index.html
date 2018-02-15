@@ -10,15 +10,15 @@
             <span>
                 <span class="h1">Path of Exile Item Creator</span>
             <span class="buttons" style="float: right;">
-                    <button onclick="popupimport()" class="nostyle"><img src="resources/ic_content_paste_black_24px.svg" alt="I"/></button>
-                    <button onclick="save()" class="nostyle"><img src="resources/ic_photo_camera_black_24px.svg" alt="S"/></button>
+                    <button onclick="popupimport()" class="nostyle weird-tooltip" data-tooltip="Export"><img src="resources/ic_content_paste_black_24px.svg" alt="I"/></button>
+                    <button onclick="save()" class="nostyle weird-tooltip" data-tooltip="Save Image"><img src="resources/ic_photo_camera_black_24px.svg" alt="S"/></button>
                 </span>
             </span>
             <div class="spacer" style="height:20px;"></div>
             <div style="margin-bottom: 15px">
                 <div style="margin: 20px 0;">
                     <span class="h2">Properties</span>
-                    <button class="nostyle" onclick="reset()"><img src="resources/ic_refresh_black_24px.svg" alt="Reset"/></button>
+                    <button class="nostyle weird-tooltip" onclick="reset()" data-tooltip="Reset"><img src="resources/ic_refresh_black_24px.svg" alt="Reset"/></button>
                     <br/>
                 </div>
                 <span>
@@ -38,11 +38,11 @@
                 <br/>
                 <span class="imageselect">
                     Image: <input type="text" class="Image" id="image" value="https://d1u5p3l4wpay3k.cloudfront.net/pathofexile_gamepedia/2/2e/Belly_of_the_Beast_inventory_icon.png?version=356c53ab20ed857245ce668808759bc6"></input>
-                    <button onclick="removeimage()" class="nostyle" style="width: 36px; height: 36px; padding: 0; position: relative; top: 7px;"><img src="resources/ic_close_black_24px.svg" alt="X"/></button>
+                    <button onclick="removeimage()" class="nostyle" style="width: 36px; height: 36px; padding: 0; position: relative; top: 7px;" data-tooltip="Remove Image"><img src="resources/ic_close_black_24px.svg" alt="X"/></button>
                 </span>
                 <ul id="properties" class="properties">
                     <li id="i0">
-                        <button onclick="remove(0)" class="nostyle" style="width: 36px; height: 36px; padding: 0;"><img src="resources/ic_close_black_24px.svg" alt="X"/></button>
+                        <button onclick="remove(0)" class="nostyle" style="width: 36px; height: 36px; padding: 0;" data-tooltip="Remove Property"><img src="resources/ic_close_black_24px.svg" alt="X"/></button>
                         <div class="spacing-30">
                             <select id="proptype0" onchange="updateval(0)" val='augquant'>
                                 <option value="desc">Item Type</option>
@@ -58,9 +58,9 @@
                             </select>
                             <input type="text" id="name0" value="Quality"></input>
                             <input type="text" id="value0" value="+20%"></input>
+                            <button onclick="addafter(0)" class="nostyle" style="width: 36px; height: 36px; padding: 0;" data-tooltip="Add Property"><img src="resources/ic_add_black_24px.svg" alt="+"/></button>
                         </div>
                     </li>
-                    <button onclick="add()" class="nostyle" style="width: 36px; height: 36px; padding: 0; margin-top: 15px;"><img src="resources/ic_add_black_24px.svg" alt="+"/></button>
                 </ul>
             </div>
             <span><button onclick="render()" style="float: right;">Render</button></span>
@@ -105,7 +105,7 @@
                 <span>
                     <span class="h1">Import/Export Item</span>
                     <span class="buttons" style="float: right;">
-                        <button onclick="closeimport()" class="nostyle"><img src="resources/ic_close_black_24px.svg" alt="X"/></button>
+                        <button onclick="closeimport()" class="nostyle weird-tooltip" data-tooltip="Close"><img src="resources/ic_close_black_24px.svg" alt="X"/></button>
                     </span>
                 </span>
                     <textarea placeholder="Paste previously-exported item data here."></textarea>
