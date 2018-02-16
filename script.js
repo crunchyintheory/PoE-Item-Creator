@@ -348,10 +348,11 @@ var exp = function () {
     json.rarity = document.getElementById('itemrarity').value;
     json.name = document.getElementById('name1').value;
     json.base = document.getElementById('name2').value;
+    json.image = document.getElementById('image').value;
     json.properties = [];
 
     let props = document.getElementById('properties');
-    for (var i = 0; i < props.children.length - 1; i++) {
+    for (var i = 0; i < props.children.length; i++) {
         let prop = props.children[i];
         json.properties[i] = {};
         let index = prop.id.substr(1);
