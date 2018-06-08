@@ -270,7 +270,7 @@ var add_after = function (index) {
     highestAfterID++;
 };
 
-var reset = function (o) {
+var reset = function (o, k) {
     let sel = document.querySelectorAll('select#itemrarity option[selected]');
     for (var i = 0; i < sel.length; i++) {
         sel[i].removeAttribute('selected');
@@ -279,9 +279,17 @@ var reset = function (o) {
     document.getElementById('name1').value = 'Tabula Rasa';
     document.getElementById('name2').value = 'Simple Robe';
     document.getElementById('image').value = 'https://c-6rtwjumjzx7877x24i6z0u8q9bufd8px2ehqtzikwtsyx2esjy.g00.gamepedia.com/g00/3_c-6ufymtkjcnqj.lfrjujinf.htr_/c-6RTWJUMJZX77x24myyux78x3ax2fx2fi6z0u8q9bufd8p.hqtzikwtsy.sjyx2fufymtkjcnqj_lfrjujinfx2f3x2f3hx2fYfgzqf_Wfx78f_nsajsytwd_nhts.uslx3fajwx78ntsx3d7727g19830928kih0151030956f3538hx26n65h.rfwpx3dnrflj_$/$/$/$/$';
-    document.querySelectorAll('ul#properties > li').forEach((el) => {
+    let selector = 'ul#properties > li';
+    selector += k ? ':not(:first-child)' : '';
+    document.querySelectorAll(selector).forEach((el) => {
         el.remove();
     });
+    if(k) {
+        document.querySelector('select#proptype0 option[value=desc]').setAttribute('selected', 'true');
+        document.getElementById('name0').value = '';
+        document.getElementById('value0').value = '';
+    }
+    
     if (!o) render();
 };
 
