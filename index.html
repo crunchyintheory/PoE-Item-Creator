@@ -12,9 +12,9 @@
                 <span class="buttons" style="float: right;">
                     <!--button class="nostyle weird-tooltip" data-tooltip="Help [WiP]"><img src="resources/ic_help_outline_black_24px.svg" alt="?"/></button-->
                     <a href="https://github.com/crunchyintheory/PoE-Item-Creator" target="_blank">
-                        <button class="nostyle weird-tooltip" data-tooltip="View Source"><img src="resources/github_logo.svg" alt="G" width="24" height="24"/></button>
+                        <button class="nostyle weird-tooltip nomargin" data-tooltip="View Source"><img src="resources/github_logo.svg" alt="G" width="24" height="24"/></button>
                     </a>
-                    <button onclick="popupimport()" class="nostyle weird-tooltip" data-tooltip="Export"><img src="resources/ic_content_paste_black_24px.svg" alt="I"/></button>
+                    <button onclick="popupimport()" class="nostyle weird-tooltip" data-tooltip="Export" style="margin-left: 10px"><img src="resources/ic_content_paste_black_24px.svg" alt="I"/></button>
                     <button onclick="save()" class="nostyle weird-tooltip" data-tooltip="Save Image"><img src="resources/ic_photo_camera_black_24px.svg" alt="S"/></button>
                 </span>
             </span>
@@ -30,7 +30,11 @@
                         <option value="normal" class="col-normal">Normal</option>
                         <option value="magic" class="col-magic">Magic</option>
                         <option value="rare" class="col-rare">Rare</option>
+                        <option value="rare-shaper" class="col-rare">Shaper Rare</option>
+                        <option value="rare-elder" class="col-rare">Elder Rare</option>
                         <option value="unique" class="col-unique" selected>Unique</option>
+                        <option value="unique-shaper" class="col-unique">Shaper Unique</option>
+                        <option value="unique-elder" class="col-unique">Elder Unique</option>
                         <option value="currency" class="col-currency">Currency</option>
                         <option value="gem" class="col-gem">Skill Gem</option>
                         <option value="prophecy" class="col-prophecy">Prophecy</option>

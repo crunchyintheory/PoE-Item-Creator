@@ -89,7 +89,7 @@ button
 
 select,
 input,
-button,
+button:not(.nomargin),
 span.imageselect
     margin: 0 5px
 
@@ -142,10 +142,14 @@ input
         &.col-magic
             color: $magic
 
-        &.col-rare
+        &.col-rare,
+        &.col-rare-shaper,
+        &.col-rare-elder
             color: $rare
 
-        &.col-unique
+        &.col-unique,
+        &.col-unique-shaper,
+        &.col-unique-elder
             color: $unique
 
         &.col-currency
@@ -270,7 +274,7 @@ ul
     font-style: italic
     line-height: 36px
 
-.unique
+%unique
     color: $unique
 
     .unique-flavor
@@ -282,25 +286,57 @@ ul
     .sep
         background-position: 0 -9px
 
+=unique-itemheader($url)
     .itemheader
-        background-image: url('resources/itemheader_unique.png')
+        background-image: url($url)
 
         .left,
         .right
-            background-image: url('resources/itemheader_unique.png')
+            background-image: url($url)
 
-.rare
+.unique
+    @extend %unique
+
+    +unique-itemheader('resources/itemheader_unique.png')
+
+.unique-shaper
+    @extend %unique
+
+    +unique-itemheader('resources/itemheader_unique_shaper.png')
+
+.unique-elder
+    @extend %unique
+
+    +unique-itemheader('resources/itemheader_unique_elder.png')
+
+%rare
     color: $rare
 
     .sep
         background-position: 0 -6px
 
+=rare-itemheader($url)
     .itemheader
-        background-image: url('resources/itemheader_rare.png')
+        background-image: url($url)
 
         .left,
         .right
-            background-image: url('resources/itemheader_rare.png')
+            background-image: url($url)
+
+.rare
+    @extend %rare
+
+    +rare-itemheader('resources/itemheader_rare.png')
+
+.rare-shaper
+    @extend %rare
+
+    +rare-itemheader('resources/itemheader_rare_shaper.png')
+
+.rare-elder
+    @extend %rare
+
+    +rare-itemheader('resources/itemheader_rare_elder.png')
 
 .normal
     color: $normal

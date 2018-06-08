@@ -1,7 +1,6 @@
 @font-face {
-  font-family: 'fontin';
+  font-family: "fontin";
   src: url("resources/Fontin-SmallCaps.woff") format("woff"); }
-
 body {
   font-family: sans-serif;
   margin: 0; }
@@ -23,23 +22,20 @@ body {
 .sidebar {
   background-color: #212121;
   color: #eee;
-  grid-column: 1 / 2;
+  grid-column: 1/2;
   overflow-y: auto;
   padding: 25; }
 
 button:not(.nostyle) {
   font-size: 17px;
   padding: 8px; }
-
 button.add-after {
   top: 0; }
-
 button[data-tooltip].weird-tooltip::after {
   display: block;
   right: initial;
   top: initial;
   transform: translatex(-50%); }
-
 button[data-tooltip]::after {
   background: #000000;
   border-radius: 3px;
@@ -55,28 +51,25 @@ button[data-tooltip]::after {
   text-align: center;
   top: 100%;
   transform: translateX(50%);
-  transition: visibility 0s, opacity .25s linear;
+  transition: visibility 0s, opacity 0.25s linear;
   visibility: hidden;
   white-space: pre;
   word-wrap: break-word;
   z-index: 1; }
-
 button[data-tooltip]:hover::after {
   opacity: 1;
   visibility: visible; }
 
 select,
 input,
-button,
+button:not(.nomargin),
 span.imageselect {
   margin: 0 5px; }
 
 select[val='desc'] ~ input[id^='name'], select[val='qual'] ~ input[id^='name'], select[val$='flavor'] ~ input[id^='name'], select[val='master'] ~ input[id^='name'], select[val='statreq'] ~ input[id^='name'], select[val='vaal'] ~ input[id^='name'] {
   display: none; }
-
 select[val='desc'] ~ input[id^='value'], select[val='qual'] ~ input[id^='value'], select[val$='flavor'] ~ input[id^='value'], select[val='master'] ~ input[id^='value'], select[val='statreq'] ~ input[id^='value'], select[val='vaal'] ~ input[id^='value'] {
   width: 61.5%; }
-
 select[val='sep'] ~ input {
   display: none; }
 
@@ -106,11 +99,15 @@ input {
   select option.col-magic,
   input option.col-magic {
     color: #88f; }
-  select option.col-rare,
-  input option.col-rare {
+  select option.col-rare, select option.col-rare-shaper, select option.col-rare-elder,
+  input option.col-rare,
+  input option.col-rare-shaper,
+  input option.col-rare-elder {
     color: #ff7; }
-  select option.col-unique,
-  input option.col-unique {
+  select option.col-unique, select option.col-unique-shaper, select option.col-unique-elder,
+  input option.col-unique,
+  input option.col-unique-shaper,
+  input option.col-unique-elder {
     color: #af6025; }
   select option.col-currency,
   input option.col-currency {
@@ -129,11 +126,11 @@ ul {
   align-items: center;
   background-color: #000;
   display: flex;
-  grid-column: 2 / 3; }
+  grid-column: 2/3; }
 
 .item {
   background-color: #000;
-  font-family: 'fontin';
+  font-family: "fontin";
   font-size: 22.5px;
   margin: 0 auto;
   text-align: center; }
@@ -144,7 +141,7 @@ ul {
 .property {
   line-height: 36px; }
   .property .prop-name::after {
-    content: ': '; }
+    content: ": "; }
 
 .prop-gray {
   color: #7f7f7f; }
@@ -171,7 +168,7 @@ ul {
   .itemheader .left,
   .itemheader .right {
     background-repeat: no-repeat;
-    content: '';
+    content: "";
     display: inline-block; }
   .itemheader .right {
     margin-left: auto; }
@@ -220,30 +217,56 @@ ul {
   font-style: italic;
   line-height: 36px; }
 
-.unique {
+.unique, .unique-shaper, .unique-elder {
   color: #af6025; }
-  .unique .unique-flavor {
+  .unique .unique-flavor, .unique-shaper .unique-flavor, .unique-elder .unique-flavor {
     display: flex;
     flex-direction: column;
     font-style: italic;
     line-height: 36px; }
-  .unique .sep {
+  .unique .sep, .unique-shaper .sep, .unique-elder .sep {
     background-position: 0 -9px; }
-  .unique .itemheader {
-    background-image: url("resources/itemheader_unique.png"); }
-    .unique .itemheader .left,
-    .unique .itemheader .right {
-      background-image: url("resources/itemheader_unique.png"); }
 
-.rare {
+.unique .itemheader {
+  background-image: url("resources/itemheader_unique.png"); }
+  .unique .itemheader .left,
+  .unique .itemheader .right {
+    background-image: url("resources/itemheader_unique.png"); }
+
+.unique-shaper .itemheader {
+  background-image: url("resources/itemheader_unique_shaper.png"); }
+  .unique-shaper .itemheader .left,
+  .unique-shaper .itemheader .right {
+    background-image: url("resources/itemheader_unique_shaper.png"); }
+
+.unique-elder .itemheader {
+  background-image: url("resources/itemheader_unique_elder.png"); }
+  .unique-elder .itemheader .left,
+  .unique-elder .itemheader .right {
+    background-image: url("resources/itemheader_unique_elder.png"); }
+
+.rare, .rare-shaper, .rare-elder {
   color: #ff7; }
-  .rare .sep {
+  .rare .sep, .rare-shaper .sep, .rare-elder .sep {
     background-position: 0 -6px; }
-  .rare .itemheader {
+
+.rare .itemheader {
+  background-image: url("resources/itemheader_rare.png"); }
+  .rare .itemheader .left,
+  .rare .itemheader .right {
     background-image: url("resources/itemheader_rare.png"); }
-    .rare .itemheader .left,
-    .rare .itemheader .right {
-      background-image: url("resources/itemheader_rare.png"); }
+
+.rare-shaper .itemheader {
+  background-image: url("resources/itemheader_rare_shaper.png"); }
+  .rare-shaper .itemheader .left,
+  .rare-shaper .itemheader .right {
+    background-image: url("resources/itemheader_rare_shaper.png"); }
+
+.rare-elder .itemheader {
+  background-image: url("resources/itemheader_rare_elder.png"); }
+  .rare-elder .itemheader .left,
+  .rare-elder .itemheader .right {
+    background-image: url("resources/itemheader_rare_elder.png"); }
 
 .normal {
   color: #c8c8c8; }
@@ -322,7 +345,7 @@ img#imageo {
   width: 100%;
   z-index: 1; }
   .modal .modal-content {
-    animation-duration: .4s;
+    animation-duration: 0.4s;
     animation-name: animatetop;
     background-color: #212121;
     color: #eee;
@@ -333,14 +356,14 @@ img#imageo {
       display: grid;
       grid-template-rows: 40px 1fr 40px; }
       .modal .modal-content .modal-grid > span:first-child {
-        grid-row: 1 / 2; }
+        grid-row: 1/2; }
       .modal .modal-content .modal-grid > span:nth-child(3) {
-        grid-row: 3 / 4; }
+        grid-row: 3/4; }
       .modal .modal-content .modal-grid > textarea {
         background-color: #000;
         border: 0;
         color: #eee;
-        grid-row: 2 / 3;
+        grid-row: 2/3;
         height: 49em;
         margin: 10px 0;
         resize: vertical; }
@@ -361,3 +384,5 @@ img#imageo {
   to {
     opacity: 1;
     top: 0; } }
+
+/*# sourceMappingURL=style.css.map */

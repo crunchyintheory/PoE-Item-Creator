@@ -10,7 +10,7 @@ var imageo = document.getElementById('imageo');
 var importmodal = document.getElementById('importmodal');
 
 const singRar = ['normal', 'magic', 'gem', 'prophecy', 'currency'];
-const doubRar = ['rare', 'unique'];
+const doubRar = ['rare', 'rare-shaper', 'rare-elder', 'unique', 'unique-shaper', 'unique-elder'];
 
 /*eslint-disable quotes*/
 const templates = [
@@ -71,7 +71,7 @@ var render = function () {
 
     let props = document.getElementById('properties');
     itembody.innerHTML = '';
-    for (var i = 0; i < props.children.length - 1; i++) {
+    for (var i = 0; i < props.children.length; i++) {
         let prop = props.children[i];
         let index = prop.id.substr(1);
         let type = prop.querySelector(`select#proptype${index}`).value;
@@ -277,6 +277,7 @@ var reset = function (o) {
     document.querySelector('select#itemrarity option[value=unique]').setAttribute('selected', 'true');
     document.getElementById('name1').value = 'Tabula Rasa';
     document.getElementById('name2').value = 'Simple Robe';
+    document.getElementById('image').value = 'https://c-6rtwjumjzx7877x24i6z0u8q9bufd8px2ehqtzikwtsyx2esjy.g00.gamepedia.com/g00/3_c-6ufymtkjcnqj.lfrjujinf.htr_/c-6RTWJUMJZX77x24myyux78x3ax2fx2fi6z0u8q9bufd8p.hqtzikwtsy.sjyx2fufymtkjcnqj_lfrjujinfx2f3x2f3hx2fYfgzqf_Wfx78f_nsajsytwd_nhts.uslx3fajwx78ntsx3d7727g19830928kih0151030956f3538hx26n65h.rfwpx3dnrflj_$/$/$/$/$';
     document.querySelectorAll('ul#properties > li').forEach((el) => {
         el.remove();
     });
