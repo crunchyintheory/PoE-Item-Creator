@@ -1,0 +1,570 @@
+@font-face {
+    font-family: "fontin";
+    src: url("lib/Fontin-SmallCaps.woff") format("woff");
+  }
+  
+  
+  $black: black;
+  $offblack: #212121;
+  $offwhite: #eeeeee;
+  
+  $gray: #7f7f7f;
+  $blue: #8888ff;
+  $white: white;
+  $crafted: #b8daf1;
+  $red: #d20000;
+  
+  $unique: #af6025;
+  $magic: $blue;
+  $rare: #ffff77;
+  $currency: #aa9e82;
+  $normal: #c8c8c8;
+  $prophecy: #b54bff;
+  $gem: #1aa29b;
+  
+  html, body {
+    font-family: sans-serif;
+    margin: 0;
+    height: 100%;
+  }
+
+  html {
+      overflow: hidden;
+  }
+  
+  .h1 {
+    font-size: 2em;
+    font-weight: bold;
+  }
+  
+  .h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  .reset {
+      margin: 0 0 0 10px;
+  }
+  
+  app-root {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .sidebar {
+    background-color: $offblack;
+    color: $offwhite;
+    grid-column: 1 / 2;
+    overflow-y: auto;
+    padding: 25px;
+  }
+
+  .buttons {
+    > * {
+        margin: 0 5px;
+    }
+  }
+  
+  button {
+    &:not(.nostyle) {
+      font-size: 17px;
+      padding: 8px;
+    }
+    &.add-after {
+      top: 0;
+    }
+    &[data-tooltip] {
+      &.weird-tooltip {
+        &::after {
+          display: block;
+          right: initial;
+          top: initial;
+          transform: translatex(-50%);
+        }
+      }
+      &::after {
+        background: black;
+        border-radius: 3px;
+        color: white;
+        content: attr(data-tooltip);
+        margin-left: 10px;
+        margin-top: 3px;
+        opacity: 0;
+        padding: 5px 8px;
+        pointer-events: none;
+        position: absolute;
+        right: 50%;
+        text-align: center;
+        top: 100%;
+        transform: translateX(50%);
+        transition: visibility 0s, opacity 0.25s linear;
+        visibility: hidden;
+        white-space: pre;
+        word-wrap: break-word;
+        z-index: 1;
+      }
+      &:hover::after {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  span.imageselect {
+    * {      
+        margin: 0 5px;
+    }
+  }
+  
+  li {
+    display: initial;
+    margin-top: 5px;
+    display: grid;
+    grid-gap: 10px;
+    column-gap: 10px;
+    &[fields='0'] {
+        grid-template-columns: 36px 1fr 36px 2fr 0px;
+        .add-after {
+            grid-column: 3/4;
+        }
+    }
+    &[fields='1'] {
+        grid-template-columns: 36px 1fr 2fr 0px 36px;
+        .valueField {
+            grid-column: 3/5;
+        }
+        .add-after {
+            grid-column: 5/6;
+        }
+    }
+    &[fields='2'] {
+        grid-template-columns: 36px 1fr 1fr 1fr 36px;
+        .nameField {
+            grid-column: 3/4;
+        }
+        .valueField {
+            grid-column: 4/5;
+        }
+        .add-after {
+            grid-column: 5/6;
+        }
+    }
+    .remove-prop {
+        grid-column: 1/2;
+    }
+    .proptype {
+        grid-column: 2/3;
+    }
+    .nameField,
+    .valueField {
+        min-width: 0px;
+    }
+    /*.proptype,
+    .nameField,
+    .valueField,
+    .remove-prop,
+    .add-after {
+        margin: 0 5px;
+    }*/
+  }
+  
+  select,
+  input {
+    background-color: $black;
+    border: 0;
+    color: $offwhite;
+    font-size: 17px;
+    padding: 8px;
+    option {
+      &.col-normal {
+        color: $normal;
+      }
+      &.col-magic {
+        color: $magic;
+      }
+      &.col-rare,
+      &.col-rare-shaper,
+      &.col-rare-elder {
+        color: $rare;
+      }
+      &.col-unique,
+      &.col-unique-shaper,
+      &.col-unique-elder {
+        color: $unique;
+      }
+      &.col-currency {
+        color: $currency;
+      }
+      &.col-gem {
+        color: $gem;
+      }
+      &.col-prophecy {
+        color: $prophecy;
+      }
+    }
+  }
+  
+  ul {
+    padding: 0;
+  }
+
+  .iteminf {
+      * {
+          margin: 0 10px 0 0;
+      }
+  }
+  
+  #canvas {
+    align-items: center;
+    background-color: $black;
+    display: flex;
+    grid-column: 2 / 3;
+    overflow-y: auto;
+  }
+  
+  .item {
+    background-color: $black;
+    font-family: "fontin";
+    font-size: 22.5px;
+    margin: auto auto;
+    text-align: center;
+  }
+  
+  .itembody {
+    padding: 10.5px 7.5px;
+  }
+  
+  .property {
+    line-height: 36px;
+    .prop-name {
+      &::after {
+        content: ": ";
+      }
+    }
+  }
+  
+  .prop-gray {
+    color: $gray;
+  }
+  
+  .prop-blue {
+    color: $blue;
+  }
+  
+  .prop-white {
+    color: $white;
+  }
+  
+  .prop-crafted {
+    color: $crafted;
+  }
+  
+  .prop-red {
+    color: $red;
+  }
+  
+  .statreq {
+    b {
+      .prop-white {
+        color: $blue;
+        font-weight: initial;
+      }
+    }
+  }
+  
+  .itemheader {
+    align-items: center;
+    display: flex;
+    .left,
+    .right {
+      background-repeat: no-repeat;
+      content: "";
+      display: inline-block;
+    }
+    .right {
+      margin-left: auto;
+    }
+    &.double {
+      background-position: center -81px;
+      height: 81px;
+      .left {
+        height: 81px;
+        width: 66px;
+      }
+      .right {
+        background-position: 0 -162px;
+        height: 81px;
+        width: 66px;
+      }
+    }
+    &.single {
+      background-position: center -51px;
+      height: 51px;
+      .left,
+      .right {
+        height: 51px;
+        width: 44px;
+      }
+      .right {
+        background-position: 0 -102px;
+      }
+      .itemheader-name-line2 {
+        display: none;
+      }
+    }
+    .itemheader-name {
+      flex: 1;
+      font-size: 30px;
+      line-height: 33px;
+      text-align: center;
+    }
+    .itemheader-name-line2 {
+      display: block;
+    }
+  }
+  
+  .sep {
+    background-image: url("assets/seps.png");
+    background-repeat: no-repeat;
+    height: 3px;
+    margin: 7.5px auto;
+    width: 331.5px;
+  }
+  
+  .unique-flavor {
+    display: none;
+  }
+  
+  .gray-flavor {
+    display: flex;
+    flex-direction: column;
+    font-style: italic;
+    line-height: 36px;
+  }
+  
+  %unique {
+    color: $unique;
+    .unique-flavor {
+      display: flex;
+      flex-direction: column;
+      font-style: italic;
+      line-height: 36px;
+    }
+    .sep {
+      background-position: 0 -9px;
+    }
+  }
+  
+  @mixin unique-itemheader($url) {
+    .itemheader {
+      background-image: url($url);
+      .left,
+      .right {
+        background-image: url($url);
+      }
+    }
+  }
+  
+  .unique {
+    @extend %unique;
+    @include unique-itemheader("assets/itemheader_unique.png");
+  }
+  
+  .unique-shaper {
+    @extend %unique;
+    @include unique-itemheader("assets/itemheader_unique_shaper.png");
+  }
+  
+  .unique-elder {
+    @extend %unique;
+    @include unique-itemheader("assets/itemheader_unique_elder.png");
+  }
+  
+  %rare {
+    color: $rare;
+    .sep {
+      background-position: 0 -6px;
+    }
+  }
+  
+  @mixin rare-itemheader($url) {
+    .itemheader {
+      background-image: url($url);
+      .left,
+      .right {
+        background-image: url($url);
+      }
+    }
+  }
+  
+  .rare {
+    @extend %rare;
+    @include rare-itemheader("assets/itemheader_rare.png");
+  }
+  
+  .rare-shaper {
+    @extend %rare;
+    @include rare-itemheader("assets/itemheader_rare_shaper.png");
+  }
+  
+  .rare-elder {
+    @extend %rare;
+    @include rare-itemheader("assets/itemheader_rare_elder.png");
+  }
+  
+  .normal {
+    color: $normal;
+    .sep {
+      background-position: 0 0;
+    }
+    .itemheader {
+      background-image: url("assets/itemheader_normal.png");
+      .left,
+      .right {
+        background-image: url("assets/itemheader_normal.png");
+      }
+    }
+  }
+  
+  .magic {
+    color: $magic;
+    .sep {
+      background-position: 0 -3px;
+    }
+    .itemheader {
+      background-image: url("assets/itemheader_magic.png");
+      .left,
+      .right {
+        background-image: url("assets/itemheader_magic.png");
+      }
+    }
+  }
+  
+  .gem {
+    color: $gem;
+    .sep {
+      background-position: 0 -15px;
+    }
+    .itemheader {
+      background-image: url("assets/itemheader_gem.png");
+      .left,
+      .right {
+        background-image: url("assets/itemheader_gem.png");
+      }
+    }
+    .unique-flavor {
+      color: $gem;
+      display: flex;
+      flex-direction: column;
+      line-height: 36px;
+    }
+  }
+  
+  .prophecy {
+    color: $prophecy;
+    .sep {
+      background-position: 0 -21px;
+    }
+    .itemheader {
+      background-image: url("assets/itemheader_prophecy.png");
+      .left,
+      .right {
+        background-image: url("assets/itemheader_prophecy.png");
+      }
+    }
+    .unique-flavor {
+      color: $unique;
+      display: flex;
+      flex-direction: column;
+      font-style: italic;
+      line-height: 36px;
+    }
+    .prop-blue {
+      color: $white;
+    }
+  }
+  
+  .currency {
+    color: $currency;
+    .sep {
+      background-position: 0 -12px;
+    }
+    .itemheader {
+      background-image: url("assets/itemheader_currency.png");
+      .left,
+      .right {
+        background-image: url("assets/itemheader_currency.png");
+      }
+    }
+  }
+  
+  img {
+    &#imageo {
+      max-width: 156px;
+    }
+  }
+  
+  .modal {
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    height: 100%;
+    left: 0;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    .modal-content {
+      animation-duration: 0.4s;
+      animation-name: animatetop;
+      background-color: $offblack;
+      color: $offwhite;
+      margin: 5% auto;
+      padding: 20px 20px 10px;
+      width: 50%;
+      .modal-grid {
+        display: grid;
+        grid-template-rows: 40px 1fr 40px;
+        & > span {
+          &:first-child {
+            grid-row: 1 / 2;
+          }
+          &:nth-child(3) {
+            grid-row: 3 / 4;
+          }
+        }
+        & > textarea {
+          background-color: $black;
+          border: 0;
+          color: $offwhite;
+          grid-row: 2 / 3;
+          height: 49em;
+          margin: 10px 0;
+          resize: vertical;
+        }
+      }
+    }
+  }
+  
+  .disclaimer {
+    background-color: $offblack;
+    bottom: 0;
+    font-size: 10px;
+    left: 0;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    position: fixed;
+  }
+  
+  @keyframes animatetop {
+    from {
+      opacity: 0;
+      top: -300px;
+    }
+    to {
+      opacity: 1;
+      top: 0;
+    }
+  }

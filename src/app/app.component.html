@@ -1,0 +1,107 @@
+<div class="sidebar" id="sidebar">
+  <span>
+    <span class="h1">Path of Exile Item Creator</span>
+    <span class="buttons" style="float: right;">
+      <!--button class="nostyle weird-tooltip" data-tooltip="Help [WiP]"><img src="assets/ic_help_outline_black_24px.svg" alt="?"/></button-->
+      <a href="https://github.com/crunchyintheory/PoE-Item-Creator" target="_blank">
+        <button class="nostyle weird-tooltip nomargin" data-tooltip="View Source">
+          <img src="assets/github_logo.svg" alt="G" width="24" height="24" />
+        </button>
+      </a>
+      <button onclick="popupimport()" class="nostyle weird-tooltip" data-tooltip="Export">
+        <img src="assets/ic_content_paste_black_24px.svg" alt="I" />
+      </button>
+      <button onclick="save()" class="nostyle weird-tooltip" data-tooltip="Save Image">
+        <img src="assets/ic_photo_camera_black_24px.svg" alt="S" />
+      </button>
+    </span>
+  </span>
+  <div class="spacer" style="height:20px;"></div>
+  <div style="margin-bottom: 15px">
+    <div style="margin: 20px 0;">
+      <span class="h2">Properties</span>
+      <button class="nostyle weird-tooltip reset" (click)="reset()" data-tooltip="Reset">
+        <img src="assets/ic_refresh_black_24px.svg" alt="Reset" />
+      </button>
+      <br/>
+    </div>
+    <span class="iteminf">
+      <select id="itemrarity" [(ngModel)]="item.rarity">
+        <option [class]="'col-' + rarity.name.split('-')[0]" *ngFor="let rarity of Rarity.rarities" [ngValue]="rarity">{{rarity.displayName}}</option>
+      </select>
+      <input type="text" class="Name" id="name1" [(ngModel)]="item.name" />
+      <input type="text" class="BaseType" id="name2" [(ngModel)]="item.base" />
+    </span>
+    <br/>
+    <br/>
+    <span class="imageselect">
+      Image:
+      <input type="text" class="Image" id="image" [(ngModel)]="item.image" />
+      <button onclick="removeimage()" class="nostyle" style="width: 36px; height: 36px; padding: 0; position: relative; top: 7px;"
+        data-tooltip="Remove Image">
+        <img src="assets/ic_close_black_24px.svg" alt="X" />
+      </button>
+    </span>
+    <ul id="properties" class="properties">
+      <li *ngFor='let property of item.properties;let index = index;' [class]="'prop-' + property.type.class" [attr.fields]="property.type.fields">
+        <button (click)="item.removeProperty(property)" class="remove-prop nostyle" style="width: 36px; height: 36px; padding: 0;">
+          <img src="assets/ic_close_black_24px.svg" alt="X" />
+        </button>
+        <select id="proptype" class="proptype" [(ngModel)]="item.properties[index].type">
+          <option *ngFor='let type of types' [ngValue]="type">{{type.name}}</option>
+        </select>
+        <input type="text" class="nameField" id="name" [(ngModel)]="item.properties[index].name" *ngIf='property.type.fields === 2' />
+        <input type="text" class="valueField" id="value" [(ngModel)]="item.properties[index].value" *ngIf='property.type.fields >= 1' />
+        <button (click)="item.insertPropertyAfter(property)" class="add-after nostyle" style="width: 36px; height: 36px; padding: 0;">
+          <img src="assets/ic_add_black_24px.svg" alt="+" />
+        </button>
+      </li>
+    </ul>
+    <button (click)="item.appendProperty()" class="add-after nostyle" style="width: 36px; height: 36px; padding: 0;" *ngIf='item.properties.length === 0'>
+        <img src="assets/ic_add_black_24px.svg" alt="+" />
+    </button>
+  </div>
+  <span class="disclaimer">This site is fan-made and not affiliated with Grinding Gear Games.</span>
+</div>
+<div id="canvas">
+  <div [class]="'item ' + item.rarity.name" id="item">
+    <div [class]="'itemheader ' + item.rarity.thickness" id="itemheader">
+      <span class="left"></span>
+      <div class="itemheader-name">
+        <span class="itemheader-name-line1" id="name1o">{{item.name}}</span>
+        <span class="itemheader-name-line2" id="name2o" *ngIf="item.rarity.thickness === RarityThickness.TwoLine">{{item.base}}</span>
+      </div>
+      <span class="right"></span>
+    </div>
+    <div class="itembody" id="itembody">
+      <div *ngFor="let property of item.properties; let index = index;" [class]="(item.properties[index].type.class === 'sep' ? '' : 'property ') + item.properties[index].type.class">
+        <span [class]="'prop-name ' + property.type.nameRenderClass" *ngIf="property.type.fields === 2">{{item.properties[index].name}}</span>
+        <span [class]="'prop-val ' + property.type.valueRenderClass" *ngIf="property.type.fields > 0" [innerHTML]="item.properties[index] | value"></span>
+      </div>
+    </div>
+    <div>
+      <img id="imageo" [src]="item.image" />
+    </div>
+  </div>
+</div>
+<div id="importmodal" class="modal">
+  <div class="modal-content">
+    <div class="modal-grid">
+      <span>
+        <span class="h1">Import/Export Item</span>
+        <span class="buttons" style="float: right;">
+          <button onclick="closeimport()" class="nostyle weird-tooltip" data-tooltip="Close">
+            <img src="assets/ic_close_black_24px.svg" alt="X" />
+          </button>
+        </span>
+      </span>
+      <textarea placeholder="Paste previously-exported item data here."></textarea>
+      <span>
+        <span>
+          <button onclick="exp()">Export</button>
+          <button onclick="importbtn()" style="float: right;">Import</button>
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
