@@ -5,17 +5,35 @@ import { AppComponent } from './app.component';
 import { ValuePipe } from './value.pipe';
 
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes, ActivatedRoute } from '@angular/router';
+import { RootComponent } from './root/root.component';
+
+const appRoutes: Routes = [
+  {
+    path: '',
+    component: AppComponent
+  },
+  {
+    path: ':item',
+    component: AppComponent
+  }
+]
 
 @NgModule({
   declarations: [
     AppComponent,
-    ValuePipe
+    ValuePipe,
+    RootComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true }
+    )
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [RootComponent]
 })
 export class AppModule { }

@@ -1,31 +1,90 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { Rarity, RarityThickness } from './rarity';
 import { Item } from './item';
-import { Property, PropertyType } from './property';
+import { PropertyType, Property } from './property';
+import { Templates } from './templates';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   item: Item;
   get types(): PropertyType[] { return PropertyType.types }
   get Rarity(): any { return Rarity }
   get RarityThickness(): any { return RarityThickness }
 
-  constructor() {
-    this.item = Item.templates[Math.floor(Math.random() * Item.templates.length)];
+  showImportModal: boolean = false;
+  itemDataTextarea: string = '';
+
+  constructor(private route: ActivatedRoute) {
+  }
+  
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      console.log(params['item']);
+      if(params['item']) {
+        this.import(atob(params['item']));
+      }
+      else {
+        this.item = Array.from(Templates.values())[Math.floor(Math.random() * Templates.size)];
+      }
+    })
   }
 
   reset() {
+    this.item = Templates.get('Tabula Rasa, Simple Robe');
+  }
+
+  export() {
+    const mapper = (currentValue: Property) => {
+      return {
+        type: currentValue.type.class,
+        name: currentValue.name,
+        value: currentValue.value
+      };
+    }
+    const properties: Array<{type: string, name: string, value: string}> = this.item.properties.map(mapper);
+    let i = {
+      rarity: this.item.rarity.name,
+      name: this.item.name,
+      base: this.item.base,
+      image: this.item.image,
+      properties: properties
+    }
+    this.itemDataTextarea = JSON.stringify(i);
+  }
+
+  import(data: string = this.itemDataTextarea) {
+    let i: {
+      rarity: string,
+      name: string,
+      base: string,
+      image: string,
+      properties: Array<{
+        type: string,
+        name: string,
+        value: string
+      }>
+    } = JSON.parse(data);
+
+    let mapper = (currentValue: {type: string, name: string, value: string}) => {
+      return new Property(
+        PropertyType.types.find((x) => { return x.class == currentValue.type }),
+        currentValue.name,
+        currentValue.value
+      )
+    }
     this.item = new Item(
-      Rarity.Unique,
-      'Tabula Rasa',
-      'Simple Robe',
-      'https://g00.gamepedia.com/g00/3_c-6ufymtkjcnqj.lfrjujinf.htr_/c-6RTWJUMJZX77x24myyux78x3ax2fx2fi6z0u8q9bufd8p.hqtzikwtsy.sjyx2fufymtkjcnqj_lfrjujinfx2f3x2f3hx2fYfgzqf_Wfx78f_nsajsytwd_nhts.uslx3fajwx78ntsx3d7727g19830928kih0151030956f3538hx26n65h.rfwpx3dnrflj_$/$/$/$/$',
-      []
-    )
+      Rarity.rarities.find((x) => { return x.name === i.rarity }),
+      i.name,
+      i.base,
+      i.image,
+      i.properties.map(mapper)
+    );
+    this.showImportModal = false;
   }
 }

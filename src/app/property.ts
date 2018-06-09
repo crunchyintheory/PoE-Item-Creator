@@ -94,7 +94,7 @@ export class PropertyType {
         class: 'vaal',
         nameRenderClass: null,
         valueRenderClass: 'prop-red',
-        fields: 0
+        fields: 1
     }
     
     static readonly types: PropertyType[] = [
