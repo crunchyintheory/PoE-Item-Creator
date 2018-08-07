@@ -9,6 +9,7 @@ import { RouterModule, Routes, ActivatedRoute, Route } from '@angular/router';
 import { RootComponent } from './root/root.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { ImportExportModalComponent } from './import-export-modal/import-export-modal.component';
 
 const appRoutes: Routes = [
   {
@@ -22,14 +23,32 @@ const appRoutes: Routes = [
   {
     path: 'gist/:username/:gistid/raw/:fileid/:filename',
     component: AppComponent
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ]
+
+appRoutes.forEach((x: Route) => {
+  x.children = [
+    {
+      path: 'import',
+      component: ImportExportModalComponent
+    },
+    {
+      path: 'export',
+      component: ImportExportModalComponent
+    }
+  ]
+})
 
 @NgModule({
   declarations: [
     AppComponent,
     ValuePipe,
-    RootComponent
+    RootComponent,
+    ImportExportModalComponent
   ],
   imports: [
     BrowserModule,

@@ -49,6 +49,7 @@
   app-root {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
     height: 100%;
     width: 100%;
   }
@@ -505,43 +506,47 @@
       max-width: 156px;
     }
   }
-  
-  .modal {
-    background-color: rgba(0, 0, 0, 0.4);
-    height: 100%;
-    left: 0;
-    overflow: auto;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-    .modal-content {
-      animation-duration: 0.4s;
-      animation-name: animatetop;
-      background-color: $offblack;
-      color: $offwhite;
-      margin: 5% auto;
-      padding: 20px 20px 10px;
-      width: 50%;
-      .modal-grid {
-        display: grid;
-        grid-template-rows: 40px 1fr 40px;
-        & > span {
-          &:first-child {
-            grid-row: 1 / 2;
+
+  #modal-outlet {
+    height: 0;
+
+    & + * {
+      background-color: rgba(0, 0, 0, 0.4);
+      height: 100%;
+      left: 0;
+      overflow: auto;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1;
+      .modal-content {
+        animation-duration: 0.4s;
+        animation-name: animatetop;
+        background-color: $offblack;
+        color: $offwhite;
+        margin: 5% auto;
+        padding: 20px 20px 10px;
+        width: 50%;
+        .modal-grid {
+          display: grid;
+          grid-template-rows: 40px 1fr 40px;
+          & > span {
+            &:first-child {
+              grid-row: 1 / 2;
+            }
+            &:nth-child(3) {
+              grid-row: 3 / 4;
+            }
           }
-          &:nth-child(3) {
-            grid-row: 3 / 4;
+          & > textarea {
+            background-color: $black;
+            border: 0;
+            color: $offwhite;
+            grid-row: 2 / 3;
+            height: 49em;
+            margin: 10px 0;
+            resize: vertical;
           }
-        }
-        & > textarea {
-          background-color: $black;
-          border: 0;
-          color: $offwhite;
-          grid-row: 2 / 3;
-          height: 49em;
-          margin: 10px 0;
-          resize: vertical;
         }
       }
     }
