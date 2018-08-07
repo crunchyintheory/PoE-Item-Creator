@@ -5,6 +5,7 @@ import { Rarity, RarityThickness } from './rarity';
 import { Item } from './item';
 import { PropertyType, Property } from './property';
 import { Templates } from './templates';
+import { HttpClient } from '../../node_modules/@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -20,17 +21,17 @@ export class AppComponent implements OnInit {
   showImportModal: boolean = false;
   itemDataTextarea: string = '';
 
-  constructor(private route: ActivatedRoute) {
+  gisturl = '';
+
+  constructor(private route: ActivatedRoute, private http: HttpClient) {
   }
   
   ngOnInit() {
+    this.item = Array.from(Templates.values())[Math.floor(Math.random() * Templates.size)];
     this.route.params.subscribe(params => {
-      console.log(params['item']);
-      if(params['item']) {
-        this.import(atob(params['item']));
-      }
-      else {
-        this.item = Array.from(Templates.values())[Math.floor(Math.random() * Templates.size)];
+      if(params['username'] && params['gistid'] && params['fileid'] && params['filename']) {
+        console.log(params);
+        this.importgist(`https://gist.githubusercontent.com/${params['username']}/${params['gistid']}/raw/${params['fileid']}/${params['filename']}`)
       }
     })
   }
@@ -86,5 +87,15 @@ export class AppComponent implements OnInit {
       i.properties.map(mapper)
     );
     this.showImportModal = false;
+  }
+
+  importgist(url: string = this.gisturl) {
+    if(url) {
+      console.log(url);
+      this.http.get(url).subscribe((data: string) => {
+        console.log(data);
+        this.import(JSON.stringify(data));
+      })
+    }
   }
 }

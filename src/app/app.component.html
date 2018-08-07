@@ -95,6 +95,7 @@
           </button>
         </span>
       </span>
+      <span class="gist"><label>Import from Gist: <input type="text" [(ngModel)]='gisturl'/></label> <button (click)="importgist(gisturl)">Import</button></span>
       <textarea placeholder="Paste previously-exported item data here." [(ngModel)]='itemDataTextarea'></textarea>
       <span>
         <span>
