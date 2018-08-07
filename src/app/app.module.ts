@@ -36,7 +36,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true }
+      { enableTracing: true, useHash: true }
     ),
     HttpClientModule
   ],
