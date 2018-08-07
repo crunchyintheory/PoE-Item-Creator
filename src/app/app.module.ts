@@ -5,8 +5,10 @@ import { AppComponent } from './app.component';
 import { ValuePipe } from './value.pipe';
 
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes, ActivatedRoute } from '@angular/router';
+import { RouterModule, Routes, ActivatedRoute, Route } from '@angular/router';
 import { RootComponent } from './root/root.component';
+
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   {
@@ -14,7 +16,11 @@ const appRoutes: Routes = [
     component: AppComponent
   },
   {
-    path: ':item',
+    path: 'gist/:username/:gistid/:fileid/:filename',
+    component: AppComponent
+  },
+  {
+    path: 'gist/:username/:gistid/raw/:fileid/:filename',
     component: AppComponent
   }
 ]
@@ -31,7 +37,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }
-    )
+    ),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [RootComponent]
