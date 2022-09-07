@@ -12,13 +12,15 @@ import { RouterModule } from '@angular/router';
 import { ItemService } from './item-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemRendererComponent } from './item-renderer/item-renderer.component';
+import { ItemEditorComponent } from './item-editor/item-editor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ValuePipe,
     ImportExportModalComponent,
-    ItemRendererComponent
+    ItemRendererComponent,
+    ItemEditorComponent
   ],
   imports: [
     BrowserModule,
