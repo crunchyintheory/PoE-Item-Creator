@@ -3,7 +3,7 @@ import { Item } from './item';
 import { HttpClient } from '@angular/common/http';
 import { Templates } from './templates';
 import { Property, PropertyType } from './property';
-import { Rarity } from './rarity';
+import { Influence, Rarity } from './rarity';
 
 @Injectable()
 export class ItemService {
@@ -14,7 +14,16 @@ export class ItemService {
 
   reset(): Promise<Item> {
     return new Promise((resolve, reject) => {
-      resolve(this.item = Templates.get('Tabula Rasa, Simple Robe') as Item);
+      this.item = Templates.get('Tabula Rasa, Simple Robe') as Item;
+      if(Math.random() > 0.5) {
+        this.item.influence = Influence.influences[Math.floor(Math.random() * (Influence.influences.length - 2)) + 1];
+        this.item.influence2 = Influence.influences[Math.floor(Math.random() * (Influence.influences.length - 2)) + 1];
+      }
+      else {
+        this.item.influence = Influence.None;
+        this.item.influence2 = Influence.None;
+      }
+      resolve(this.item);
     })
   }
 
@@ -45,6 +54,7 @@ export class ItemService {
         name: string,
         base: string,
         image: string,
+        size: string,
         properties: Array<{
           type: string,
           name: string,
@@ -64,6 +74,7 @@ export class ItemService {
         i.name,
         i.base,
         i.image,
+        i.size,
         i.properties.map(mapper)
       );
       resolve(this.item);

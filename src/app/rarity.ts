@@ -1,6 +1,7 @@
 export enum RarityThickness {
     OneLine = 'single',
-    TwoLine = 'double'
+    TwoLine = 'double',
+    ThickOneLine = 'thicksingle'
 }
 
 export class Rarity {
@@ -56,6 +57,26 @@ export class Rarity {
         'unique',
         RarityThickness.TwoLine
     )
+
+    static readonly Passive: Rarity = new Rarity(
+        'passive',
+        RarityThickness.ThickOneLine
+    )
+
+    static readonly Notable: Rarity = new Rarity(
+        'notable',
+        RarityThickness.ThickOneLine
+    )
+
+    static readonly Keystone: Rarity = new Rarity(
+        'keystone',
+        RarityThickness.ThickOneLine
+    )
+
+    static readonly JewelSocket: Rarity = new Rarity(
+        'socket-jewel',
+        RarityThickness.ThickOneLine
+    )
     
     static readonly rarities: Rarity[] = [
         Rarity.Normal,
@@ -64,17 +85,31 @@ export class Rarity {
         Rarity.Prophecy,
         Rarity.Currency,
         Rarity.Rare,
-        Rarity.Unique
+        Rarity.Unique,
+        Rarity.Passive,
+        Rarity.Notable,
+        Rarity.Keystone,
+        Rarity.JewelSocket
     ]
 }
 
 export class Influence {
     readonly name: string;
     readonly icon: string;
+    private _has_background = false;
 
-    private constructor(name: string, icon?: string) {
+    public get has_background() {
+        return this._has_background;
+    }
+
+    private set has_background(value: boolean) {
+        this._has_background = value;
+    }
+
+    private constructor(name: string, icon?: string, has_background = false) {
         this.name = name;
         this.icon = icon || `assets/symbol_${name.toLowerCase()}.png`;
+        this.has_background = has_background;
     }
 
     get displayName(): string {
@@ -87,11 +122,16 @@ export class Influence {
         }
     }
 
+    private setHasBackground(has_background: boolean): Influence {
+        this.has_background = has_background;
+        return this;
+    }
+
     static readonly None = new Influence("None", "none");
 
-    static readonly Shaper = new Influence("Shaper");
+    static readonly Shaper = new Influence("Shaper").setHasBackground(true);
 
-    static readonly Elder = new Influence("Elder");
+    static readonly Elder = new Influence("Elder").setHasBackground(true);
 
     static readonly Fractured = new Influence("Fractured");
 
@@ -105,6 +145,12 @@ export class Influence {
 
     static readonly Redeemer = new Influence("Redeemer");
 
+    static readonly Replica = new Influence("Replica");
+
+    static readonly Eater = new Influence("Eater of Worlds", "assets/symbol_eater.png");
+
+    static readonly Exarch = new Influence("Searing Exarch", "assets/symbol_searing.png");
+
     static readonly influences: Influence[] = [
         Influence.None,
         Influence.Shaper,
@@ -115,5 +161,8 @@ export class Influence {
         Influence.Hunter,
         Influence.Redeemer,
         Influence.Warlord,
+        Influence.Replica,
+        Influence.Eater,
+        Influence.Exarch
     ]
 }

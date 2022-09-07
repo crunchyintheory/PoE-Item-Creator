@@ -21,6 +21,7 @@ $currency: #aa9e82;
 $normal: #c8c8c8;
 $prophecy: #b54bff;
 $gem: #1aa29b;
+$passive: #f7e6ca;
 
 html, body {
   font-family: sans-serif;
@@ -300,7 +301,7 @@ ul {
            right: 0;
         }
     }
-    &.double {
+    &.double, &.thicksingle {
       background-position: center -81px;
       height: 81px;
       .left {
@@ -347,8 +348,13 @@ ul {
     width: 331.5px;
 }
   
+
 .unique-flavor {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    font-style: italic;
+    line-height: 36px;
+    color: $unique;
 }
   
 .gray-flavor {
@@ -360,15 +366,13 @@ ul {
   
 %unique {
     color: $unique;
-    .unique-flavor {
-      display: flex;
-      flex-direction: column;
-      font-style: italic;
-      line-height: 36px;
-    }
     .sep {
       background-position: 0 -9px;
     }
+}
+
+%passive {
+    color: $passive;
 }
   
 @mixin unique-itemheader($url) {
@@ -383,7 +387,7 @@ ul {
   
 .unique {
     @extend %unique;
-    @include unique-itemheader("./assets/itemheader_unique.png");
+    @include unique-itemheader("./assets/headers/itemheader_unique.png");
 }
   
 %rare {
@@ -405,7 +409,7 @@ ul {
   
 .rare {
     @extend %rare;
-    @include rare-itemheader("./assets/itemheader_rare.png");
+    @include rare-itemheader("./assets/headers/itemheader_rare.png");
 }
   
 .normal {
@@ -414,10 +418,10 @@ ul {
       background-position: 0 0;
     }
     .itemheader {
-      background-image: url("./assets/itemheader_normal.png");
+      background-image: url("./assets/headers/itemheader_normal.png");
       .left,
       .right {
-        background-image: url("./assets/itemheader_normal.png");
+        background-image: url("./assets/headers/itemheader_normal.png");
       }
     }
 }
@@ -428,10 +432,10 @@ ul {
         background-position: 0 -3px;
     }
     .itemheader {
-        background-image: url("./assets/itemheader_magic.png");
+        background-image: url("./assets/headers/itemheader_magic.png");
         .left,
         .right {
-            background-image: url("./assets/itemheader_magic.png");
+            background-image: url("./assets/headers/itemheader_magic.png");
         }
     }
 }
@@ -442,10 +446,10 @@ ul {
         background-position: 0 -15px;
     }
     .itemheader {
-        background-image: url("./assets/itemheader_gem.png");
+        background-image: url("./assets/headers/itemheader_gem.png");
         .left,
         .right {
-            background-image: url("./assets/itemheader_gem.png");
+            background-image: url("./assets/headers/itemheader_gem.png");
         }
     }
     .unique-flavor {
@@ -462,10 +466,10 @@ ul {
         background-position: 0 -21px;
     }
     .itemheader {
-        background-image: url("./assets/itemheader_prophecy.png");
+        background-image: url("./assets/headers/itemheader_prophecy.png");
         .left,
         .right {
-            background-image: url("./assets/itemheader_prophecy.png");
+            background-image: url("./assets/headers/itemheader_prophecy.png");
         }
     }
     .unique-flavor {
@@ -486,10 +490,54 @@ ul {
         background-position: 0 -12px;
     }
     .itemheader {
-        background-image: url("./assets/itemheader_currency.png");
+        background-image: url("./assets/headers/itemheader_currency.png");
         .left,
         .right {
-            background-image: url("./assets/itemheader_currency.png");
+            background-image: url("./assets/headers/itemheader_currency.png");
+        }
+    }
+}
+
+.passive {
+    @extend %passive;
+    .itemheader {
+        background-image: url("./assets/headers/itemheader_passive.png");
+        .left,
+        .right {
+            background-image: url("./assets/headers/itemheader_passive.png");
+        }
+    }
+}
+
+.notable {
+    @extend %passive;
+    .itemheader {
+        background-image: url("./assets/headers/itemheader_notable.png");
+        .left,
+        .right {
+            background-image: url("./assets/headers/itemheader_notable.png");
+        }
+    }
+}
+
+.keystone {
+    @extend %passive;
+    .itemheader {
+        background-image: url("./assets/headers/itemheader_keystone.png");
+        .left,
+        .right {
+            background-image: url("./assets/headers/itemheader_keystone.png");
+        }
+    }
+}
+
+.socket-jewel {
+    @extend %passive;
+    .itemheader {
+        background-image: url("./assets/headers/itemheader_socket.png");
+        .left,
+        .right {
+            background-image: url("./assets/headers/itemheader_socket.png");
         }
     }
 }
@@ -497,6 +545,26 @@ ul {
 img {
     &#imageo {
         max-width: 156px;
+        position: relative;
+        z-index: 3;
+    }
+}
+
+.influencebg {
+    display: inline-block;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    &.elder {
+        z-index: 2;
+    }
+    &.shaper {
+        z-index: 1;
     }
 }
 

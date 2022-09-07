@@ -4,6 +4,7 @@ import { Property, PropertyType } from './property';
 export class Item {
     rarity: Rarity
     influence: Influence
+    influence2: Influence
 
     name: string
     base: string
@@ -11,13 +12,17 @@ export class Item {
 
     properties: Property[]
 
-    constructor(rarity:Rarity, name:string, base:string, image:string, properties:Property[], influence?: Influence) {
+    size: string
+
+    constructor(rarity:Rarity, name:string, base:string, image:string, size: string, properties:Property[], influence?: Influence, influence2?: Influence) {
         this.rarity = rarity;
         this.name = name;
         this.base = base;
         this.image = image;
+        this.size = size;
         this.properties = properties;
         this.influence = influence || Influence.None;
+        this.influence2 = influence2 || this.influence;
     }
 
     insertPropertyAfter(property: Property) {
