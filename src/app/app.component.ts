@@ -40,11 +40,4 @@ export class AppComponent implements OnInit {
       this.router.navigateByUrl('/');
     })
   }
-
-  getInfluenceBackground(influence: Influence): string {
-    if(influence.has_background) {
-      return `url("assets/backgrounds/${influence.name}${this.item.size.replaceAll("x", "_")}.png")`.toLowerCase();
-    }
-    return "";
-  }
 }
