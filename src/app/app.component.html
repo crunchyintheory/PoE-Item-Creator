@@ -1,87 +1,28 @@
-<div class="sidebar" id="sidebar">
-  <span>
-    <span class="h1">Path of Exile Item Creator</span>
-    <span class="buttons" style="float: right;">
-      <!--button class="nostyle weird-tooltip" data-tooltip="Help [WiP]"><img src="assets/ic_help_outline_black_24px.svg" alt="?"/></button-->
-      <a href="https://github.com/crunchyintheory/PoE-Item-Creator" target="_blank">
-        <button class="nostyle weird-tooltip nomargin" data-tooltip="View Source">
-          <img src="assets/github_logo.svg" alt="G" width="24" height="24" />
-        </button>
-      </a>
-      <a [routerLink]="['./export']">
-        <button class="nostyle weird-tooltip" data-tooltip="Export">
-          <img src="assets/ic_content_paste_black_24px.svg" alt="I" />
-        </button>
-      </a>
-    </span>
-  </span>
-  <div class="spacer" style="height:20px;"></div>
-  <div style="margin-bottom: 15px">
-    <div style="margin: 20px 0;">
-      <span class="h2">Properties</span>
-      <button class="nostyle weird-tooltip reset" (click)="reset()" data-tooltip="Reset">
-        <img src="assets/ic_refresh_black_24px.svg" alt="Reset" />
-      </button>
-      <br/>
-    </div>
-    <span class="iteminf">
-      <select id="itemrarity" [(ngModel)]="item.rarity">
-        <option [class]="'col-' + rarity.name.split('-')[0]" *ngFor="let rarity of Rarity.rarities" [ngValue]="rarity">{{rarity.displayName}}</option>
-      </select>
-      <input type="text" class="Name" id="name1" [(ngModel)]="item.name" />
-      <input type="text" class="BaseType" id="name2" [(ngModel)]="item.base" *ngIf="item.rarity.thickness === RarityThickness.TwoLine" />
-      <br/>
-      <br/>
-      <select id="iteminfluence" [(ngModel)]="item.influence">
-        <option [class]="'col-' + influence.name.toLowerCase()" *ngFor="let influence of Influence.influences" [ngValue]="influence">{{ influence.displayName }}</option>
-      </select>
-      <select id="iteminfluence" [(ngModel)]="item.influence2">
-        <option [class]="'col-' + influence.name.toLowerCase()" *ngFor="let influence of Influence.influences" [ngValue]="influence">{{ influence.displayName }}</option>
-      </select>
-    </span>
-    <br/>
-    <br/>
-    <span class="imageselect">
-      Image:
-      <input type="text" class="Image" id="image" [(ngModel)]="item.image" />
-      <button onclick="removeimage()" class="nostyle" style="width: 36px; height: 36px; padding: 0; position: relative; top: 7px;"
-        data-tooltip="Remove Image">
-        <img src="assets/ic_close_black_24px.svg" alt="X" />
-      </button>
-    </span>
-    <br/>
-    <br/>
-    <span class="itemsize" *ngIf="item.influence.has_background || item.influence2.has_background">
-      Item Size (For Influence Background):
-      <select id="itemsize" [(ngModel)]="item.size">
-        <option value="x1x1">1x1</option>
-        <option value="x1x2">1x2</option>
-        <option value="x1x3">1x3</option>
-        <option value="x2x1">2x1</option>
-        <option value="x2x2">2x2</option>
-        <option value="x2x3">2x3</option>
-      </select>
-    </span>
-    <ul id="properties" class="properties">
-      <li *ngFor='let property of item.properties;let index = index;' [class]="'prop-' + property.type.className" [attr.fields]="property.type.fields">
-        <button (click)="item.removeProperty(property)" class="remove-prop nostyle" style="width: 36px; height: 36px; padding: 0;">
-          <img src="assets/ic_close_black_24px.svg" alt="X" />
-        </button>
-        <select id="proptype" class="proptype" [(ngModel)]="item.properties[index].type">
-          <option *ngFor='let type of types' [ngValue]="type">{{type.name}}</option>
-        </select>
-        <input type="text" class="nameField" id="name" [(ngModel)]="item.properties[index].name" *ngIf='property.type.fields === 2' />
-        <input type="text" class="valueField" id="value" [(ngModel)]="item.properties[index].value" *ngIf='property.type.fields >= 1' />
-        <button (click)="item.insertPropertyAfter(property)" class="add-after nostyle" style="width: 36px; height: 36px; padding: 0;">
-          <img src="assets/ic_add_black_24px.svg" alt="+" />
-        </button>
-      </li>
-    </ul>
-    <button (click)="item.appendProperty()" class="add-after nostyle" style="width: 36px; height: 36px; padding: 0;" *ngIf='item.properties.length === 0'>
-        <img src="assets/ic_add_black_24px.svg" alt="+" />
-    </button>
-  </div>
-  <span class="disclaimer">This site is fan-made and not affiliated with Grinding Gear Games.</span>
+<div id="navbar">
+  <img src="assets/symbol_shaper.png" height="30"/>
+  <span class="h1" style="margin-left: 5px;">Path of Exile Item Creator</span>
+  <div style="flex-grow: 1"></div>
+  <ul class="right">
+    <li>
+      <a href="https://github.com/crunchyintheory/PoE-Item-Creator">GitHub</a>
+    </li>
+    <li>
+      <a href="https://www.pathofexile.com/forum/view-thread/2088916">Forum Post</a>
+    </li>
+    <li>
+      <a href="https://github.com/crunchyintheory/PoE-Item-Creator/issues">Report Bug</a>
+    </li>
+  </ul>
 </div>
-<poe-item-renderer [item]="item"></poe-item-renderer>
+<div class="grid">
+  <div class="tabber">
+    <div class="tab active">Create Item</div>
+    <div class="tab">Stash - Coming Soon</div>
+  </div>
+  <div class="sidebar" id="sidebar">
+    <poe-item-editor></poe-item-editor>
+  </div>
+  <poe-item-renderer [item]="item"></poe-item-renderer>
+</div>
+<span class="disclaimer">This site is fan-made and not affiliated with Grinding Gear Games.</span>
 <router-outlet id="modal-outlet"></router-outlet>

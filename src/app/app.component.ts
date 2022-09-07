@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { ItemService } from './item-service.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'poe-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
@@ -33,11 +33,5 @@ export class AppComponent implements OnInit {
         this.is.importgist(`https://gist.githubusercontent.com/${params['username']}/${params['gistid']}/raw/${params['fileid']}/${params['filename']}`)
       }
     });
-  }
-
-  reset() {
-    this.is.reset().then(() => {
-      this.router.navigateByUrl('/');
-    })
   }
 }

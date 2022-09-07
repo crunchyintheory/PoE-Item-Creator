@@ -7,14 +7,12 @@
 }
 
 html, body {
-  font-family: sans-serif;
+  font-family: fontin, sans-serif;
+  font-size: 14.3px;
+  color: $primary;
   margin: 0;
   height: 100%;
   font-variant-ligatures: none;
-}
-
-html {
-    overflow: hidden;
 }
 
 .h1 {
@@ -26,37 +24,20 @@ html {
     font-size: 1.5em;
     font-weight: bold;
 }
+  
+button, .button {
+    cursor: pointer;
+    outline: none;
+    background: transparent;
+    border: none;
+    color: $primary;
 
-.reset {
-    margin: 0 0 0 10px;
-}
-  
-app-root {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    height: 100%;
-    width: 100%;
-}
-  
-.sidebar {
-    background-color: $offblack;
-    color: $offwhite;
-    grid-column: 1 / 2;
-    overflow-y: auto;
-    padding: 25px;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.buttons {
-    > * {
-        margin: 0 5px;
-    }
-}
-  
-button {
-    &:not(.nostyle) {
-        font-size: 17px;
-        padding: 8px;
+    &:hover {
+        background-color: #2d3136;
     }
     &.add-after {
         top: 0;
@@ -103,65 +84,15 @@ span.imageselect {
         margin: 0 5px;
     }
 }
-
-li {
-    display: initial;
-    margin-top: 5px;
-    display: grid;
-    grid-gap: 10px;
-    column-gap: 10px;
-    &[fields='0'] {
-        grid-template-columns: 36px 1fr 36px 2fr 0px;
-        .add-after {
-          grid-column: 3/4;
-        }
-    }
-    &[fields='1'] {
-        grid-template-columns: 36px 1fr 2fr 0px 36px;
-        .valueField {
-            grid-column: 3/5;
-        }
-        .add-after {
-            grid-column: 5/6;
-        }
-    }
-    &[fields='2'] {
-        grid-template-columns: 36px 1fr 1fr 1fr 36px;
-        .nameField {
-            grid-column: 3/4;
-        }
-        .valueField {
-            grid-column: 4/5;
-        }
-        .add-after {
-            grid-column: 5/6;
-        }
-    }
-    .remove-prop {
-        grid-column: 1/2;
-    }
-    .proptype {
-        grid-column: 2/3;
-    }
-    .nameField,
-    .valueField {
-        min-width: 0px;
-    }
-    /*.proptype,
-    .nameField,
-    .valueField,
-    .remove-prop,
-    .add-after {
-        margin: 0 5px;
-    }*/
-}
   
 select, input {
-    background-color: $black;
+    background-color: #1e2124;
     border: 0;
     color: $offwhite;
-    font-size: 17px;
-    padding: 8px;
+    line-height: 18px;
+    padding: 6px 12px;
+    font-family: fontin, sans-serif;
+    font-variant-ligatures: none;
     option {
         &.col-normal {
             color: $normal;
@@ -190,11 +121,6 @@ select, input {
         }
     }
 }
-  
-ul {
-    padding: 0;
-}
-
 
 #modal-outlet {
     height: 0;
@@ -239,16 +165,6 @@ ul {
             }
         }
     }
-}
-  
-.disclaimer {
-    background-color: $offblack;
-    bottom: 0;
-    font-size: 10px;
-    left: 0;
-    padding-bottom: 2px;
-    padding-left: 2px;
-    position: fixed;
 }
   
 @keyframes animatetop {
