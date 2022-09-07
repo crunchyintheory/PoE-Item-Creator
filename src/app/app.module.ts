@@ -11,12 +11,14 @@ import { ImportExportModalComponent } from './import-export-modal/import-export-
 import { RouterModule } from '@angular/router';
 import { ItemService } from './item-service.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ItemRendererComponent } from './item-renderer/item-renderer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ValuePipe,
-    ImportExportModalComponent
+    ImportExportModalComponent,
+    ItemRendererComponent
   ],
   imports: [
     BrowserModule,

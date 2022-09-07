@@ -83,30 +83,5 @@
   </div>
   <span class="disclaimer">This site is fan-made and not affiliated with Grinding Gear Games.</span>
 </div>
-<div id="canvas">
-  <div [class]="'item ' + item.rarity.name + ' ' + item.size + ' ' + item.influence.name + ' ' + item.influence2.name" id="item">
-    <div [class]="'itemheader ' + item.rarity.thickness" id="itemheader">
-      <span class="left"><img *ngIf="item.influence.icon != 'none'" src="{{ item.influence.icon }}" class="influence-symbol"/></span>
-      <div class="itemheader-name">
-        <span class="itemheader-name-line1" id="name1o">{{item.name}}</span>
-        <span class="itemheader-name-line2" id="name2o" *ngIf="item.rarity.thickness === RarityThickness.TwoLine">{{item.base}}</span>
-      </div>
-      <span class="right">
-        <img *ngIf="item.influence2.icon != 'none'" src="{{ item.influence2.icon }}" class="influence-symbol"/>
-        <img *ngIf="item.influence2.icon == 'none' && item.influence.icon != 'none'" src="{{ item.influence.icon }}" class="influence-symbol"/>
-      </span>
-    </div>
-    <div class="itembody" id="itembody">
-      <div *ngFor="let property of item.properties; let index = index;" [class]="(item.properties[index].type.className === 'sep' ? '' : 'property ') + item.properties[index].type.className">
-        <span [class]="'prop-name ' + property.type.nameRenderClass" *ngIf="property.type.fields === 2">{{item.properties[index].name}}</span>
-        <span [class]="'prop-val ' + property.type.valueRenderClass" *ngIf="property.type.fields > 0" [innerHTML]="item.properties[index] | value"></span>
-      </div>
-    </div>
-    <div style="display: flex; position: relative; justify-content: center;">
-      <div class="influencebg" [class]="item.influence.name.toLowerCase()" [ngStyle]="{backgroundImage: this.getInfluenceBackground(item.influence)}"></div>
-      <div class="influencebg" [class]="item.influence2.name.toLowerCase()" [ngStyle]="{backgroundImage: this.getInfluenceBackground(item.influence2)}"></div>
-      <img id="imageo" [src]="item.image"/>
-    </div>
-  </div>
-</div>
+<poe-item-renderer [item]="item"></poe-item-renderer>
 <router-outlet id="modal-outlet"></router-outlet>

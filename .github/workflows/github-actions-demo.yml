@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - run: make 
+      - run: make install_production
       - run: make build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1

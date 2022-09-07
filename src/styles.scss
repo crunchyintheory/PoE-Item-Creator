@@ -1,27 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import './styles/colors.scss';
+
 @font-face {
-  font-family: "fontin";
-  src: url("./assets/Fontin-SmallCaps.woff") format("woff");
+    font-family: "fontin";
+    src: url("./assets/Fontin-SmallCaps.woff") format("woff");
 }
-
-$black: black;
-$offblack: #212121;
-$offwhite: #eeeeee;
-
-$gray: #7f7f7f;
-$blue: #8888ff;
-$white: white;
-$crafted: #b8daf1;
-$red: #d20000;
-
-$unique: #af6025;
-$magic: $blue;
-$rare: #ffff77;
-$currency: #aa9e82;
-$normal: #c8c8c8;
-$prophecy: #b54bff;
-$gem: #1aa29b;
-$passive: #f7e6ca;
 
 html, body {
   font-family: sans-serif;
@@ -212,361 +195,6 @@ ul {
     padding: 0;
 }
 
-.iteminf {
-      * {
-          margin: 0 10px 0 0;
-      }
-}
-  
-#canvas {
-    align-items: center;
-    background-color: $black;
-    display: flex;
-    grid-column: 2 / 3;
-    overflow-y: auto;
-}
-  
-.item {
-    background-color: $black;
-    font-family: "fontin";
-    font-size: 22.5px;
-    margin: auto auto;
-    text-align: center;
-}
-  
-.itembody {
-    padding: 10.5px 7.5px;
-}
-  
-.property {
-    line-height: 36px;
-    .prop-name {
-      &::after {
-        content: ": ";
-      }
-    }
-}
-  
-.prop-gray {
-    color: $gray;
-}
-  
-.prop-blue {
-    color: $blue;
-}
-  
-.prop-white {
-    color: $white;
-}
-  
-.prop-crafted {
-    color: $crafted;
-}
-  
-.prop-red {
-    color: $red;
-}
-  
-.statreq {
-    b {
-        .prop-white {
-            color: $blue;
-            font-weight: initial;
-        }
-    }
-}
-  
-.itemheader {
-    align-items: center;
-    display: flex;
-    .left,
-    .right {
-        position: relative;
-        background-repeat: no-repeat;
-        content: "";
-        display: inline-block;
-        .influence-symbol {
-            width: 40px;
-            position: absolute;
-            top: 50%;
-            margin-top: -20px;
-        }
-    }
-    .left .influence-symbol {
-        left: 0;
-    }
-    .right {
-        margin-left: auto;
-        .influence-symbol {
-           right: 0;
-        }
-    }
-    &.double, &.thicksingle {
-      background-position: center -81px;
-      height: 81px;
-      .left {
-        height: 81px;
-        width: 66px;
-      }
-      .right {
-        background-position: 0 -162px;
-        height: 81px;
-        width: 66px;
-      }
-    }
-    &.single {
-      background-position: center -51px;
-      height: 51px;
-      .left,
-      .right {
-        height: 51px;
-        width: 44px;
-      }
-      .right {
-        background-position: 0 -102px;
-      }
-      .itemheader-name-line2 {
-        display: none;
-      }
-    }
-    .itemheader-name {
-      flex: 1;
-      font-size: 30px;
-      line-height: 33px;
-      text-align: center;
-    }
-    .itemheader-name-line2 {
-      display: block;
-    }
-}
-  
-.sep {
-    background-image: url("./assets/seps.png");
-    background-repeat: no-repeat;
-    height: 3px;
-    margin: 7.5px auto;
-    width: 331.5px;
-}
-  
-
-.unique-flavor {
-    display: flex;
-    flex-direction: column;
-    font-style: italic;
-    line-height: 36px;
-    color: $unique;
-}
-  
-.gray-flavor {
-    display: flex;
-    flex-direction: column;
-    font-style: italic;
-    line-height: 36px;
-}
-  
-%unique {
-    color: $unique;
-    .sep {
-      background-position: 0 -9px;
-    }
-}
-
-%passive {
-    color: $passive;
-}
-  
-@mixin unique-itemheader($url) {
-    .itemheader {
-      background-image: url($url);
-      .left,
-      .right {
-        background-image: url($url);
-      }
-    }
-}
-  
-.unique {
-    @extend %unique;
-    @include unique-itemheader("./assets/headers/itemheader_unique.png");
-}
-  
-%rare {
-    color: $rare;
-    .sep {
-      background-position: 0 -6px;
-    }
-}
-  
-@mixin rare-itemheader($url) {
-    .itemheader {
-      background-image: url($url);
-      .left,
-      .right {
-        background-image: url($url);
-      }
-    }
-}
-  
-.rare {
-    @extend %rare;
-    @include rare-itemheader("./assets/headers/itemheader_rare.png");
-}
-  
-.normal {
-    color: $normal;
-    .sep {
-      background-position: 0 0;
-    }
-    .itemheader {
-      background-image: url("./assets/headers/itemheader_normal.png");
-      .left,
-      .right {
-        background-image: url("./assets/headers/itemheader_normal.png");
-      }
-    }
-}
-  
-.magic {
-    color: $magic;
-    .sep {
-        background-position: 0 -3px;
-    }
-    .itemheader {
-        background-image: url("./assets/headers/itemheader_magic.png");
-        .left,
-        .right {
-            background-image: url("./assets/headers/itemheader_magic.png");
-        }
-    }
-}
-  
-.gem {
-    color: $gem;
-    .sep {
-        background-position: 0 -15px;
-    }
-    .itemheader {
-        background-image: url("./assets/headers/itemheader_gem.png");
-        .left,
-        .right {
-            background-image: url("./assets/headers/itemheader_gem.png");
-        }
-    }
-    .unique-flavor {
-        color: $gem;
-        display: flex;
-        flex-direction: column;
-        line-height: 36px;
-    }
-}
-  
-.prophecy {
-    color: $prophecy;
-    .sep {
-        background-position: 0 -21px;
-    }
-    .itemheader {
-        background-image: url("./assets/headers/itemheader_prophecy.png");
-        .left,
-        .right {
-            background-image: url("./assets/headers/itemheader_prophecy.png");
-        }
-    }
-    .unique-flavor {
-        color: $unique;
-        display: flex;
-        flex-direction: column;
-        font-style: italic;
-        line-height: 36px;
-    }
-    .prop-blue {
-        color: $white;
-    }
-}
-  
-.currency {
-    color: $currency;
-    .sep {
-        background-position: 0 -12px;
-    }
-    .itemheader {
-        background-image: url("./assets/headers/itemheader_currency.png");
-        .left,
-        .right {
-            background-image: url("./assets/headers/itemheader_currency.png");
-        }
-    }
-}
-
-.passive {
-    @extend %passive;
-    .itemheader {
-        background-image: url("./assets/headers/itemheader_passive.png");
-        .left,
-        .right {
-            background-image: url("./assets/headers/itemheader_passive.png");
-        }
-    }
-}
-
-.notable {
-    @extend %passive;
-    .itemheader {
-        background-image: url("./assets/headers/itemheader_notable.png");
-        .left,
-        .right {
-            background-image: url("./assets/headers/itemheader_notable.png");
-        }
-    }
-}
-
-.keystone {
-    @extend %passive;
-    .itemheader {
-        background-image: url("./assets/headers/itemheader_keystone.png");
-        .left,
-        .right {
-            background-image: url("./assets/headers/itemheader_keystone.png");
-        }
-    }
-}
-
-.socket-jewel {
-    @extend %passive;
-    .itemheader {
-        background-image: url("./assets/headers/itemheader_socket.png");
-        .left,
-        .right {
-            background-image: url("./assets/headers/itemheader_socket.png");
-        }
-    }
-}
-  
-img {
-    &#imageo {
-        max-width: 156px;
-        position: relative;
-        z-index: 3;
-    }
-}
-
-.influencebg {
-    display: inline-block;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    &.elder {
-        z-index: 2;
-    }
-    &.shaper {
-        z-index: 1;
-    }
-}
 
 #modal-outlet {
     height: 0;
@@ -632,4 +260,24 @@ img {
       opacity: 1;
       top: 0;
     }
+}
+
+.prop-gray {
+  color: $gray;
+}
+
+.prop-blue {
+  color: $blue;
+}
+
+.prop-white {
+  color: $white;
+}
+
+.prop-crafted {
+  color: $crafted;
+}
+
+.prop-red {
+  color: $red;
 }
