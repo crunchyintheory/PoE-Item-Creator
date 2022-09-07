@@ -31,7 +31,11 @@
       <input type="text" class="Name" id="name1" [(ngModel)]="item.name" />
       <input type="text" class="BaseType" id="name2" [(ngModel)]="item.base" *ngIf="item.rarity.thickness === RarityThickness.TwoLine" />
       <br/>
+      <br/>
       <select id="iteminfluence" [(ngModel)]="item.influence">
+        <option [class]="'col-' + influence.name.toLowerCase()" *ngFor="let influence of Influence.influences" [ngValue]="influence">{{ influence.displayName }}</option>
+      </select>
+      <select id="iteminfluence" [(ngModel)]="item.influence2">
         <option [class]="'col-' + influence.name.toLowerCase()" *ngFor="let influence of Influence.influences" [ngValue]="influence">{{ influence.displayName }}</option>
       </select>
     </span>
@@ -44,6 +48,19 @@
         data-tooltip="Remove Image">
         <img src="assets/ic_close_black_24px.svg" alt="X" />
       </button>
+    </span>
+    <br/>
+    <br/>
+    <span class="itemsize" *ngIf="item.influence.has_background || item.influence2.has_background">
+      Item Size (For Influence Background):
+      <select id="itemsize" [(ngModel)]="item.size">
+        <option value="x1x1">1x1</option>
+        <option value="x1x2">1x2</option>
+        <option value="x1x3">1x3</option>
+        <option value="x2x1">2x1</option>
+        <option value="x2x2">2x2</option>
+        <option value="x2x3">2x3</option>
+      </select>
     </span>
     <ul id="properties" class="properties">
       <li *ngFor='let property of item.properties;let index = index;' [class]="'prop-' + property.type.className" [attr.fields]="property.type.fields">
@@ -67,14 +84,17 @@
   <span class="disclaimer">This site is fan-made and not affiliated with Grinding Gear Games.</span>
 </div>
 <div id="canvas">
-  <div [class]="'item ' + item.rarity.name" id="item">
+  <div [class]="'item ' + item.rarity.name + ' ' + item.size + ' ' + item.influence.name + ' ' + item.influence2.name" id="item">
     <div [class]="'itemheader ' + item.rarity.thickness" id="itemheader">
-      <span class="left"><img *ngIf="item.influence.icon != 'none'" src="{{ item.influence?.icon }}" class="influence-symbol"/></span>
+      <span class="left"><img *ngIf="item.influence.icon != 'none'" src="{{ item.influence.icon }}" class="influence-symbol"/></span>
       <div class="itemheader-name">
         <span class="itemheader-name-line1" id="name1o">{{item.name}}</span>
         <span class="itemheader-name-line2" id="name2o" *ngIf="item.rarity.thickness === RarityThickness.TwoLine">{{item.base}}</span>
       </div>
-      <span class="right"><img *ngIf="item.influence.icon != 'none'" src="{{ item.influence?.icon }}" class="influence-symbol"/></span>
+      <span class="right">
+        <img *ngIf="item.influence2.icon != 'none'" src="{{ item.influence2.icon }}" class="influence-symbol"/>
+        <img *ngIf="item.influence2.icon == 'none' && item.influence.icon != 'none'" src="{{ item.influence.icon }}" class="influence-symbol"/>
+      </span>
     </div>
     <div class="itembody" id="itembody">
       <div *ngFor="let property of item.properties; let index = index;" [class]="(item.properties[index].type.className === 'sep' ? '' : 'property ') + item.properties[index].type.className">
@@ -82,8 +102,10 @@
         <span [class]="'prop-val ' + property.type.valueRenderClass" *ngIf="property.type.fields > 0" [innerHTML]="item.properties[index] | value"></span>
       </div>
     </div>
-    <div>
-      <img id="imageo" [src]="item.image" />
+    <div style="display: flex; position: relative; justify-content: center;">
+      <div class="influencebg" [class]="item.influence.name.toLowerCase()" [ngStyle]="{backgroundImage: this.getInfluenceBackground(item.influence)}"></div>
+      <div class="influencebg" [class]="item.influence2.name.toLowerCase()" [ngStyle]="{backgroundImage: this.getInfluenceBackground(item.influence2)}"></div>
+      <img id="imageo" [src]="item.image"/>
     </div>
   </div>
 </div>

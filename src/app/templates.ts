@@ -12,6 +12,7 @@ export const Templates = [
         'Starforge',
         'Infernal Sword',
         'assets/items/Starforge_inventory_icon.png',
+        'x2x3',
         [
             new Property(
                 PropertyType.ItemType,
@@ -111,6 +112,7 @@ export const Templates = [
         'Beast Tread',
         'Titan Greaves',
         'assets/items/Titan_Greaves_inventory_icon.png',
+        'x2x2',
         [
             new Property(
                 PropertyType.StatAug,
@@ -189,13 +191,129 @@ export const Templates = [
         'Tabula Rasa',
         'Simple Robe',
         'assets/items/Tabula_Rasa_inventory_icon.png',
+        'x2x3',
         []
+    ),
+    new Item(
+        Rarity.Unique,
+        "Circle of Fear",
+        "Sapphire Ring",
+        "assets/items/Circle_of_Fear_inventory_icon.png",
+        'x1x1',
+        [
+            new Property(
+                PropertyType.Affix,
+                "",
+                "10% increased Global Physical Damage",
+            ),
+            new Property(
+                PropertyType.Affix,
+                "",
+                "10% increased maximum Mana",
+            ),
+            new Property(
+                PropertyType.Affix,
+                "",
+                "-16 Chaos Damage taken",
+            ),
+            new Property(
+                PropertyType.Separator,
+                "",
+                "",
+            ),
+            new Property(
+                PropertyType.Affix,
+                "",
+                "+22 to Dexterity",
+            ),
+            new Property(
+                PropertyType.Affix,
+                "",
+                "Adds 21 to 26 Cold Damage",
+            ),
+            new Property(
+                PropertyType.Affix,
+                "",
+                "+23% to Cold Resistance",
+            ),
+            new Property(
+                PropertyType.Affix,
+                "",
+                "+53% to Cold Resistance while affected by Herald of Ice",
+            ),
+            new Property(
+                PropertyType.Affix,
+                "",
+                "+1% to maximum Cold Resistance while affected by Herald of Ice",
+            ),
+            new Property(
+                PropertyType.Separator,
+                "",
+                ""
+            ),
+            new Property(
+                PropertyType.FlavorU,
+                "",
+                "My subordinates circled me eternally, attuned to the slightest weakness, ready to tear me apart for their own gains."
+            )
+        ],
+        Influence.Synthesised
+    ),
+    new Item(
+        Rarity.Unique,
+        "Replica Tabula Rasa",
+        "Simple Robe",
+        "assets/items/Tabula_Rasa_inventory_icon.png",
+        'x2x3',
+        [
+            new Property(
+                PropertyType.Affix,
+                "",
+                "<i>Has 4 White Sockets</i>"
+            ),
+            new Property(
+                PropertyType.Affix,
+                "",
+                "<i>Sockets are Fully Linked</i>"
+            ),
+            new Property(
+                PropertyType.Separator,
+                "",
+                ""
+            ),
+            new Property(
+                PropertyType.Affix,
+                "",
+                "+1 to Level of All Socketed Gems"
+            )
+        ],
+        Influence.Replica
+    ),
+    new Item(
+        Rarity.Keystone,
+        "Chaos Innoculation",
+        "",
+        "",
+        'x1x1',
+        [
+            new Property(
+                PropertyType.Affix,
+                "",
+                "Maximum Life becomes 1, Immune to Chaos Damage"
+            ),
+            new Property(
+                PropertyType.FlavorU,
+                "",
+                "Give up everything in pursuit of greatness - even life itself."
+            )
+        ]
     ),
     new Item(
         Rarity.Magic,
         "Traveler's Imperial Dyadic Resonator",
         "",
         "assets/items/Prime_Chaotic_Resonator_inventory_icon.png",
+        'x2x2',
         [
             new Property(
                 PropertyType.ItemType,
@@ -328,70 +446,6 @@ export const Templates = [
                 'Item Credit u/iz__zy'
             )
         ]
-    ),
-    new Item(
-        Rarity.Unique,
-        "Circle of Fear",
-        "Sapphire Ring",
-        "assets/items/Circle_of_Fear_inventory_icon.png",
-        [
-            new Property(
-                PropertyType.Affix,
-                "",
-                "10% increased Global Physical Damage",
-            ),
-            new Property(
-                PropertyType.Affix,
-                "",
-                "10% increased maximum Mana",
-            ),
-            new Property(
-                PropertyType.Affix,
-                "",
-                "-16 Chaos Damage taken",
-            ),
-            new Property(
-                PropertyType.Separator,
-                "",
-                "",
-            ),
-            new Property(
-                PropertyType.Affix,
-                "",
-                "+22 to Dexterity",
-            ),
-            new Property(
-                PropertyType.Affix,
-                "",
-                "Adds 21 to 26 Cold Damage",
-            ),
-            new Property(
-                PropertyType.Affix,
-                "",
-                "+23% to Cold Resistance",
-            ),
-            new Property(
-                PropertyType.Affix,
-                "",
-                "+53% to Cold Resistance while affected by Herald of Ice",
-            ),
-            new Property(
-                PropertyType.Affix,
-                "",
-                "+1% to maximum Cold Resistance while affected by Herald of Ice",
-            ),
-            new Property(
-                PropertyType.Separator,
-                "",
-                ""
-            ),
-            new Property(
-                PropertyType.FlavorU,
-                "",
-                "My subordinates circled me eternally, attuned to the slightest weakness, ready to tear me apart for their own gains."
-            )
-        ],
-        Influence.Synthesised
     )
 ].reduce(reducer, new Map<string, Item>());
 
