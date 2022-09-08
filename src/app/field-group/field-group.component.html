@@ -1,0 +1,10 @@
+<input type="text" class="label" [(ngModel)]="label" (ngModelChange)="!labelChoices ? labelChanged($event) : null" [readonly]="!labelEditable" (focus)='focusLabel(true)' (blur)='focusLabel(false)' />
+<input type="text" class="value" [(ngModel)]="value" *ngIf='fields > 0' (ngModelChange)="!valueChoices ? valueChanged($event) : null" (focus)='focusValue(true)' (blur)='focusValue(false)'  />
+<input type="text" class="value2" [(ngModel)]="value2" *ngIf='fields > 1' (ngModelChange)="!value2Choices ? value2Changed($event) : null" (focus)='focusValue2(true)' (blur)='focusValue2(false)'  />
+<div class="choices" [ngStyle]="{display: choicesShown ? 'block' : 'none'}">
+    <ul>
+        <li *ngFor="let choice of valueChoices" [attr.dataValue]="getName(choice)" [ngClass]="{selected: choice == valueInput}">
+            {{ render(choice) }}
+        </li>
+    </ul>
+</div>

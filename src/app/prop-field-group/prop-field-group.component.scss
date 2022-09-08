@@ -1,0 +1,58 @@
+@import '../../styles/colors.scss';
+
+:host {
+    display: grid;
+    grid-gap: 3px;
+    column-gap: 3px;
+    grid-template-columns: auto 1fr 1fr 1fr auto;
+    margin-top: 3px;
+
+    &[fields='0'] {
+        .proptype {
+            grid-column: 2/5;
+        }
+    }
+    &[fields='1'] {
+        .valueField {
+            grid-column: 3/5;
+        }
+    }
+    &[fields='2'] {
+        .nameField {
+            grid-column: 3/4;
+        }
+        .valueField {
+            grid-column: 4/5;
+        }
+    }
+    .add-after {
+      grid-column: 5/6;
+    }
+    .remove-prop {
+        grid-column: 1/2;
+    }
+    .nameField,
+    .valueField {
+        min-width: 0px;
+    }
+    
+
+    .proptype {
+        border-left: 1px solid $secondary;
+        background-color: rgba(45,49,54,.3);
+    }
+}
+
+button, .button {
+    width: 39px;
+    height: 30px;
+    padding: 0;
+
+    img {
+        height: 18px;
+    }
+}
+
+.proptype {
+    color: $primary;
+}

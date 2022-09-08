@@ -32,4 +32,8 @@ export class ItemEditorComponent implements OnInit {
     })
   }
 
+  removeImage() {
+    this.item.image = "";
+  }
+
 }
