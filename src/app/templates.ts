@@ -197,7 +197,7 @@ export const Templates = [
     new Item(
         Rarity.Unique,
         "Circle of Fear",
-        "Sapphire Ring",
+        "Synthesised Sapphire Ring",
         "assets/items/Circle_of_Fear_inventory_icon.png",
         'x1x1',
         [

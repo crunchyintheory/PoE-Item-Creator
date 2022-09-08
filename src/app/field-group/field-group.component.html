@@ -1,9 +1,15 @@
-<input type="text" class="label" [(ngModel)]="label" (ngModelChange)="!labelChoices ? labelChanged($event) : null" [readonly]="!labelEditable" (focus)='focusLabel(true)' (blur)='focusLabel(false)' />
-<input type="text" class="value" [(ngModel)]="value" *ngIf='fields > 0' (ngModelChange)="!valueChoices ? valueChanged($event) : null" (focus)='focusValue(true)' (blur)='focusValue(false)'  />
-<input type="text" class="value2" [(ngModel)]="value2" *ngIf='fields > 1' (ngModelChange)="!value2Choices ? value2Changed($event) : null" (focus)='focusValue2(true)' (blur)='focusValue2(false)'  />
-<div class="choices" [ngStyle]="{display: choicesShown ? 'block' : 'none'}">
+<div class="label" [ngClass]="{'has-choices': labelChoices}">
+    <input type="text" [(ngModel)]="label" (ngModelChange)="!labelChoices ? labelChanged($event) : null" [readonly]="!labelEditable || labelChoices" (click)='focusLabel(true)' (blur)='focusLabel(false)' />
+</div>
+<div class="value" [ngClass]="{'has-choices': valueChoices}" *ngIf='fields > 0'>
+    <input type="text" [(ngModel)]="value" (ngModelChange)="!valueChoices ? valueChanged($event) : null" (click)='focusValue(true)' (blur)='focusValue(false)' [readonly]="valueChoices" />
+</div>
+<div class="value2" [ngClass]="{'has-choices': value2Choices}" *ngIf='fields > 1'>
+    <input type="text" [(ngModel)]="value2" (ngModelChange)="!value2Choices ? value2Changed($event) : null" (click)='focusValue2(true)' (blur)='focusValue2(false)' [readonly]="value2Choices" />
+</div>
+<div class="choices" *ngIf='choicesShown' [ngStyle]="{display: choicesShown ? 'block' : 'none'}">
     <ul>
-        <li *ngFor="let choice of valueChoices" [attr.dataValue]="getName(choice)" [ngClass]="{selected: choice == valueInput}">
+        <li *ngFor="let choice of currentChoices" [attr.dataValue]="getName(choice)" [ngClass]="{selected: render(choice) == current}" (mousedown)="currentCallback(choice)">
             {{ render(choice) }}
         </li>
     </ul>

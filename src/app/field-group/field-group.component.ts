@@ -31,6 +31,9 @@ export class FieldGroupComponent implements OnChanges {
   protected value2: Serializable = "";
 
   protected choicesShown = false;
+  protected currentChoices: Serializable[] = [];
+  protected current?: Serializable;
+  protected currentCallback: (event: any) => void = () => {};
 
   constructor() { }
 
@@ -81,8 +84,31 @@ export class FieldGroupComponent implements OnChanges {
     this.value2Change.emit(event);
   }
 
-  protected focusLabel(focused = true) {
-    
+  protected focusLabel(focus = true) {
+    if(this.labelChoices) {
+      this.choicesShown = focus && !this.choicesShown;
+      this.currentChoices = this.labelChoices;
+      this.current = this.label;
+      this.currentCallback = this.labelChanged;
+    }
   }
 
+  protected focusValue(focus = true) {
+    if(this.valueChoices) {
+      console.log(focus, this.choicesShown);
+      this.choicesShown = focus && !this.choicesShown;
+      this.currentChoices = this.valueChoices;
+      this.current = this.value;
+      this.currentCallback = this.valueChanged;
+    }
+  }
+
+  protected focusValue2(focus = true) {
+    if(this.value2Choices) {
+      this.choicesShown = focus && !this.choicesShown;
+      this.currentChoices = this.value2Choices;
+      this.current = this.value2;
+      this.currentCallback = this.value2Changed;
+    }
+  }
 }

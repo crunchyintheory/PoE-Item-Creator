@@ -22,7 +22,7 @@ export class Item {
         this.size = size;
         this.properties = properties;
         this.influence = influence || Influence.None;
-        this.influence2 = influence2 || this.influence;
+        this.influence2 = influence2 || Influence.None;
     }
 
     insertPropertyAfter(property: Property) {

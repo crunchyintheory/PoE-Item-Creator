@@ -32,11 +32,24 @@
     }
     .value,
     .value2 {
-        min-width: 0px;
+        input {
+            min-width: 0px;
+        }
+        grid-row: 1/2;
     }
     .label {
-        border-left: 1px solid $secondary;
-        background-color: rgba(45,49,54,.3);
+        input {
+            border-left: 1px solid $secondary;
+            background-color: rgba(45,49,54,.3);
+        }
+        grid-row: 1/2;
+    }
+    .label, .value, .value2 {
+        display: flex;
+        position: relative;
+        input {
+            flex-grow: 1;
+        }
     }
 }
 
@@ -50,9 +63,25 @@ button, .button {
     }
 }
 
-input.label {
+.label input {
     color: $primary;
     font-size: 14.3px;
+}
+
+input[readonly] {
+    cursor: default;
+}
+
+.has-choices::after {
+    position: absolute;
+    content: '';
+    top: 14px;
+    color: #999;
+    border: 5px solid;
+    border-color: #999 #0000 #0000;
+    border-bottom-width: 0px;
+    border-width: 5px 5px 0;
+    right: 8px;
 }
 
 .choices {
@@ -61,10 +90,12 @@ input.label {
     right: 0;
     left: 0;
     top: 33px;
-    z-index: 999;
+    z-index: 99;
     grid-column: 1/5;
     border: 1px solid $secondary;
     border-top: none;
+    max-height: 250px;
+    overflow-y: scroll;
     ul {
         list-style-type: none;
         padding: 0; 
