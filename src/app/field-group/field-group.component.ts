@@ -22,6 +22,8 @@ export class FieldGroupComponent implements OnChanges {
   @Input() valueChoices?: any[];
   @Input() value2Choices?: any[];
 
+  @Input() @HostBinding('attr.hide') hide: "value" | "value2" = "value2";
+
   @Output() valueChange = new EventEmitter<any>();
   @Output() value2Change = new EventEmitter<any>();
   @Output() labelChange = new EventEmitter<any>();
@@ -31,6 +33,7 @@ export class FieldGroupComponent implements OnChanges {
   protected value2: Serializable = "";
 
   protected choicesShown = false;
+  protected choicesShownName = "";
   protected currentChoices: Serializable[] = [];
   protected current?: Serializable;
   protected currentCallback: (event: any) => void = () => {};
@@ -53,7 +56,7 @@ export class FieldGroupComponent implements OnChanges {
     else if(typeof(value) == "number") {
       return value.toString();
     }
-    return value.displayName;
+    return value.displayName || value.name;
   }
 
   protected getName(value: Serializable): string {
@@ -67,6 +70,20 @@ export class FieldGroupComponent implements OnChanges {
       return value.toString();
     }
     return value.name;
+  }
+
+  protected getDisplayColor(value: Serializable) {
+    if(typeof(value) == "object") {
+      return value.displayColor;
+    }
+    return "";
+  }
+
+  protected getDisplayImage(value: Serializable) {
+    if(typeof(value) == "object") {
+      return value.displayImage == "none" ? "" : value.displayImage;
+    }
+    return "";
   }
 
   protected labelChanged(event: any) {
@@ -90,16 +107,17 @@ export class FieldGroupComponent implements OnChanges {
       this.currentChoices = this.labelChoices;
       this.current = this.label;
       this.currentCallback = this.labelChanged;
+      this.choicesShownName = this.choicesShown ? "label" : "";
     }
   }
 
   protected focusValue(focus = true) {
     if(this.valueChoices) {
-      console.log(focus, this.choicesShown);
       this.choicesShown = focus && !this.choicesShown;
       this.currentChoices = this.valueChoices;
       this.current = this.value;
       this.currentCallback = this.valueChanged;
+      this.choicesShownName = this.choicesShown ? "value" : "";
     }
   }
 
@@ -109,6 +127,7 @@ export class FieldGroupComponent implements OnChanges {
       this.currentChoices = this.value2Choices;
       this.current = this.value2;
       this.currentCallback = this.value2Changed;
+      this.choicesShownName = this.choicesShown ? "value2" : "";
     }
   }
 }

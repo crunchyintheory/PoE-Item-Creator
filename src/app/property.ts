@@ -1,3 +1,5 @@
+import { ISerializable } from "./serializable";
+
 export class Property {
     type: PropertyType;
     name: string;
@@ -10,7 +12,7 @@ export class Property {
     }
 }
 
-export class PropertyType {
+export class PropertyType implements ISerializable {
     readonly name: string;
     readonly className: string;
     readonly nameRenderClass: string | null;
