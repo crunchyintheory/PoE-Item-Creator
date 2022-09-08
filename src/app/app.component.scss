@@ -4,7 +4,8 @@
     background: #000 url('../assets/synthesis-bg.jpg') no-repeat top center fixed;
     background-size: contain;
     min-height: 100%;
-    display: block;
+    display: flex;
+    flex-direction: column;
 }
 
 .grid {
@@ -12,6 +13,7 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 32px 1fr;
     padding: 140px 130px 100px;
+    flex-grow: 1;
 
     .tabber {
         display: inline-flex;
@@ -27,11 +29,15 @@
                 background-color: $secondary;
             }
 
-            &:hover {
+            &:not(.disabled):hover {
                 background-color: $quaternary;
             }
 
             cursor: pointer;
+
+            &.disabled {
+                cursor: not-allowed;
+            }
         }
     }
 }
@@ -82,6 +88,8 @@ poe-item-renderer {
     border-bottom: 1px solid $secondary;
 
     font-size: 16px;
+
+    z-index: 999;
 
     .h1 {
         font-size: 25px;
