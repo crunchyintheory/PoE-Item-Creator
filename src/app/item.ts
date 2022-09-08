@@ -37,14 +37,14 @@ export class Item {
         )
     }
 
-    appendProperty() {
-        this.properties = [
-            new Property(
+    appendProperty(property?: Property) {
+        if(!property)
+            property = new Property(
                 PropertyType.Separator,
                 '',
                 ''
-            )
-        ]
+            );
+        this.properties.push(property);
     }
 
     removeProperty(property: Property) {

@@ -14,14 +14,23 @@ export class ItemService {
 
   reset(): Promise<Item> {
     return new Promise((resolve, reject) => {
-      this.item = Templates.get('Tabula Rasa, Simple Robe') as Item;
-      if(Math.random() > 0.5) {
-        this.item.influence = Influence.influences[Math.floor(Math.random() * (Influence.influences.length - 2)) + 1];
-        this.item.influence2 = Influence.influences[Math.floor(Math.random() * (Influence.influences.length - 2)) + 1];
-      }
-      else {
-        this.item.influence = Influence.None;
-        this.item.influence2 = Influence.None;
+      this.item = JSON.parse(JSON.stringify(Templates.get('Tabula Rasa, Simple Robe'))) as Item;
+      if(this.item.properties.length == 0 && Math.random() > 0.9) {
+        this.item.properties = [{
+          type: PropertyType.Corrupted,
+          name: "",
+          value: "Corrupted"
+        }];
+        if(Math.random() > 0.8) {
+          this.item.rarity = Rarity.Rare;
+          this.item.name = "Ruined Shelter";
+          this.item.influence = Influence.influences[Math.floor(Math.random() * (Influence.influences.length - 2)) + 1];
+        }
+        else {
+          this.item.influence = Influence.influences[Math.floor(Math.random() * (Influence.influences.length - 2)) + 1];
+          this.item.influence2 = Influence.influences[Math.floor(Math.random() * (Influence.influences.length - 2)) + 1];
+        }
+        Templates.set("Tabula Rasa, Simple Robe", JSON.parse(JSON.stringify(this.item)) as Item);
       }
       resolve(this.item);
     })

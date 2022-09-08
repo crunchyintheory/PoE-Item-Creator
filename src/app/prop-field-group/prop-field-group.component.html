@@ -1,12 +1,16 @@
 <button (click)="item.removeProperty(property)" class="remove-prop">
-    <img src="assets/ic_close_black_24px.svg" alt="X" />
-  </button>
-  <select class="proptype" [(ngModel)]="item.properties[index].type">
-    <option *ngFor='let type of types' [ngValue]="type">{{type.name}}</option>
-  </select>
-  <input type="text" class="nameField" [(ngModel)]="item.properties[index].name" *ngIf='property.type.fields === 2' />
-  <input type="text" class="valueField" [(ngModel)]="item.properties[index].value" *ngIf='property.type.fields >= 1' />
-  <button (click)="item.insertPropertyAfter(property)" class="add-after">
-    <img src="assets/ic_add_black_24px.svg" alt="+" />
-  </button>
+  <img src="assets/ic_close_black_24px.svg" alt="X" />
+</button>
+<poe-field-group 
+  [labelEditable]="true"
+  [(label)]="item.properties[index].type"
+  [labelChoices]="types"
+  [(value)]="item.properties[index].name"
+  [(value2)]="item.properties[index].value"
+  [fields]="item.properties[index].type.fields"
+  hide="value">
+</poe-field-group>
+<button (click)="item.insertPropertyAfter(property)" class="add-after">
+  <img src="assets/ic_add_black_24px.svg" alt="+" />
+</button>
   

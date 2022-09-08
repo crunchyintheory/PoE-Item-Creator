@@ -9,10 +9,12 @@ export enum RarityThickness {
 export class Rarity implements ISerializable {
     readonly name: string;
     readonly thickness: RarityThickness;
+    readonly displayColor?: string;
 
-    private constructor(name: string, thickness: RarityThickness) {
+    private constructor(name: string, thickness: RarityThickness, displayColor?: string) {
         this.name = name;
         this.thickness = thickness;
+        this.displayColor = displayColor;
     }
 
     get displayName(): string {
@@ -25,59 +27,69 @@ export class Rarity implements ISerializable {
         }
     }
     
-    static readonly Normal: Rarity = new Rarity(
+    static readonly Normal = new Rarity(
         'normal',
         RarityThickness.OneLine
     )
     
-    static readonly Magic: Rarity = new Rarity(
+    static readonly Magic = new Rarity(
         'magic',
-        RarityThickness.OneLine
+        RarityThickness.OneLine,
+        "#8888ff"
     )
     
-    static readonly Gem: Rarity = new Rarity(
+    static readonly Gem = new Rarity(
         'gem',
-        RarityThickness.OneLine
+        RarityThickness.OneLine,
+        "#1aa29b"
     )
     
-    static readonly Prophecy: Rarity = new Rarity(
+    static readonly Prophecy = new Rarity(
         'prophecy',
-        RarityThickness.OneLine
+        RarityThickness.OneLine,
+        "#b54bff"
     )
     
-    static readonly Currency: Rarity = new Rarity(
+    static readonly Currency = new Rarity(
         'currency',
-        RarityThickness.OneLine
+        RarityThickness.OneLine,
+        "#aa9e82"
     )
     
-    static readonly Rare: Rarity = new Rarity(
+    static readonly Rare = new Rarity(
         'rare',
-        RarityThickness.TwoLine
+        RarityThickness.TwoLine,
+        "#ffff77"
     )
     
-    static readonly Unique: Rarity = new Rarity(
+    static readonly Unique = new Rarity(
         'unique',
-        RarityThickness.TwoLine
+        RarityThickness.TwoLine,
+        "#af6025"
     )
 
-    static readonly Passive: Rarity = new Rarity(
+    static readonly Passive = new Rarity(
         'passive',
-        RarityThickness.ThickOneLine
+        RarityThickness.ThickOneLine,
+        "#f7e6ca"
     )
 
-    static readonly Notable: Rarity = new Rarity(
+    static readonly Notable = new Rarity(
         'notable',
-        RarityThickness.ThickOneLine
+        RarityThickness.ThickOneLine,
+        "#f7e6ca"
     )
 
-    static readonly Keystone: Rarity = new Rarity(
+    static readonly Keystone = new Rarity(
         'keystone',
-        RarityThickness.ThickOneLine
+        RarityThickness.ThickOneLine,
+        "#f7e6ca"
     )
 
-    static readonly JewelSocket: Rarity = new Rarity(
+    static readonly JewelSocket = new Rarity(
         'socket-jewel',
-        RarityThickness.ThickOneLine
+        RarityThickness.ThickOneLine,
+        "#f7e6ca"
     )
     
     static readonly rarities: Rarity[] = [
@@ -122,6 +134,10 @@ export class Influence implements ISerializable {
         else {
             return n[0].charAt(0).toUpperCase() + n[0].slice(1);
         }
+    }
+
+    get displayImage(): string {
+        return this.icon;
     }
 
     private setHasBackground(has_background: boolean): Influence {
