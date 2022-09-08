@@ -1,10 +1,12 @@
+import { ISerializable } from "./serializable";
+
 export enum RarityThickness {
     OneLine = 'single',
     TwoLine = 'double',
     ThickOneLine = 'thicksingle'
 }
 
-export class Rarity {
+export class Rarity implements ISerializable {
     readonly name: string;
     readonly thickness: RarityThickness;
 
@@ -93,7 +95,7 @@ export class Rarity {
     ]
 }
 
-export class Influence {
+export class Influence implements ISerializable {
     readonly name: string;
     readonly icon: string;
     private _has_background = false;

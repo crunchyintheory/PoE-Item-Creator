@@ -56,6 +56,7 @@ button, .button {
             border-radius: 3px;
             color: white;
             content: attr(data-tooltip);
+            font-family: fontin, sans-serif;
             margin-left: 10px;
             margin-top: 3px;
             opacity: 0;
@@ -93,6 +94,8 @@ select, input {
     padding: 6px 12px;
     font-family: fontin, sans-serif;
     font-variant-ligatures: none;
+    outline: none;
+    font-size: 0.9em;
     option {
         &.col-normal {
             color: $normal;

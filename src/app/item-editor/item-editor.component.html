@@ -1,6 +1,6 @@
 <div style="margin-bottom: 15px">
     <div style="margin: 0 0 20px 0;">
-      <div style="display: flex">
+      <div style="display: flex; align-items: center;">
         <span class="h1">Properties</span>
         <button class="weird-tooltip reset" (click)="reset()" data-tooltip="Reset">
           <img src="assets/ic_refresh_black_24px.svg" alt="Reset" />
@@ -13,26 +13,16 @@
       <br/>
     </div>
     <span class="iteminf">
-      <select id="itemrarity" [(ngModel)]="item.rarity">
-        <option [class]="'col-' + rarity.name.split('-')[0]" *ngFor="let rarity of Rarity.rarities" [ngValue]="rarity">{{rarity.displayName}}</option>
-      </select>
-      <input type="text" class="Name" id="name1" [(ngModel)]="item.name" />
-      <input type="text" class="BaseType" id="name2" [(ngModel)]="item.base" *ngIf="item.rarity.thickness === RarityThickness.TwoLine" />
-      <br/>
-      <br/>
-      <select id="iteminfluence" [(ngModel)]="item.influence">
-        <option [class]="'col-' + influence.name.toLowerCase()" *ngFor="let influence of Influence.influences" [ngValue]="influence">{{ influence.displayName }}</option>
-      </select>
-      <select id="iteminfluence" [(ngModel)]="item.influence2">
-        <option [class]="'col-' + influence.name.toLowerCase()" *ngFor="let influence of Influence.influences" [ngValue]="influence">{{ influence.displayName }}</option>
-      </select>
+      <poe-field-group label="Type/Rarity" [(value)]="item.rarity" [valueChoices]="Rarity.rarities"></poe-field-group>
+      <poe-field-group label="Name/Base Type" [(value)]="item.name" [(value2)]="item.base" [fields]="item.rarity.thickness === RarityThickness.TwoLine ? 2 : 1"></poe-field-group>
+      <poe-field-group label="Influence" [(value)]="item.influence" [(value)]="item.influence2" [fields]="2"></poe-field-group>
     </span>
     <br/>
     <br/>
     <span class="imageselect">
       Image:
       <input type="text" class="Image" id="image" [(ngModel)]="item.image" />
-      <button onclick="removeimage()" style="position: relative; top: 7px; display: inline-flex"
+      <button (click)="removeImage()" style="position: relative; top: 7px; display: inline-flex"
         data-tooltip="Remove Image">
         <img src="assets/ic_close_black_24px.svg" alt="X" />
       </button>
@@ -51,18 +41,8 @@
       </select>
     </span>
     <ul id="properties" class="properties">
-      <li *ngFor='let property of item.properties;let index = index;' [class]="'prop-' + property.type.className" [attr.fields]="property.type.fields">
-        <button (click)="item.removeProperty(property)" class="remove-prop">
-          <img src="assets/ic_close_black_24px.svg" alt="X" />
-        </button>
-        <select id="proptype" class="proptype" [(ngModel)]="item.properties[index].type">
-          <option *ngFor='let type of types' [ngValue]="type">{{type.name}}</option>
-        </select>
-        <input type="text" class="nameField" id="name" [(ngModel)]="item.properties[index].name" *ngIf='property.type.fields === 2' />
-        <input type="text" class="valueField" id="value" [(ngModel)]="item.properties[index].value" *ngIf='property.type.fields >= 1' />
-        <button (click)="item.insertPropertyAfter(property)" class="add-after">
-          <img src="assets/ic_add_black_24px.svg" alt="+" />
-        </button>
+      <li *ngFor='let property of item.properties;let index = index;' [class]="'prop-' + property.type.className">
+        <poe-prop-field-group [property]="property" [index]="index" [attr.fields]="property.type.fields"></poe-prop-field-group>
       </li>
     </ul>
     <button (click)="item.appendProperty()" class="add-after" *ngIf='item.properties.length === 0'>

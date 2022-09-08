@@ -10,54 +10,6 @@ ul {
 
 li {
     display: initial;
-    margin-top: 5px;
-    display: grid;
-    grid-gap: 10px;
-    column-gap: 10px;
-    &[fields='0'] {
-        grid-template-columns: auto 1fr auto 2fr 0px;
-        .add-after {
-          grid-column: 3/4;
-        }
-    }
-    &[fields='1'] {
-        grid-template-columns: auto 1fr 2fr 0px auto;
-        .valueField {
-            grid-column: 3/5;
-        }
-        .add-after {
-            grid-column: 5/6;
-        }
-    }
-    &[fields='2'] {
-        grid-template-columns: auto 1fr 1fr 1fr auto;
-        .nameField {
-            grid-column: 3/4;
-        }
-        .valueField {
-            grid-column: 4/5;
-        }
-        .add-after {
-            grid-column: 5/6;
-        }
-    }
-    .remove-prop {
-        grid-column: 1/2;
-    }
-    .proptype {
-        grid-column: 2/3;
-    }
-    .nameField,
-    .valueField {
-        min-width: 0px;
-    }
-    /*.proptype,
-    .nameField,
-    .valueField,
-    .remove-prop,
-    .add-after {
-        margin: 0 5px;
-    }*/
 }
 
 button, .button {

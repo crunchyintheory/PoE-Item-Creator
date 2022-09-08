@@ -13,6 +13,8 @@ import { ItemService } from './item-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemRendererComponent } from './item-renderer/item-renderer.component';
 import { ItemEditorComponent } from './item-editor/item-editor.component';
+import { FieldGroupComponent } from './field-group/field-group.component';
+import { PropFieldGroupComponent } from './prop-field-group/prop-field-group.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ItemEditorComponent } from './item-editor/item-editor.component';
     ValuePipe,
     ImportExportModalComponent,
     ItemRendererComponent,
-    ItemEditorComponent
+    ItemEditorComponent,
+    FieldGroupComponent,
+    PropFieldGroupComponent
   ],
   imports: [
     BrowserModule,
