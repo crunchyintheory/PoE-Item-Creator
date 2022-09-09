@@ -2,8 +2,8 @@
   <div [class]="'itemheader ' + item.rarity.thickness" id="itemheader">
     <span class="left"><img *ngIf="item.influence.icon != 'none'" src="{{ item.influence.icon }}" class="influence-symbol"/></span>
     <div class="itemheader-name">
-      <span class="itemheader-name-line1" id="name1o">{{item.name}}</span>
-      <span class="itemheader-name-line2" id="name2o" *ngIf="item.rarity.thickness === RarityThickness.TwoLine">{{item.base}}</span>
+      <span class="itemheader-name-line1" id="name1o" *ngIf="item.rarity.thickness === RarityThickness.TwoLine">{{item.name}}</span>
+      <span class="itemheader-name-line2" id="name2o">{{item.base}}</span>
     </div>
     <span class="right">
       <img *ngIf="item.influence2.icon != 'none'" src="{{ item.influence2.icon }}" class="influence-symbol"/>

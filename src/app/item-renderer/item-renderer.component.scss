@@ -26,7 +26,8 @@
 }
 
 .property {
-  line-height: 36px;
+  line-height: 32px;
+  margin-top: 4px;
   .prop-name {
     &::after {
       content: ": ";
@@ -92,7 +93,7 @@
       .right {
         background-position: 0 -102px;
       }
-      .itemheader-name-line2 {
+      .itemheader-name-line1 {
         display: none;
       }
     }
@@ -120,7 +121,6 @@
     display: flex;
     flex-direction: column;
     font-style: italic;
-    line-height: 36px;
     color: $unique;
 }
   
@@ -128,7 +128,6 @@
     display: flex;
     flex-direction: column;
     font-style: italic;
-    line-height: 36px;
 }
   
 %unique {
@@ -223,7 +222,6 @@
         color: $gem;
         display: flex;
         flex-direction: column;
-        line-height: 36px;
     }
 }
   
@@ -244,7 +242,6 @@
         display: flex;
         flex-direction: column;
         font-style: italic;
-        line-height: 36px;
     }
     .prop-blue {
         color: $white;
