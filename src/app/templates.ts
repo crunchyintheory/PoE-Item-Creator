@@ -25,9 +25,9 @@ export const Templates = [
                 '+20%'
             ),
             new Property(
-                PropertyType.StatReq,
-                '',
-                'Physical Damage:  <b>322</b> to <b>669</b>'
+                PropertyType.StatAug,
+                'Physical Damage',
+                '322-669'
             ),
             new Property(
                 PropertyType.Stat,
@@ -63,6 +63,11 @@ export const Templates = [
                 PropertyType.Affix,
                 '',
                 '30% increased Global Accuracy Rating'
+            ),
+            new Property(
+                PropertyType.Separator,
+                '',
+                ''
             ),
             new Property(
                 PropertyType.Affix,
@@ -305,6 +310,110 @@ export const Templates = [
                 PropertyType.FlavorU,
                 "",
                 "Give up everything in pursuit of greatness - even life itself."
+            )
+        ]
+    ),
+    new Item(
+        Rarity.Unique,
+        "Arakaali's Fang",
+        "Fiend Dagger",
+        "assets/items/Arakaali's_Fang_inventory_icon.png",
+        "x1x2",
+        [
+            new Property(
+                PropertyType.ItemType,
+                "",
+                "Rune Dagger"
+            ),
+            new Property(
+                PropertyType.StatAug,
+                "Quality",
+                "+20%"
+            ),
+            new Property(
+                PropertyType.StatAug,
+                "Physical Damage",
+                "92-329"
+            ),
+            new Property(
+                PropertyType.StatAug,
+                "Chaos Damage",
+                "<chaos>1-59</chaos>"
+            ),
+            new Property(
+                PropertyType.Stat,
+                "Critical Strike Chance",
+                "6.50%"
+            ),
+            new Property(
+                PropertyType.Stat,
+                "Attacks per Second",
+                "1.20"
+            ),
+            new Property(
+                PropertyType.Stat,
+                "Weapon Range",
+                "10"
+            ),
+            new Property(
+                PropertyType.Separator,
+                "",
+                ""
+            ),
+            new Property(
+                PropertyType.StatReq,
+                "",
+                "Requires Level 53, 58 Dex, 123 Int"
+            ),
+            new Property(
+                PropertyType.Separator,
+                "",
+                ""
+            ),
+            new Property(
+                PropertyType.Affix,
+                "",
+                "40% increased Global Critical Strike Chance"
+            ),
+            new Property(
+                PropertyType.Separator,
+                "",
+                ""
+            ),
+            new Property(
+                PropertyType.Affix,
+                "",
+                "100% chance to Trigger Level 1 Raise Spiders on Kill"
+            ),
+            new Property(
+                PropertyType.Affix,
+                "",
+                "185% increased Physical Damage"
+            ),
+            new Property(
+                PropertyType.Affix,
+                "",
+                "Adds 8 to 21 Physical Damage"
+            ),
+            new Property(
+                PropertyType.Affix,
+                "",
+                "Adds 1 to 59 Chaos Damage"
+            ),
+            new Property(
+                PropertyType.Affix,
+                "",
+                "15% chance to Poison on Hit"
+            ),
+            new Property(
+                PropertyType.Separator,
+                "",
+                ""
+            ),
+            new Property(
+                PropertyType.FlavorU,
+                "",
+                "All children must eat."
             )
         ]
     ),
