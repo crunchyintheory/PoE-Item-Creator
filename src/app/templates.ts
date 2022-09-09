@@ -17,7 +17,7 @@ export const Templates = [
             new Property(
                 PropertyType.ItemType,
                 '',
-                'Two Hand Swords'
+                'Two Hand Sword'
             ),
             new Property(
                 PropertyType.StatAug,

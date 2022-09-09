@@ -5,6 +5,7 @@
 }
 
 ul {
+    margin-top: 0;
     padding: 0;
 }
 
@@ -20,4 +21,9 @@ button, .button {
     img {
         height: 18px;
     }
+}
+
+.header {
+    border-bottom: 1px solid lighten($input, 20);
+    padding: 6px 12px 6px 0;
 }
