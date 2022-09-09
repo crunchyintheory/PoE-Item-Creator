@@ -291,8 +291,8 @@ export const Templates = [
     ),
     new Item(
         Rarity.Keystone,
-        "Chaos Innoculation",
         "",
+        "Chaos Innoculation",
         "",
         'x1x1',
         [
@@ -310,8 +310,8 @@ export const Templates = [
     ),
     new Item(
         Rarity.Magic,
-        "Traveler's Imperial Dyadic Resonator",
         "",
+        "Traveler's Imperial Dyadic Resonator",
         "assets/items/Prime_Chaotic_Resonator_inventory_icon.png",
         'x2x2',
         [
