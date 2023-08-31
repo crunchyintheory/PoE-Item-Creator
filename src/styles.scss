@@ -37,7 +37,7 @@ button, .button {
     align-items: center;
 
     &:hover {
-        background-color: #2d3136;
+        background-color: #202326;
     }
     &.add-after {
         top: 0;
@@ -76,6 +76,28 @@ button, .button {
         &:hover::after {
             opacity: 1;
             visibility: visible;
+        }
+    }
+
+    &.orb-btn:hover {
+        background-size: auto 70%;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        &.orb-scour {
+            background-image: url('./assets/orb_of_scouring.png');
+        }
+
+        &.orb-exalt {
+            background-image: url('./assets/exalted_orb.png');
+        }
+
+        &.orb-annul {
+            background-image: url('./assets/orb_of_annulment.png');
+        }
+
+        img {
+            opacity: 0;
         }
     }
 }

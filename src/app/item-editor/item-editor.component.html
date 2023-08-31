@@ -2,7 +2,7 @@
     <div style="margin: 0 0 20px 0;">
       <div style="display: flex; align-items: center;">
         <span class="h1">Properties</span>
-        <button class="weird-tooltip reset" (click)="reset()" data-tooltip="Reset">
+        <button class="reset orb-btn orb-scour" id="reset-btn" (click)="reset()" data-tooltip="Reset">
           <img src="assets/ic_refresh_black_24px.svg" alt="Reset" />
         </button>
         <div style="flex-grow: 1"></div>
@@ -48,7 +48,7 @@
         <poe-prop-field-group [property]="property" [index]="index" [attr.fields]="property.type.fields"></poe-prop-field-group>
       </li>
     </ul>
-    <button (click)="item.appendProperty()" class="add-after" *ngIf='item.properties.length === 0'>
+    <button (click)="item.appendProperty()" class="add-after orb-btn orb-exalt" *ngIf='item.properties.length === 0'>
         <img src="assets/ic_add_black_24px.svg" alt="+" />
     </button>
   </div>

@@ -1,4 +1,4 @@
-<button (click)="item.removeProperty(property)" class="remove-prop">
+<button (click)="item.removeProperty(property)" class="remove-prop orb-btn orb-annul">
   <img src="assets/ic_close_black_24px.svg" alt="X" />
 </button>
 <poe-field-group 
@@ -10,7 +10,7 @@
   [fields]="item.properties[index].type.fields"
   hide="value">
 </poe-field-group>
-<button (click)="item.insertPropertyAfter(property)" class="add-after">
+<button (click)="item.insertPropertyAfter(property)" class="add-after orb-btn orb-exalt">
   <img src="assets/ic_add_black_24px.svg" alt="+" />
 </button>
   
