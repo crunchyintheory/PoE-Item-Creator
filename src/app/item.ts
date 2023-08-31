@@ -1,20 +1,21 @@
-import { Rarity, Influence } from './rarity';
+import { Rarity, Influence, FoilType } from './rarity';
 import { Property, PropertyType } from './property';
 
 export class Item {
-    rarity: Rarity
-    influence: Influence
-    influence2: Influence
+    rarity: Rarity;
+    influence: Influence;
+    influence2: Influence;
+    foilType: FoilType;
 
-    name: string
-    base: string
-    image: string
+    name: string;
+    base: string;
+    image: string;
 
-    properties: Property[]
+    properties: Property[];
 
-    size: string
+    size: string;
 
-    constructor(rarity:Rarity, name:string, base:string, image:string, size: string, properties:Property[], influence?: Influence, influence2?: Influence) {
+    constructor(rarity:Rarity, name:string, base:string, image:string, size: string, properties:Property[], influence?: Influence, influence2?: Influence, foilType?: FoilType) {
         this.rarity = rarity;
         this.name = name;
         this.base = base;
@@ -23,6 +24,7 @@ export class Item {
         this.properties = properties;
         this.influence = influence || Influence.None;
         this.influence2 = influence2 || Influence.None;
+        this.foilType = foilType || FoilType.None;
     }
 
     insertPropertyAfter(property: Property) {

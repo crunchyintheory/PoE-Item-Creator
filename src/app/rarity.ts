@@ -184,3 +184,36 @@ export class Influence implements ISerializable {
         Influence.Exarch
     ]
 }
+
+export class FoilType {
+
+    name: string;
+    colors?: string[];
+
+    get displayColor(): string | null {
+        return this.colors ? this.colors[0] : null;
+    }
+
+    constructor(name: string, colors?: string[]) {
+        this.name = name;
+        this.colors = colors ?? undefined;
+    }
+
+    static readonly None = new FoilType("None");
+    static readonly Amethyst = new FoilType("Amethyst", ["#b15afc"]);
+    static readonly Verdant = new FoilType("Verdant", ["#5dfc5a"]);
+    static readonly Ruby = new FoilType("Ruby", ["#fc5a5d"]);
+    static readonly Cobalt = new FoilType("Cobalt", ["#5a83fc"]);
+    static readonly Sunset = new FoilType("Sunset", ["#fcb93c"]);
+    static readonly Aureate = new FoilType("Aureate", ["#f6fc3c"]);
+
+    static readonly types: FoilType[] = [
+        FoilType.None,
+        FoilType.Amethyst,
+        FoilType.Verdant,
+        FoilType.Ruby,
+        FoilType.Cobalt,
+        FoilType.Sunset,
+        FoilType.Aureate
+    ];
+}

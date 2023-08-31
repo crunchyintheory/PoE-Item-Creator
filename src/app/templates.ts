@@ -1,6 +1,6 @@
 import { Item } from "./item";
 import { Property, PropertyType } from "./property";
-import { Influence, Rarity } from "./rarity";
+import { FoilType, Influence, Rarity } from "./rarity";
 
 const reducer = (accumulator: Map<string, Item>, currentValue: Item) => {
     return accumulator.set(`${currentValue.name}, ${currentValue.base}`, currentValue);
@@ -111,6 +111,113 @@ export const Templates = [
             )
         ],
         Influence.Shaper
+    ),
+    new Item(
+        Rarity.Unique,
+        'Starforge',
+        'Infernal Sword',
+        'assets/items/Starforge_inventory_icon.png',
+        'x2x3',
+        [
+            new Property(
+                PropertyType.ItemType,
+                '',
+                'Two Hand Sword'
+            ),
+            new Property(
+                PropertyType.StatAug,
+                'Quality',
+                '+20%'
+            ),
+            new Property(
+                PropertyType.StatAug,
+                'Physical Damage',
+                '322-669'
+            ),
+            new Property(
+                PropertyType.Stat,
+                'Critical Strike Chance',
+                '5.00%'
+            ),
+            new Property(
+                PropertyType.StatAug,
+                'Attacks per Second',
+                '1.46'
+            ),
+            new Property(
+                PropertyType.Stat,
+                'Weapon Range',
+                '11'
+            ),
+            new Property(
+                PropertyType.Separator,
+                '',
+                ''
+            ),
+            new Property(
+                PropertyType.StatReq,
+                '',
+                'Requires Level 67,  113 Str,  113 Dex'
+            ),
+            new Property(
+                PropertyType.Separator,
+                '',
+                ''
+            ),
+            new Property(
+                PropertyType.Affix,
+                '',
+                '30% increased Global Accuracy Rating'
+            ),
+            new Property(
+                PropertyType.Separator,
+                '',
+                ''
+            ),
+            new Property(
+                PropertyType.Affix,
+                '',
+                '500% increased Physical Damage'
+            ),
+            new Property(
+                PropertyType.Affix,
+                '',
+                '8% increased Attack Speed'
+            ),
+            new Property(
+                PropertyType.Affix,
+                '',
+                '+100 to maximum Life'
+            ),
+            new Property(
+                PropertyType.Affix,
+                '',
+                '20% increased Area of Effect for Attacks'
+            ),
+            new Property(
+                PropertyType.Affix,
+                '',
+                'Deal no Elemental Damage'
+            ),
+            new Property(
+                PropertyType.Affix,
+                '',
+                'Your Physical Damage can Shock'
+            ),
+            new Property(
+                PropertyType.Separator,
+                '',
+                ''
+            ),
+            new Property(
+                PropertyType.FlavorU,
+                '',
+                'The end is written into the beginning.'
+            )
+        ],
+        Influence.Shaper,
+        Influence.None,
+        FoilType.Sunset
     ),
     new Item(
         Rarity.Rare,
