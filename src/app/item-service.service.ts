@@ -10,27 +10,37 @@ export class ItemService {
 
   public item!: Item;
 
+  private corruptedTabula?: Item;
+
   constructor(private http: HttpClient) { }
+
+  private static DeepCopy<T extends Object>(object: T): T {
+    return Object.assign(Object.create(Object.getPrototypeOf(object)), JSON.parse(JSON.stringify(object)));
+  }
 
   reset(): Promise<Item> {
     return new Promise((resolve, reject) => {
-      this.item = JSON.parse(JSON.stringify(Templates.get('Tabula Rasa, Simple Robe'))) as Item;
+      // My desperate plea for a proper deep copy method in this accursed language.
+      let template = Templates.get('Tabula Rasa, Simple Robe') as Item;
+      this.item = ItemService.DeepCopy(template);
+  
       if(this.item.properties.length == 0 && Math.random() > 0.9) {
         this.item.properties = [{
           type: PropertyType.Corrupted,
           name: "",
           value: "Corrupted"
         }];
+        let corruptInfluences = [Influence.Shaper, Influence.Elder, Influence.Crusader, Influence.Hunter, Influence.Redeemer, Influence.Warlord];
         if(Math.random() > 0.8) {
           this.item.rarity = Rarity.Rare;
           this.item.name = "Ruined Shelter";
-          this.item.influence = Influence.influences[Math.floor(Math.random() * (Influence.influences.length - 2)) + 1];
+          this.item.influence = corruptInfluences[Math.floor(Math.random() * (corruptInfluences.length - 1))];
         }
         else {
-          this.item.influence = Influence.influences[Math.floor(Math.random() * (Influence.influences.length - 2)) + 1];
+          this.item.influence = corruptInfluences[Math.floor(Math.random() * (corruptInfluences.length - 1))];
           this.item.influence2 = Influence.influences[Math.floor(Math.random() * (Influence.influences.length - 2)) + 1];
         }
-        Templates.set("Tabula Rasa, Simple Robe", JSON.parse(JSON.stringify(this.item)) as Item);
+        Templates.set("Tabula Rasa, Simple Robe", ItemService.DeepCopy(this.item));
       }
       resolve(this.item);
     })
