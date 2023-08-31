@@ -1,0 +1,24 @@
+@import '../../styles/colors.scss';
+
+:host {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row: 2 / 2;
+}
+
+poe-item-renderer {
+    background-color: rgba(0,0,0,0.8);
+    border-top: 1px solid $secondary;
+    border-bottom: 1px solid $secondary;
+    padding: 30px 30px;
+    grid-column: 2 / 3;
+}
+
+.sidebar {
+    background-color: $black;
+    grid-column: 1 / 2;
+    overflow-y: auto;
+    padding: 25px;
+    border-top: 1px solid $secondary;
+    border-bottom: 1px solid $secondary;
+}

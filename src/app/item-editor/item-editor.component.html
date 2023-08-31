@@ -6,9 +6,12 @@
           <img src="assets/ic_refresh_black_24px.svg" alt="Reset" />
         </button>
         <div style="flex-grow: 1"></div>
-        <a [routerLink]="['./export']" data-tooltip="Export" class="button weird-tooltip export" *ngIf="false">
+        <a [routerLink]="['./export']" data-tooltip="Export" class="button export orb-btn orb-mirror">
           <img src="assets/ic_content_paste_black_24px.svg" alt="I" />
         </a>
+        <button data-tooltip="Save to Stash" class="button save orb-btn orb-eternal" data-tooltip="Save to Stash" (click)="save()" id="save-btn">
+          <img src="assets/ic_download_black_24px.svg" alt="I" />
+        </button>
       </div>
       <br/>
     </div>

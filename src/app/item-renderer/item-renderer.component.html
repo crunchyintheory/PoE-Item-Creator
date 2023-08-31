@@ -10,13 +10,13 @@
       <img *ngIf="item.influence2.icon == 'none' && item.influence.icon != 'none'" src="{{ item.influence.icon }}" class="influence-symbol"/>
     </span>
   </div>
-  <div class="itembody" id="itembody">
+  <div class="itembody" id="itembody" *ngIf="showBody">
     <div *ngFor="let property of item.properties; let index = index;" [class]="(item.properties[index].type.className === 'sep' ? '' : 'property ') + item.properties[index].type.className">
       <span [class]="'prop-name ' + property.type.nameRenderClass" *ngIf="property.type.fields === 2">{{item.properties[index].name}}</span>
       <span [class]="'prop-val ' + property.type.valueRenderClass" *ngIf="property.type.fields > 0" [innerHTML]="item.properties[index] | value"></span>
     </div>
   </div>
-  <div style="display: flex; position: relative; justify-content: center;">
+  <div class="itemimg" style="display: flex; position: relative; justify-content: center;">
     <div class="influencebg" [class]="item.influence.name.toLowerCase()" [ngStyle]="{backgroundImage: this.getInfluenceBackground(item.influence)}"></div>
     <div class="influencebg" [class]="item.influence2.name.toLowerCase()" [ngStyle]="{backgroundImage: this.getInfluenceBackground(item.influence2)}"></div>
     <img id="imageo" [src]="item.image"/>

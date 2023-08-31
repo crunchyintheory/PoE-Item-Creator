@@ -18,6 +18,8 @@ export class ItemRendererComponent implements OnInit {
 
   @Input() item: Item = Templates.get("Tabula Rasa")!;
 
+  @Input() showBody: boolean = true;
+
   constructor() { }
 
   ngOnInit(): void {

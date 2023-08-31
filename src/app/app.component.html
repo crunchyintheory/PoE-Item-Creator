@@ -16,13 +16,9 @@
 </div>
 <div class="grid">
   <div class="tabber">
-    <div class="tab active">Create Item</div>
-    <div class="tab disabled">Stash - Coming Soon</div>
+    <div class="tab" routerLink="/create" routerLinkActive="active">Create Item</div>
+    <div class="tab" routerLink="/stash" routerLinkActive="active">Stash</div>
   </div>
-  <div class="sidebar" id="sidebar">
-    <poe-item-editor></poe-item-editor>
-  </div>
-  <poe-item-renderer [item]="item"></poe-item-renderer>
+  <router-outlet></router-outlet>
 </div>
 <span class="disclaimer">This site is fan-made and not affiliated with Grinding Gear Games.</span>
-<router-outlet id="modal-outlet"></router-outlet>
