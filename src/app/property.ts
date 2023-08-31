@@ -106,6 +106,14 @@ export class PropertyType implements ISerializable {
         valueRenderClass: 'prop-red',
         fields: 1
     }
+
+    static readonly Crucible: PropertyType = {
+        name: 'Crucible',
+        className: 'crucible',
+        nameRenderClass: null,
+        valueRenderClass: 'prop-crucible',
+        fields: 1
+    }
     
     static readonly types: PropertyType[] = [
         PropertyType.ItemType,
@@ -117,6 +125,7 @@ export class PropertyType implements ISerializable {
         PropertyType.Separator,
         PropertyType.Crafted,
         PropertyType.StatReq,
-        PropertyType.Corrupted
+        PropertyType.Corrupted,
+        PropertyType.Crucible
     ]
 }
