@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Item } from '../item';
 import { ItemService } from '../item-service.service';
 import { PropertyType } from '../property';
-import { Rarity, RarityThickness, Influence } from '../rarity';
+import { Rarity, RarityThickness, Influence, FoilType } from '../rarity';
 
 @Component({
   selector: 'poe-item-editor',
@@ -16,6 +16,7 @@ export class ItemEditorComponent implements OnInit {
   get Rarity(): any { return Rarity }
   get RarityThickness(): any { return RarityThickness }
   get Influence(): any { return Influence }
+  get FoilType(): any { return FoilType }
 
   public get item(): Item {
     return this.is.item;

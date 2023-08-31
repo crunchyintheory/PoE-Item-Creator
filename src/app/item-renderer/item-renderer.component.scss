@@ -58,6 +58,7 @@
             position: absolute;
             top: 50%;
             margin-top: -20px;
+            z-index: 2;
         }
     }
     .left .influence-symbol {
@@ -97,6 +98,50 @@
         display: none;
       }
     }
+
+    &:not(.foil-none) {
+        &::after {
+            content: ' ';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-position-y: bottom;
+            animation: animate-foil;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+            animation-duration: 5s;
+            animation-timing-function: ease-in-out;
+            mix-blend-mode: color;
+            z-index: 1;
+        }
+
+        &.foil-amethyst::after {
+            background-image: url("../../assets/foils/amethyst.png");
+        }
+
+        &.foil-verdant::after {
+            background-image: url("../../assets/foils/verdant.png");
+        }
+
+        &.foil-ruby::after {
+            background-image: url("../../assets/foils/ruby.png");
+        }
+
+        &.foil-cobalt::after {
+            background-image: url("../../assets/foils/cobalt.png");
+        }
+
+        &.foil-sunset::after {
+            background-image: url("../../assets/foils/sunset.png");
+        }
+
+        &.foil-aureate::after {
+            background-image: url("../../assets/foils/aureate.png");
+        }
+    }
+
     .itemheader-name {
       flex: 1;
       font-size: 30px;
@@ -106,6 +151,17 @@
     }
     .itemheader-name-line2 {
       display: block;
+    }
+
+    position: relative;
+}
+
+@keyframes animate-foil {
+    from {
+        background-position-y: bottom;
+    }
+    to {
+        background-position-y: top;
     }
 }
   
