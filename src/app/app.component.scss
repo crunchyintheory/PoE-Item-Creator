@@ -10,7 +10,6 @@
 
 .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     grid-template-rows: 32px 1fr;
     padding: 140px 130px 100px;
     flex-grow: 1;
@@ -40,6 +39,10 @@
             }
         }
     }
+    
+    router-outlet {
+        display: none;
+    }
 }
 
 @media(max-width: 1000px) {
@@ -47,14 +50,6 @@
         padding-left: 0px;
         padding-right: 0px;
     }
-}
-
-poe-item-renderer {
-    background-color: rgba(0,0,0,0.8);
-    grid-row: 2 / 2;
-    border-top: 1px solid $secondary;
-    border-bottom: 1px solid $secondary;
-    padding: 30px 30px;
 }
 
 .disclaimer {
@@ -66,16 +61,6 @@ poe-item-renderer {
     padding-bottom: 2px;
     padding-left: 2px;
     position: fixed;
-}
-
-.sidebar {
-    background-color: $black;
-    grid-column: 1 / 2;
-    grid-row: 2 / 2;
-    overflow-y: auto;
-    padding: 25px;
-    border-top: 1px solid $secondary;
-    border-bottom: 1px solid $secondary;
 }
 
 #navbar {

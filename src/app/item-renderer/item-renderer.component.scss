@@ -17,7 +17,6 @@
 :host {
   align-items: center;
   display: flex;
-  grid-column: 2 / 3;
   overflow-y: auto;
 }
 
@@ -151,6 +150,10 @@
     }
     .itemheader-name-line2 {
       display: block;
+    }
+
+    & + .itemimg {
+        margin-top: 10.5px;
     }
 
     position: relative;

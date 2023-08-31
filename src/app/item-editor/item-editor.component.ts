@@ -33,6 +33,15 @@ export class ItemEditorComponent implements OnInit {
     })
   }
 
+  save() {
+    let stash: Item[] = JSON.parse(localStorage.getItem("stash") ?? "null");
+    if(stash === null) {
+      stash = [];
+    }
+    stash.push(this.item);
+    localStorage.setItem("stash", JSON.stringify(stash));
+  }
+
   removeImage() {
     this.item.image = "";
   }

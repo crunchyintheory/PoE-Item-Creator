@@ -96,6 +96,14 @@ button, .button {
             background-image: url('./assets/orb_of_annulment.png');
         }
 
+        &.orb-mirror {
+            background-image: url('./assets/mirror.png');
+        }
+
+        &.orb-eternal {
+            background-image: url('./assets/eternal_orb.png')
+        }
+
         img {
             opacity: 0;
         }

@@ -15,6 +15,8 @@ import { ItemRendererComponent } from './item-renderer/item-renderer.component';
 import { ItemEditorComponent } from './item-editor/item-editor.component';
 import { FieldGroupComponent } from './field-group/field-group.component';
 import { PropFieldGroupComponent } from './prop-field-group/prop-field-group.component';
+import { PageCreateItemComponent } from './page-create-item/page-create-item.component';
+import { PageStashComponent } from './page-stash/page-stash.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { PropFieldGroupComponent } from './prop-field-group/prop-field-group.com
     ItemRendererComponent,
     ItemEditorComponent,
     FieldGroupComponent,
-    PropFieldGroupComponent
+    PropFieldGroupComponent,
+    PageCreateItemComponent,
+    PageStashComponent
   ],
   imports: [
     BrowserModule,
