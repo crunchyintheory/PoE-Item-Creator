@@ -15,7 +15,7 @@ export class ItemService {
   constructor(private http: HttpClient) { }
 
   private static DeepCopy<T extends Object>(object: T): T {
-    return Object.assign(Object.create(Object.getPrototypeOf(object)), JSON.parse(JSON.stringify(object)));
+    return Object.assign(Object.create(Object.getPrototypeOf(object)), structuredClone(object));
   }
 
   reset(): Promise<Item> {
