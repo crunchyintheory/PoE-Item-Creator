@@ -1,14 +1,14 @@
 <div class="label" [ngClass]="{'has-choices': labelChoices, 'choices-shown': choicesShownName == 'label'}">
     <img height="20" *ngIf='getDisplayImage(labelInput)' [src]='getDisplayImage(labelInput)'/>
-    <input type="text" [ngStyle]="{color: getDisplayColor(labelInput)}" [(ngModel)]="label" (ngModelChange)="!labelChoices ? labelChanged($event) : null" [readonly]="!labelEditable || labelChoices" (click)='focusLabel(true)' (blur)='focusLabel(false)' />
+    <input type="text" [title]="label" [ngStyle]="{color: getDisplayColor(labelInput)}" [(ngModel)]="label" (ngModelChange)="!labelChoices ? labelChanged($event) : null" [readonly]="!labelEditable || labelChoices" (click)='focusLabel(true)' (blur)='focusLabel(false)' />
 </div>
 <div class="value" [ngClass]="{'has-choices': valueChoices, 'choices-shown': choicesShownName == 'value'}" *ngIf='(fields > 0 && hide == "value2") || (fields > 1 && hide == "value")'>
     <img height="20" *ngIf='getDisplayImage(valueInput)' [src]='getDisplayImage(valueInput)'/>
-    <input type="text" [ngStyle]="{color: getDisplayColor(valueInput)}" [(ngModel)]="value" (ngModelChange)="!valueChoices ? valueChanged($event) : null" (click)='focusValue(true)' (blur)='focusValue(false)' [readonly]="valueChoices" />
+    <input type="text" [title]="value" [ngStyle]="{color: getDisplayColor(valueInput)}" [(ngModel)]="value" (ngModelChange)="!valueChoices ? valueChanged($event) : null" (click)='focusValue(true)' (blur)='focusValue(false)' [readonly]="valueChoices" />
 </div>
 <div class="value2" [ngClass]="{'has-choices': value2Choices, 'choices-shown': choicesShownName == 'value2'}" *ngIf='(fields > 1 && hide == "value2") || (fields > 0 && hide == "value")'>
     <img height="20" *ngIf='getDisplayImage(value2Input)' [src]='getDisplayImage(value2Input)'/>
-    <input type="text" [ngStyle]="{color: getDisplayColor(value2Input)}" [(ngModel)]="value2" (ngModelChange)="!value2Choices ? value2Changed($event) : null" (click)='focusValue2(true)' (blur)='focusValue2(false)' [readonly]="value2Choices" />
+    <input type="text" [title]="value2" [ngStyle]="{color: getDisplayColor(value2Input)}" [(ngModel)]="value2" (ngModelChange)="!value2Choices ? value2Changed($event) : null" (click)='focusValue2(true)' (blur)='focusValue2(false)' [readonly]="value2Choices" />
 </div>
 <div class="choices" *ngIf='choicesShown' [ngStyle]="{display: choicesShown ? 'block' : 'none'}">
     <ul>

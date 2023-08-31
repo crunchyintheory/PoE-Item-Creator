@@ -42,6 +42,13 @@
     }
 }
 
+@media(max-width: 1000px) {
+    .grid {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
 poe-item-renderer {
     background-color: rgba(0,0,0,0.8);
     grid-row: 2 / 2;
