@@ -186,4 +186,8 @@ select, input {
     .border-#{$name} {
         border-color: $color;
     }
+
+    .border-dark-#{$name} {
+        border-color: darken($color, 30%);
+    }
 }

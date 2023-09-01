@@ -1,0 +1,53 @@
+:host {
+    opacity: 1;
+    transition: opacity 1s;
+
+    margin: 15px 0;
+    display: block;
+
+    &.fading {
+        opacity: 0;
+    }
+}
+
+.toast {
+    display: grid;
+    grid-template-rows: auto 5px 1fr;
+    grid-template-columns: auto 1fr;
+    border-width: 1px;
+    border-left-width: 5px;
+    border-style: solid;
+    padding: 15px 20px;
+    background-color: #000;
+    position: relative;
+
+    .background {
+        position: absolute;
+        top: -1px;
+        bottom: -1px;
+        right: -1px;
+        left: 0;
+        background-image: linear-gradient(to right, #00000000 0%, #000000ff 100%);
+        z-index: 0;
+    }
+
+    .background ~ * {
+        z-index: 1;
+    }
+}
+
+.icon-container {
+    grid-column: 1 / 2;
+    grid-row: 1 / 4;
+}
+
+.title {
+    font-size: 1.2em;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+.text {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+}

@@ -13,18 +13,25 @@ export class Property {
 }
 
 export class PropertyType implements ISerializable {
-    readonly name: string;
-    readonly className: string;
-    readonly nameRenderClass: string | null;
-    readonly valueRenderClass: string | null;
-    readonly fields: number;
+    readonly name: string = "";
+    readonly className: string = "";
+    readonly nameRenderClass?: string | null;
+    readonly valueRenderClass?: string | null;
+    readonly fields: number = 0;
 
-    constructor(name: string, className: string, nameRenderClass: string | null, valueRenderClass: string | null, fields: number) {
-        this.name = name;
-        this.className = className;
-        this.nameRenderClass = nameRenderClass;
-        this.valueRenderClass = valueRenderClass;
-        this.fields = fields;
+    public constructor(data: Object)
+    public constructor(name: string, className: string, nameRenderClass: string | null, valueRenderClass: string | null, fields: number)
+    public constructor(data: string | any, className?: string, nameRenderClass?: string | null, valueRenderClass?: string | null, fields?: number) {
+        if(typeof data == "object") {
+            Object.assign(this, data);
+        }
+        else {
+            this.name = data;
+            this.className = className!;
+            this.nameRenderClass = nameRenderClass;
+            this.valueRenderClass = valueRenderClass;
+            this.fields = fields!;
+        }
     }
 
     static readonly ItemType: PropertyType = {

@@ -1,7 +1,10 @@
 <div class="sidebar" id="sidebar">
     <div class="h1" style="margin-bottom: 20px;">Stash ({{ items.length }} item{{ items.length != 1 ? "s" : ""}})</div>
+    <div class="stash-notice">
+        <poe-alert-toast [alert]="alert"></poe-alert-toast>
+    </div>
     <div class="stash-items">
-        <poe-item-renderer [showBody]="false" *ngFor="let i of items; index as index" [item]="i" (click)="onClick(index)" (mouseenter)="onHover(index)" (mouseleave)="onHover(-1)"></poe-item-renderer>
+        <poe-item-renderer [showBody]="false" *ngFor="let i of items; index as index" [item]="i" (click)="onClick(index)" (contextmenu)="onRightClick(index, $event)" (mouseenter)="onHover(index)" (mouseleave)="onHover(-1)"></poe-item-renderer>
     </div>
 </div>
 <div id="main-render-container">

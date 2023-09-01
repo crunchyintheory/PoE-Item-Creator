@@ -1,0 +1,10 @@
+:host {
+    position: absolute;
+}
+
+#toast-container {
+    position: fixed;
+    bottom: 15px;
+    right: 30px;
+    max-width: 400px;
+}

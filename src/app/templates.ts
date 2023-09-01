@@ -114,9 +114,9 @@ export const Templates = [
     ),
     new Item(
         Rarity.Unique,
-        'Starforge',
+        'Echoforge',
         'Infernal Sword',
-        'assets/items/Starforge_inventory_icon.png',
+        'assets/items/Echoforge_inventory_icon.png',
         'x2x3',
         [
             new Property(
@@ -125,14 +125,14 @@ export const Templates = [
                 'Two Hand Sword'
             ),
             new Property(
-                PropertyType.StatAug,
-                'Quality',
-                '+20%'
+                PropertyType.Stat,
+                'Physical Damage',
+                '62-129'
             ),
             new Property(
-                PropertyType.StatAug,
-                'Physical Damage',
-                '322-669'
+                PropertyType.Stat,
+                'Chaos Damage',
+                '<chaos>650-800</chaos>'
             ),
             new Property(
                 PropertyType.Stat,
@@ -142,12 +142,12 @@ export const Templates = [
             new Property(
                 PropertyType.StatAug,
                 'Attacks per Second',
-                '1.46'
+                '1.57'
             ),
             new Property(
                 PropertyType.Stat,
                 'Weapon Range',
-                '11'
+                '13'
             ),
             new Property(
                 PropertyType.Separator,
@@ -167,7 +167,7 @@ export const Templates = [
             new Property(
                 PropertyType.Affix,
                 '',
-                '30% increased Global Accuracy Rating'
+                '30% increased Chaos Damage'
             ),
             new Property(
                 PropertyType.Separator,
@@ -177,32 +177,32 @@ export const Templates = [
             new Property(
                 PropertyType.Affix,
                 '',
-                '500% increased Physical Damage'
+                'Adds 640 to 800 Chaos Damage'
             ),
             new Property(
                 PropertyType.Affix,
                 '',
-                '8% increased Attack Speed'
+                '16% increased Attack Speed'
             ),
             new Property(
                 PropertyType.Affix,
                 '',
-                '+100 to maximum Life'
+                '+200 to maximum Life'
             ),
             new Property(
                 PropertyType.Affix,
                 '',
-                '20% increased Area of Effect for Attacks'
+                'Your Chaos Damage can Shock'
             ),
             new Property(
                 PropertyType.Affix,
                 '',
-                'Deal no Elemental Damage'
+                '40% increased Area of Effect for Attacks'
             ),
             new Property(
                 PropertyType.Affix,
                 '',
-                'Your Physical Damage can Shock'
+                'Deal no Physical or Elemental Damage'
             ),
             new Property(
                 PropertyType.Separator,
@@ -212,10 +212,10 @@ export const Templates = [
             new Property(
                 PropertyType.FlavorU,
                 '',
-                'The end is written into the beginning.'
+                'Witness the emergence of a new cosmic power.'
             )
         ],
-        Influence.Shaper,
+        Influence.None,
         Influence.None,
         FoilType.Sunset
     ),

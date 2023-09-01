@@ -11,10 +11,15 @@ export class Rarity implements ISerializable {
     readonly thickness: RarityThickness;
     readonly displayColor?: string;
 
-    private constructor(name: string, thickness: RarityThickness, displayColor?: string) {
-        this.name = name;
-        this.thickness = thickness;
+    public constructor(object: Object)
+    public constructor(name: string, thickness?: RarityThickness, displayColor?: string)
+    public constructor(data: string | Object, thickness?: RarityThickness, displayColor?: string) {
+        this.name = data as string;
+        this.thickness = thickness!;
         this.displayColor = displayColor;
+        if(typeof data == "object") {
+            Object.assign(this, data);
+        }
     }
 
     get displayName(): string {
@@ -108,8 +113,8 @@ export class Rarity implements ISerializable {
 }
 
 export class Influence implements ISerializable {
-    readonly name: string;
-    readonly icon: string;
+    readonly name: string = "";
+    readonly icon: string = "";
     private _has_background = false;
 
     public get has_background() {
@@ -120,10 +125,17 @@ export class Influence implements ISerializable {
         this._has_background = value;
     }
 
-    private constructor(name: string, icon?: string, has_background = false) {
-        this.name = name;
-        this.icon = icon || `assets/symbol_${name.toLowerCase()}.png`;
-        this.has_background = has_background;
+    public constructor(data: Object)
+    public constructor(name: string, icon?: string, has_background?: boolean)
+    public constructor(data: string | any, icon?: string, has_background = false) {
+        if(typeof(data) == 'object') {
+            Object.assign(this, data);
+        }
+        else {
+            this.name = data;
+            this.icon = icon || `assets/symbol_${data.toLowerCase()}.png`;
+            this.has_background = has_background;
+        }
     }
 
     get displayName(): string {
