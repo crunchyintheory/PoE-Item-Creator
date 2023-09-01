@@ -25,7 +25,6 @@ export class PageCreateItemComponent implements OnInit {
   constructor(private route: ActivatedRoute, private http: HttpClient, public is: ItemService, private router: Router) { }
   
   ngOnInit() {
-    this.is.item = Array.from(Templates.values())[Math.floor(Math.random() * Templates.size)];
     this.route.params.subscribe(params => {
       if(params['username'] && params['gistid'] && params['fileid'] && params['filename']) {
         console.log(params);

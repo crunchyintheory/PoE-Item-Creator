@@ -4,6 +4,7 @@ import { Item } from '../item';
 import { ItemService } from '../item-service.service';
 import { PropertyType } from '../property';
 import { Rarity, RarityThickness, Influence, FoilType } from '../rarity';
+import { StashService } from '../stash.service';
 
 @Component({
   selector: 'poe-item-editor',
@@ -22,7 +23,7 @@ export class ItemEditorComponent implements OnInit {
     return this.is.item;
   }
 
-  constructor(public is: ItemService, private router: Router) { }
+  constructor(public is: ItemService, public stash: StashService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -34,12 +35,7 @@ export class ItemEditorComponent implements OnInit {
   }
 
   save() {
-    let stash: Item[] = JSON.parse(localStorage.getItem("stash") ?? "null");
-    if(stash === null) {
-      stash = [];
-    }
-    stash.push(this.item);
-    localStorage.setItem("stash", JSON.stringify(stash));
+    this.stash.AddToStash(this.item);
   }
 
   removeImage() {

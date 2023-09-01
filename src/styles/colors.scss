@@ -1,3 +1,5 @@
+@use "sass:map";
+
 $black: black;
 $offblack: #212121;
 $offwhite: #eeeeee;
@@ -29,3 +31,27 @@ $cold: #366492;
 $lightning: gold;
 
 $crucible: #ff7339;
+
+$rarities: (
+    "unique": $unique,
+    "magic": $magic,
+    "rare": $rare,
+    "currency": $currency,
+    "normal": $normal,
+    "prophecy": $prophecy,
+    "gem": $gem,
+    "passive": $passive
+);
+
+$colors: map.merge($rarities, (
+    "gray": $gray,
+    "blue": $blue,
+    "white": $white,
+    "crafted": $crafted,
+    "red": $red,
+    "crucible": $crucible,
+    "chaos": $chaos,
+    "fire": $fire,
+    "cold": $cold,
+    "lightning": $lightning
+))

@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import './styles/colors.scss';
+@import './styles/icons.scss';
 
 @font-face {
     font-family: "fontin";
@@ -84,24 +85,10 @@ button, .button {
         background-position: center;
         background-repeat: no-repeat;
 
-        &.orb-scour {
-            background-image: url('./assets/orb_of_scouring.png');
-        }
-
-        &.orb-exalt {
-            background-image: url('./assets/exalted_orb.png');
-        }
-
-        &.orb-annul {
-            background-image: url('./assets/orb_of_annulment.png');
-        }
-
-        &.orb-mirror {
-            background-image: url('./assets/mirror.png');
-        }
-
-        &.orb-eternal {
-            background-image: url('./assets/eternal_orb.png')
+        @each $name, $icon in $orbs {
+            &.orb-#{$name} {
+                background-image: url('./assets/#{$icon}');
+            }
         }
 
         img {
@@ -127,30 +114,10 @@ select, input {
     outline: none;
     font-size: 0.9em;
     option {
-        &.col-normal {
-            color: $normal;
-        }
-        &.col-magic {
-            color: $magic;
-        }
-        &.col-rare,
-        &.col-rare-shaper,
-        &.col-rare-elder {
-            color: $rare;
-        }
-        &.col-unique,
-        &.col-unique-shaper,
-        &.col-unique-elder {
-            color: $unique;
-        }
-        &.col-currency {
-            color: $currency;
-        }
-        &.col-gem {
-            color: $gem;
-        }
-        &.col-prophecy {
-            color: $prophecy;
+        @each $name, $color in $rarities {
+            &.col-#{$name} {
+                color: $color;
+            }
         }
     }
 }
@@ -211,42 +178,12 @@ select, input {
     }
 }
 
-.prop-gray {
-  color: $gray;
-}
+@each $name, $color in $colors {
+    .prop-#{$name} {
+        color: $color;
+    }
 
-.prop-blue {
-  color: $blue;
-}
-
-.prop-white {
-  color: $white;
-}
-
-.prop-crafted {
-  color: $crafted;
-}
-
-.prop-red {
-  color: $red;
-}
-
-.prop-fire {
-    color: $fire;
-}
-
-.prop-cold {
-    color: $cold;
-}
-
-.prop-lightning {
-    color: $lightning;
-}
-
-.prop-chaos {
-    color: $chaos;
-}
-
-.prop-crucible {
-    color: $crucible;
+    .border-#{$name} {
+        border-color: $color;
+    }
 }

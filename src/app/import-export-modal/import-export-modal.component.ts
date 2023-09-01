@@ -35,14 +35,13 @@ export class ImportExportModalComponent implements OnInit {
     });
   }
 
-  importgist() {
-    this.is.importgist(this.gisturl).add(() => {
-      const regex = /https:\/\/gist\.githubusercontent.com\/([\d\w]+)\/([\d\w]+)\/raw\/([\d\w]+)\/([^\x00-\x1F\x7F\x20<>#%"{}|\\^[\]`;\/?:@&=+$,]+)/i
-      const matches: any = this.gisturl.match(regex);
-      if(matches) {
-        this.router.navigateByUrl(`/gist/${matches[1]}/${matches[2]}/${matches[3]}/${matches[4]}`);
-      }
-    })
+  async importgist() {
+    await this.is.importgist(this.gisturl)
+    const regex = /https:\/\/gist\.githubusercontent.com\/([\d\w]+)\/([\d\w]+)\/raw\/([\d\w]+)\/([^\x00-\x1F\x7F\x20<>#%"{}|\\^[\]`;\/?:@&=+$,]+)/i
+    const matches: any = this.gisturl.match(regex);
+    if(matches) {
+      this.router.navigateByUrl(`/gist/${matches[1]}/${matches[2]}/${matches[3]}/${matches[4]}`);
+    }
   }
 
 }
