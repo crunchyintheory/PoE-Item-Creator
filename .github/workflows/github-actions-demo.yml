@@ -27,6 +27,7 @@ jobs:
         with:
           node-version: 16.17
           cache: 'npm'
+      - run: npm ci
       - run: make build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
