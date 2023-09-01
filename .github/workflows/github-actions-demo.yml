@@ -19,7 +19,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    container: node:16.17-alpine
+    container: node:16.17
     steps:
       - name: Checkout
         uses: actions/checkout@v3
