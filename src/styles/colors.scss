@@ -53,5 +53,8 @@ $colors: map.merge($rarities, (
     "chaos": $chaos,
     "fire": $fire,
     "cold": $cold,
-    "lightning": $lightning
+    "lightning": $lightning,
+    "success": rgb(24, 154, 24),
+    "warning": rgb(220, 166, 2),
+    "error": $chaos
 ))

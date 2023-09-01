@@ -17,6 +17,9 @@ import { FieldGroupComponent } from './field-group/field-group.component';
 import { PropFieldGroupComponent } from './prop-field-group/prop-field-group.component';
 import { PageCreateItemComponent } from './page-create-item/page-create-item.component';
 import { PageStashComponent } from './page-stash/page-stash.component';
+import { AlertModalComponent } from './alert-modal/alert-modal.component';
+import { AlertToastComponent } from './alert-toast/alert-toast.component';
+import { AlertHandlerComponent, ToastContainerDirective } from './alert-handler/alert-handler.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,11 @@ import { PageStashComponent } from './page-stash/page-stash.component';
     FieldGroupComponent,
     PropFieldGroupComponent,
     PageCreateItemComponent,
-    PageStashComponent
+    PageStashComponent,
+    AlertModalComponent,
+    AlertToastComponent,
+    AlertHandlerComponent,
+    ToastContainerDirective
   ],
   imports: [
     BrowserModule,

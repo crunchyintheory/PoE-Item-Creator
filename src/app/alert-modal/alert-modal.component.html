@@ -1,0 +1,10 @@
+<div class="modal-container">
+    <div class="modal modal-{{ alert.status }} border-dark-{{ alert.status }}">
+        <div class="h1 title">{{ alert.title }}</div>
+        <div class="text">{{ alert.text }}</div>
+        <div class="buttons">
+            <button class="button" (click)="confirm()">{{ alert.button1 }}</button>
+            <button class="button" (click)="cancel()">{{ alert.button2 }}</button>
+        </div>
+    </div>
+</div>
