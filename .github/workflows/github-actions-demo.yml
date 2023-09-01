@@ -29,11 +29,11 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: make build
+      - run: cp ./dist/index.html ./dist/404.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           path: './dist'
-      - run: cp ./dist/index.html ./dist/404.html
       - name: Deploy to Pages
         id: deployment
         uses: actions/deploy-pages@v1
