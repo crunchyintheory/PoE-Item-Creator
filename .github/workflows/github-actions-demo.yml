@@ -29,7 +29,7 @@ jobs:
           node-version: 16.17
           cache: 'npm'
       - run: npm ci
-      - run: ng build -c production
+      - run: npm run build
       - run: cp ./dist/index.html ./dist/404.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
