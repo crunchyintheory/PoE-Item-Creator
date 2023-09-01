@@ -17,8 +17,8 @@ export class ItemRendererComponent implements OnInit {
   get Influence(): any { return Influence }
 
   @Input() item: Item = Templates.get("Tabula Rasa")!;
-
   @Input() showBody: boolean = true;
+  @Input() border: boolean = false;
 
   constructor() { }
 

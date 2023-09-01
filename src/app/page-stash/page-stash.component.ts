@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../item';
+import { StashService } from '../stash.service';
 
 @Component({
   selector: 'poe-page-stash',
@@ -11,19 +12,20 @@ export class PageStashComponent implements OnInit {
   public items: Item[] = [];
   public hovered = -1;
 
-  constructor() { }
+  constructor(private stash: StashService) { }
 
   ngOnInit(): void {
-    let items: Item[] = JSON.parse(localStorage.getItem("stash") ?? "[]");
-    this.items = items;
+    this.stash.Stash.subscribe(items => {
+      this.items = items;
+    });
   }
 
   public onClick(index: number) {
+    this.stash.RemoveFromStash(index);
     let item = this.items[index];
   }
 
   public onHover(index: number) {
-    console.log("foo");
     this.hovered = index;
   }
 

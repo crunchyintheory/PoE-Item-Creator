@@ -1,9 +1,9 @@
 <div class="sidebar" id="sidebar">
-    <div class="h1" style="margin-bottom: 20px;">Stash</div>
+    <div class="h1" style="margin-bottom: 20px;">Stash ({{ items.length }} item{{ items.length != 1 ? "s" : ""}})</div>
     <div class="stash-items">
         <poe-item-renderer [showBody]="false" *ngFor="let i of items; index as index" [item]="i" (click)="onClick(index)" (mouseenter)="onHover(index)" (mouseleave)="onHover(-1)"></poe-item-renderer>
     </div>
 </div>
 <div id="main-render-container">
-    <poe-item-renderer id="main-renderer" *ngIf="hovered >= -1" [item]="this.items[hovered]"></poe-item-renderer>
+    <poe-item-renderer id="main-renderer" *ngIf="hovered >= 0" [item]="this.items[hovered]"></poe-item-renderer>
 </div>
