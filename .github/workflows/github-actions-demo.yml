@@ -19,6 +19,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    container: node:16.17-alpine
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -28,7 +29,7 @@ jobs:
           node-version: 16.17
           cache: 'npm'
       - run: npm ci
-      - run: make build
+      - run: ng build -c production
       - run: cp ./dist/index.html ./dist/404.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1

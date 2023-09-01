@@ -6,7 +6,7 @@
           <img src="assets/ic_refresh_black_24px.svg" alt="Reset" />
         </button>
         <div style="flex-grow: 1"></div>
-        <a [routerLink]="['import']" data-tooltip="Import from PoE" class="button export orb-btn orb-mirror">
+        <a [routerLink]="['import']" data-tooltip="Import from PoE" class="button export orb-btn orb-mirror" *ngIf="false">
           <img src="assets/ic_content_paste_black_24px.svg" alt="Import" />
         </a>
         <button data-tooltip="Save to Stash" class="button save orb-btn orb-eternal" data-tooltip="Save to Stash" (click)="save()" id="save-btn">
