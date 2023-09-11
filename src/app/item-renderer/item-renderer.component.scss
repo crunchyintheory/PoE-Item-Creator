@@ -68,12 +68,12 @@
         background-size: auto 300%;
     }
     .left .influence-symbol {
-        left: 0;
+        left: 3px;
     }
     .right {
         margin-left: auto;
         .influence-symbol {
-           right: 0;
+           right: 3px;
         }
     }
     &.double, &.thicksingle {
