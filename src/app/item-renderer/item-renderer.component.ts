@@ -42,7 +42,7 @@ export class ItemRendererComponent implements OnInit {
       this.item.influence2.name,
       this.border ? 'border border-' + this.item.rarity.name : '',
       'foil-' + this.item.foilType.name,
-      this.item.foilType != FoilType.None ? 'foil' : '',
+      this.item.foilType.name != FoilType.None.name ? 'foil' : '',
       ((this.item.rarity == Rarity.Rare|| this.item.rarity == Rarity.Unique) && (this.item.base == "" || this.item.name == "")) ? "single-line" : ""
     ]
     return classes.join(' ');
