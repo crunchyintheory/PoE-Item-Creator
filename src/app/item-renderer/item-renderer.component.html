@@ -1,4 +1,4 @@
-<div [class]="'item ' + item.rarity.name + ' ' + item.size + ' ' + item.influence.name + ' ' + item.influence2.name + (border ? ' border border-' + item.rarity.name : '')" id="item">
+<div [class]="getClass()" id="item">
   <div [class]="'itemheader ' + item.rarity.thickness + ' foil-' + item.foilType.name.toLowerCase()" id="itemheader">
     <span class="left"><img *ngIf="item.influence.icon != 'none'" src="{{ item.influence.icon }}" class="influence-symbol"/></span>
     <div class="itemheader-name">
