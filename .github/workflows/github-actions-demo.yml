@@ -30,11 +30,14 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
-      - run: cp ./dist/index.html ./dist/404.html
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: './dist'
-      - name: Deploy to Pages
+      - name: Deploy to Server
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+            username: ${{ secrets.SSH_USERNAME }}
+            password: ${{ secrets.SSH_PASSWORD }}
+            server: '${{ secrets.SERVER_IP }}'
+            port: 22
+            local_path: './dist/*'
+            remote_path: '/public_html'
+            delete_remote_files: true
