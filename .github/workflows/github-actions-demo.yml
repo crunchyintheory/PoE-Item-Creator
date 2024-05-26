@@ -1,4 +1,4 @@
-name: GitHub Pages
+name: SFTP Deploy
 on: 
   push:
     branches: [master]
@@ -30,6 +30,7 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+      - run: cp ./.htaccess ./dist/.htaccess
       - name: Deploy to Server
         id: deployment
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4

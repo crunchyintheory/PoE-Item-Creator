@@ -1,0 +1,10 @@
+<ifModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule (.*) index.html [QSA,L]
+</ifModule>
+
+<If "%{THE_REQUEST} =~ m#/create#">
+    Header Set Link '<https://poeitem.crunchyintheory.com>; rel="canonical"'
+</If>
