@@ -41,3 +41,4 @@ jobs:
             local_path: './dist/*'
             remote_path: '/public_html'
             delete_remote_files: true
+            sftp_only: true
