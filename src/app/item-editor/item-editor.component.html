@@ -25,7 +25,7 @@
     <br/>
     <br/>
     <span class="imageselect">
-      Image:
+      <label for="image">Image:</label>
       <input type="text" class="Image" id="image" [(ngModel)]="item.image" />
       <button (click)="removeImage()" style="position: relative; top: 7px; display: inline-flex"
         data-tooltip="Remove Image">
@@ -34,8 +34,14 @@
     </span>
     <br/>
     <br/>
+    <span class="maxwidth">
+        <label for="maxwidth">Maximum Width (in pixels):</label>
+        <input type="number" id="maxwidth" [(ngModel)]="maxWidthInput" (change)="updateMaxWidth()"/>
+    </span>
+    <br/>
+    <br/>
     <span class="itemsize" *ngIf="item.influence.has_background || item.influence2.has_background">
-      Item Size (For Influence Background):
+      <label for="itemsize">Item Size (For Influence Background):</label>
       <select id="itemsize" [(ngModel)]="item.size">
         <option value="x1x1">1x1</option>
         <option value="x1x2">1x2</option>

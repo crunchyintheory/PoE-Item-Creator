@@ -1,4 +1,4 @@
-<div [class]="getClass()" id="item">
+<div [class]="getClass()" id="item" [ngStyle]="{ 'max-width.px': maxWidth }">
   <div [class]="'itemheader ' + item.rarity.thickness + ' foil-' + item.foilType.name.toLowerCase()" id="itemheader">
     <span class="left"><img *ngIf="item.influence.icon != 'none'" src="{{ item.influence.icon }}" class="influence-symbol"/></span>
     <div class="itemheader-name">

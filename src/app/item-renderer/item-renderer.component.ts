@@ -20,6 +20,7 @@ export class ItemRendererComponent implements OnInit {
   @Input() item: Item = Templates.get("Tabula Rasa")!;
   @Input() showBody: boolean = true;
   @Input() border: boolean = false;
+  @Input() maxWidth: number = 440;
 
   constructor() { }
 
