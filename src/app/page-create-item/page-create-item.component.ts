@@ -3,8 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Rarity, RarityThickness, Influence } from '../rarity';
 import { Item } from '../item';
-import { PropertyType, Property } from '../property';
-import { Templates } from '../templates';
+import { PropertyType } from '../property';
 import { HttpClient } from '@angular/common/http';
 import { ItemService } from '../item-service.service';
 
@@ -21,6 +20,8 @@ export class PageCreateItemComponent implements OnInit {
   get Rarity(): any { return Rarity }
   get RarityThickness(): any { return RarityThickness }
   get Influence(): any { return Influence }
+
+  public maxWidth: number = 440;
   
   constructor(private route: ActivatedRoute, private http: HttpClient, public is: ItemService, private router: Router) { }
   
@@ -31,6 +32,10 @@ export class PageCreateItemComponent implements OnInit {
         this.is.importgist(`https://gist.githubusercontent.com/${params['username']}/${params['gistid']}/raw/${params['fileid']}/${params['filename']}`)
       }
     });
+  }
+
+  updateMaxWidth(width: number) {
+    this.maxWidth = width;
   }
 
 }

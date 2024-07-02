@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Item } from '../item';
 import { ItemService } from '../item-service.service';
@@ -13,6 +13,8 @@ import { StashService } from '../stash.service';
 })
 export class ItemEditorComponent implements OnInit {
 
+  @Output() maxWidth = new EventEmitter<number>();
+
   get types(): PropertyType[] { return PropertyType.types }
   get Rarity(): any { return Rarity }
   get RarityThickness(): any { return RarityThickness }
@@ -23,9 +25,12 @@ export class ItemEditorComponent implements OnInit {
     return this.is.item;
   }
 
+  public maxWidthInput = 440;
+
   constructor(public is: ItemService, public stash: StashService, private router: Router) { }
 
   ngOnInit(): void {
+    this.updateMaxWidth();
   }
 
   reset() {
@@ -40,6 +45,10 @@ export class ItemEditorComponent implements OnInit {
 
   removeImage() {
     this.item.image = "";
+  }
+
+  updateMaxWidth() {
+    this.maxWidth.emit(this.maxWidthInput);
   }
 
 }
