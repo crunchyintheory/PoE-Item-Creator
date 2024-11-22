@@ -4,7 +4,14 @@
         <poe-alert-toast [alert]="alert"></poe-alert-toast>
     </div>
     <div class="stash-items">
-        <poe-item-renderer [showBody]="false" *ngFor="let i of items; index as index" [item]="i" (click)="onClick(index)" (contextmenu)="onRightClick(index, $event)" (mouseenter)="onHover(index)" (mouseleave)="onHover(-1)" [maxWidth]="100" maxWidthUnit="%"></poe-item-renderer>
+        <div class="stash-item" *ngFor="let i of items; index as index" (contextmenu)="onRightClick(index, $event)" (mouseenter)="onHover(index)" (mouseleave)="onHover(-1)">
+            <poe-item-renderer [showBody]="false" [item]="i" (click)="onClick(index)" [maxWidth]="100" maxWidthUnit="%"></poe-item-renderer>
+            <div class="stash-item-controls float-right">
+                <button class="button delete orb-btn orb-scour" (click)="promptDeletion(index)">
+                    <img src="assets/ic_delete_forever_black_18px.svg" alt="Delete" />
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 <div id="main-render-container">

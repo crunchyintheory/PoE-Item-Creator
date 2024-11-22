@@ -27,12 +27,13 @@
     <span class="imageselect">
       <label for="image">Image:</label>
       <input type="text" class="Image" id="image" [(ngModel)]="item.image" />
-      <button (click)="removeImage()" style="position: relative; top: 7px; display: inline-flex"
-        data-tooltip="Remove Image">
+      <button (click)="removeImage()"
+        style="position: relative; display: inline-flex"
+        data-tooltip="Remove Image"
+        class="icon-btn">
         <img src="assets/ic_close_black_24px.svg" alt="X" />
       </button>
     </span>
-    <br/>
     <br/>
     <span class="maxwidth">
         <label for="maxwidth">Maximum Width (in pixels):</label>

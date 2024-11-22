@@ -44,6 +44,8 @@ button, .button {
         top: 0;
     }
     &[data-tooltip] {
+        position: relative;
+        
         &.weird-tooltip {
             &::after {
                 display: block;
@@ -80,26 +82,31 @@ button, .button {
         }
     }
 
-    &.orb-btn:hover {
-        background-size: auto 70%;
-        background-position: center;
-        background-repeat: no-repeat;
-
-        @each $name, $icon in $orbs {
-            &.orb-#{$name} {
-                background-image: url('./assets/#{$icon}');
+    &.orb-btn, &.icon-btn {
+        width: 39px;
+        height: 30px;
+        padding: 0;
+        &.orb-btn {
+            &:hover {
+                background-size: auto 70%;
+                background-position: center;
+                background-repeat: no-repeat;
+            
+                @each $name, $icon in $orbs {
+                    &.orb-#{$name} {
+                        background-image: url('./assets/#{$icon}');
+                    }
+                }
+            
+                img {
+                    opacity: 0;
+                }
             }
         }
-
-        img {
-            opacity: 0;
-        }
     }
-}
 
-span.imageselect {
-    * {      
-        margin: 0 5px;
+    img {
+        height: 18px;
     }
 }
   
