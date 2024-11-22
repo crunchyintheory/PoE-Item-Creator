@@ -11,9 +11,12 @@ export class ItemService {
 
   public item!: Item;
   private corruptedTabula?: Item;
+  public defaultMaxWidth = 440;
 
   constructor(private http: HttpClient) {
-    this.item = Array.from(Templates.values())[Math.floor(Math.random() * Templates.size)];
+    let item = Array.from(Templates.values())[Math.floor(Math.random() * Templates.size)];
+    this.item = item;
+    this.defaultMaxWidth = item.width;
   }
 
   private static DeepCopy<T extends Object>(object: T): T {
@@ -22,8 +25,9 @@ export class ItemService {
 
   async reset(): Promise<Item> {
     // My desperate plea for a proper deep copy method in this accursed language.
-    let template = Templates.get('Tabula Rasa, Simple Robe') as Item;
-    this.item = ItemService.DeepCopy(template);
+    let template = Templates.get('Tabula Rasa, Simple Robe')!;
+    let item = ItemService.DeepCopy(template);
+    this.item = item;
 
     if (this.item.properties.length == 0 && Math.random() > 0.9) {
       this.item.properties = [{
@@ -41,7 +45,7 @@ export class ItemService {
         this.item.influence = corruptInfluences[Math.floor(Math.random() * (corruptInfluences.length - 1))];
         this.item.influence2 = Influence.influences[Math.floor(Math.random() * (Influence.influences.length - 2)) + 1];
       }
-      Templates.set("Tabula Rasa, Simple Robe", ItemService.DeepCopy(this.item));
+      Templates.set("Tabula Rasa, Simple Robe", ItemService.DeepCopy(item));
     }
     return this.item;
   }

@@ -27,7 +27,9 @@ export class ItemEditorComponent implements OnInit {
 
   public maxWidthInput = 440;
 
-  constructor(public is: ItemService, public stash: StashService, private router: Router) { }
+  constructor(public is: ItemService, public stash: StashService, private router: Router) {
+    this.maxWidthInput = is.defaultMaxWidth;
+  }
 
   ngOnInit(): void {
     this.updateMaxWidth();
