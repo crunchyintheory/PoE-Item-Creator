@@ -15,6 +15,33 @@
     justify-content: center;
 }
 
+.stash-items {
+    overflow-x: hidden;
+}
+
+.stash-item {
+    padding-bottom: 30px;
+    position: relative;
+    max-width: 100%;
+
+    &:hover {
+        padding-bottom: 0px;
+        .stash-item-controls {
+            display: flex;
+        }
+    }
+
+    poe-item-renderer {
+        max-width: 100%;
+    }
+
+    .stash-item-controls {
+        display: none;
+        justify-content: end;
+        width: 100%;
+    }
+}
+
 .sidebar {
     background-color: $black;
     grid-column: 1 / 2;

@@ -39,6 +39,11 @@ export class PageStashComponent implements OnInit {
 
   public onRightClick(index: number, event: Event) {
     event.stopPropagation();
+    this.promptDeletion(index);
+    return false;
+  }
+
+  public promptDeletion(index: number) {
     this.alertService.Dispatch(new Alert({
       type: AlertType.ModalConfirm,
       status: AlertStatus.Warning,
@@ -47,7 +52,6 @@ export class PageStashComponent implements OnInit {
       lifetime: 1000,
       confirmCallback: () => this.stash.RemoveFromStash(index)
     }));
-    return false;
   }
 
 }
