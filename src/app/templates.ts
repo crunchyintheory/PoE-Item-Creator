@@ -3,7 +3,7 @@ import { Property, PropertyType } from "./property";
 import { FoilType, Influence, Rarity } from "./rarity";
 
 export class TemplateItem extends Item {
-    public width = 440;
+    public width = 500;
 
     constructor(rarity:Rarity, name:string, base:string, image:string, size: string, properties:Property[], influence?: Influence, influence2?: Influence, foilType?: FoilType, width?: number) {
         super(rarity, name, base, image, size, properties, influence, influence2, foilType);
