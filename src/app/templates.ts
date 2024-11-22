@@ -2,12 +2,22 @@ import { Item } from "./item";
 import { Property, PropertyType } from "./property";
 import { FoilType, Influence, Rarity } from "./rarity";
 
-const reducer = (accumulator: Map<string, Item>, currentValue: Item) => {
+export class TemplateItem extends Item {
+    public width = 440;
+
+    constructor(rarity:Rarity, name:string, base:string, image:string, size: string, properties:Property[], influence?: Influence, influence2?: Influence, foilType?: FoilType, width?: number) {
+        super(rarity, name, base, image, size, properties, influence, influence2, foilType);
+
+        if(width) this.width = width;
+    }
+}
+
+const reducer = (accumulator: Map<string, TemplateItem>, currentValue: TemplateItem) => {
     return accumulator.set(`${currentValue.name}, ${currentValue.base}`, currentValue);
 }
 
 export const Templates = [
-    new Item(
+    new TemplateItem(
         Rarity.Unique,
         'Starforge',
         'Infernal Sword',
@@ -112,7 +122,7 @@ export const Templates = [
         ],
         Influence.Shaper
     ),
-    new Item(
+    new TemplateItem(
         Rarity.Unique,
         'Echoforge',
         'Infernal Sword',
@@ -219,7 +229,7 @@ export const Templates = [
         Influence.None,
         FoilType.Sunset
     ),
-    new Item(
+    new TemplateItem(
         Rarity.Rare,
         'Beast Tread',
         'Titan Greaves',
@@ -298,7 +308,7 @@ export const Templates = [
             )
         ]
     ),
-    new Item(
+    new TemplateItem(
         Rarity.Unique,
         'Tabula Rasa',
         'Simple Robe',
@@ -306,7 +316,7 @@ export const Templates = [
         'x2x3',
         []
     ),
-    new Item(
+    new TemplateItem(
         Rarity.Unique,
         "Circle of Fear",
         "Synthesised Sapphire Ring",
@@ -369,9 +379,12 @@ export const Templates = [
                 "My subordinates circled me eternally, attuned to the slightest weakness, ready to tear me apart for their own gains."
             )
         ],
-        Influence.Synthesised
+        Influence.Synthesised,
+        undefined,
+        undefined,
+        500
     ),
-    new Item(
+    new TemplateItem(
         Rarity.Unique,
         "Replica Tabula Rasa",
         "Simple Robe",
@@ -401,7 +414,7 @@ export const Templates = [
         ],
         Influence.Replica
     ),
-    new Item(
+    new TemplateItem(
         Rarity.Keystone,
         "",
         "Chaos Innoculation",
@@ -420,7 +433,7 @@ export const Templates = [
             )
         ]
     ),
-    new Item(
+    new TemplateItem(
         Rarity.Unique,
         "Arakaali's Fang",
         "Fiend Dagger",
@@ -524,7 +537,7 @@ export const Templates = [
             )
         ]
     ),
-    new Item(
+    new TemplateItem(
         Rarity.Magic,
         "",
         "Traveler's Imperial Dyadic Resonator",
@@ -661,9 +674,13 @@ export const Templates = [
                 '',
                 'Item Credit u/iz__zy'
             )
-        ]
+        ],
+        undefined,
+        undefined,
+        undefined,
+        600
     )
-].reduce(reducer, new Map<string, Item>());
+].reduce(reducer, new Map<string, TemplateItem>());
 
 export const StartingTemplates = Templates;
 StartingTemplates.delete("Tabula Rasa");
