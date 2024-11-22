@@ -4,7 +4,7 @@
         <poe-alert-toast [alert]="alert"></poe-alert-toast>
     </div>
     <div class="stash-items">
-        <poe-item-renderer [showBody]="false" *ngFor="let i of items; index as index" [item]="i" (click)="onClick(index)" (contextmenu)="onRightClick(index, $event)" (mouseenter)="onHover(index)" (mouseleave)="onHover(-1)"></poe-item-renderer>
+        <poe-item-renderer [showBody]="false" *ngFor="let i of items; index as index" [item]="i" (click)="onClick(index)" (contextmenu)="onRightClick(index, $event)" (mouseenter)="onHover(index)" (mouseleave)="onHover(-1)" [maxWidth]="100" maxWidthUnit="%"></poe-item-renderer>
     </div>
 </div>
 <div id="main-render-container">

@@ -21,7 +21,7 @@ export class PageCreateItemComponent implements OnInit {
   get RarityThickness(): any { return RarityThickness }
   get Influence(): any { return Influence }
 
-  public maxWidth: number = 440;
+  public maxWidth: number = 500;
   
   constructor(private route: ActivatedRoute, private http: HttpClient, public is: ItemService, private router: Router) { }
   

@@ -20,11 +20,16 @@ export class ItemRendererComponent implements OnInit {
   @Input() item: Item = Templates.get("Tabula Rasa")!;
   @Input() showBody: boolean = true;
   @Input() border: boolean = false;
-  @Input() maxWidth: number = 440;
+  @Input() maxWidth: number = 500;
+  @Input() maxWidthUnit: "px" | "%" = "px";
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  getMaxWidth(): Object {
+    return Object.fromEntries([["maxWidth." + this.maxWidthUnit, this.maxWidth]])
   }
 
   getInfluenceBackground(influence: Influence): string {
