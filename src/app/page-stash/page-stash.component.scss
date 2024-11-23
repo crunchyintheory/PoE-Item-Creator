@@ -20,12 +20,12 @@
 }
 
 .stash-item {
-    padding-bottom: 30px;
+    padding-bottom: 60px;
     position: relative;
     max-width: 100%;
 
     &:hover {
-        padding-bottom: 0px;
+        padding-bottom: 30px;
         .stash-item-controls {
             display: flex;
         }
