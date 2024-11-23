@@ -7,7 +7,7 @@
         <div class="stash-item" *ngFor="let i of items; index as index" (contextmenu)="onRightClick(index, $event)" (mouseenter)="onHover(index)" (mouseleave)="onHover(-1)">
             <poe-item-renderer [showBody]="false" [item]="i" (click)="onClick(index)" [maxWidth]="100" maxWidthUnit="%"></poe-item-renderer>
             <div class="stash-item-controls float-right">
-                <button class="button delete orb-btn orb-scour" (click)="promptDeletion(index)">
+                <button class="button delete orb-btn orb-scour" (click)="promptDeletion(index)" data-tooltip="Delete">
                     <img src="assets/ic_delete_forever_black_18px.svg" alt="Delete" />
                 </button>
             </div>
@@ -15,5 +15,5 @@
     </div>
 </div>
 <div id="main-render-container">
-    <poe-item-renderer id="main-renderer" *ngIf="hovered >= 0" [item]="this.items[hovered]"></poe-item-renderer>
+    <poe-item-renderer id="main-renderer" *ngIf="hovered >= 0" [item]="this.items[hovered]" [maxWidth]="100" maxWidthUnit="%"></poe-item-renderer>
 </div>
