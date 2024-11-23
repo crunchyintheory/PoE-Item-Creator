@@ -678,7 +678,7 @@ export const Templates = [
         undefined,
         undefined,
         undefined,
-        600
+        700
     )
 ].reduce(reducer, new Map<string, TemplateItem>());
 
