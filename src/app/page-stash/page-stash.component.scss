@@ -10,9 +10,12 @@
     background-color: rgba(0,0,0,0.8);
     border-top: 1px solid $secondary;
     border-bottom: 1px solid $secondary;
-    padding: 30px 30px;
-    display: flex;
-    justify-content: center;
+    padding: 80px 30px 30px 30px;
+
+    #main-renderer {
+        position: sticky;
+        top: 80px;
+    }
 }
 
 .stash-items {
