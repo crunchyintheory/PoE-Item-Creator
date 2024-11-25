@@ -16,7 +16,7 @@ export class ValuePipe implements PipeTransform {
   ];
 
   transform(value: any, args?: any): any {
-    if(value.type === PropertyType.StatReq) {
+    if(value.type.className === PropertyType.StatReq.className) {
       return value.value.replace(/(\d+)/g, '<span class="prop-white">$1</span>');
     }
     else {
