@@ -57,8 +57,8 @@
       <li *ngFor='let property of item.properties;let index = index;' [class]="'prop-' + property.type.className">
         <poe-prop-field-group [property]="property" [index]="index" [attr.fields]="property.type.fields"></poe-prop-field-group>
       </li>
+      <button (click)="item.appendProperty()" class="add-after add-first-prop orb-btn orb-exalt" *ngIf='item.properties.length === 0'>
+          <img src="assets/ic_add_black_24px.svg" alt="+" />
+      </button>
     </ul>
-    <button (click)="item.appendProperty()" class="add-after orb-btn orb-exalt" *ngIf='item.properties.length === 0'>
-        <img src="assets/ic_add_black_24px.svg" alt="+" />
-    </button>
   </div>
