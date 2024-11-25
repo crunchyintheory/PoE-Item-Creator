@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from '../item';
+import { Item, StashedItem } from '../item';
 import { StashService } from '../stash.service';
 import { ItemService } from '../item-service.service';
 import { Alert, AlertService, AlertStatus, AlertType } from '../alert.service';
@@ -14,7 +14,7 @@ export class PageStashComponent implements OnInit {
 
   public alert: Alert;
 
-  public items: Item[] = [];
+  public items: StashedItem[] = [];
   public hovered = -1;
 
   constructor(private is: ItemService, private stash: StashService, private alertService: AlertService, private router: Router) {
@@ -29,7 +29,7 @@ export class PageStashComponent implements OnInit {
 
   public onClick(index: number) {
     let item = this.items[index];
-    this.is.item = new Item(item);
+    this.is.item = new StashedItem(item);
     this.router.navigate(["/create"]);
   }
 

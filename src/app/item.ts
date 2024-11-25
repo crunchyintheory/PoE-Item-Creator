@@ -72,3 +72,13 @@ export class Item {
         )
     }
 }
+
+export class StashedItem extends Item {
+    public uid?: string;
+
+    public static From(item: Item): StashedItem {
+        let i = item as StashedItem;
+        if(!i.uid) i.uid = crypto.randomUUID();
+        return i;
+    }
+}
