@@ -19,16 +19,18 @@ export async function wait(ms: number): Promise<void> {
   })
 }
 
+type AlertButton = {
+    text: string;
+    callback?: VoidFunction;
+}
+
 type AlertArgType = {
   type: AlertType;
   status: AlertStatus;
   title: string;
   text: string;
   lifetime?: number;
-  button1?: string;
-  button2?: string;
-  confirmCallback?: () => void;
-  cancelCallback?: () => void;
+  buttons?: AlertButton[];
 }
 
 export class Alert {
@@ -37,21 +39,15 @@ export class Alert {
   title: string;
   text: string;
   lifetime: number;
-  button1: string;
-  button2: string;
-  confirmCallback: () => void;
-  cancelCallback: () => void;
+  buttons: AlertButton[];
 
-  constructor({ type = AlertType.Toast, status = AlertStatus.Success, title = "", text = "", lifetime = -1, button1 = "Confirm", button2 = "Cancel", confirmCallback = function(){}, cancelCallback = function(){} }: AlertArgType) {
+  constructor({ type = AlertType.Toast, status = AlertStatus.Success, title = "", text = "", lifetime = -1, buttons = [{text: "Confirm", callback: () => {}}, {text: "Cancel", callback: () => {}}] }: AlertArgType) {
     this.type = type;
     this.status = status;
     this.title = title;
     this.text = text;
     this.lifetime = lifetime;
-    this.button1 = button1;
-    this.button2 = button2;
-    this.confirmCallback = confirmCallback;
-    this.cancelCallback = cancelCallback;
+    this.buttons = buttons;
   }
 }
 

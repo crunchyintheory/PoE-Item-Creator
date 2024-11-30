@@ -85,10 +85,19 @@ export class StashService {
             title: "Confirm Overwrite",
             text: `Would you like to overwrite the existing item ${existing.name} ${existing.base} in your stash, or save into a new slot?`,
             lifetime: 1000,
-            button1: "Overwrite",
-            button2: "Save as a Copy",
-            confirmCallback: async () => await this.replaceInStash(stash, i, existingIndex, autosave),
-            cancelCallback: async () => await this.finalizeStashAdd(stash, StashedItem.From(item, true), autosave)
+            buttons: [
+                {
+                    text: "Cancel"
+                },
+                {
+                    text: "Overwrite",
+                    callback: () => this.replaceInStash(stash, i, existingIndex, autosave)
+                },
+                {
+                    text: "Save as a Copy",
+                    callback: () => this.finalizeStashAdd(stash, StashedItem.From(item, true), autosave)
+                }
+            ]
         }));
     }
     else {
