@@ -46,13 +46,9 @@ export class AlertHandlerComponent implements OnInit {
     });
   }
 
-  modalConfirmed(): void {
-    this.modal?.confirmCallback();
-    this.modal = this.modals.pop();
-  }
-
-  modalCanceled(): void {
-    this.modal?.cancelCallback();
+  pressed(index: number): void {
+    let cb = this.modal?.buttons[index]?.callback;
+    if(cb) cb();
     this.modal = this.modals.pop();
   }
 

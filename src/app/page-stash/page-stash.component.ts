@@ -50,7 +50,10 @@ export class PageStashComponent implements OnInit {
       title: "Confirm Delete",
       text: "Are you sure you want to delete this item from your stash?",
       lifetime: 1000,
-      confirmCallback: () => this.stash.RemoveFromStash(index)
+      buttons: [
+        {text: "Cancel"},
+        {text: "Confirm", callback: () => this.stash.RemoveFromStash(index)}
+      ]
     }));
   }
 

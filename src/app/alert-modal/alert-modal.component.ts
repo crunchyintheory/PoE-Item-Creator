@@ -10,20 +10,15 @@ export class AlertModalComponent implements OnInit {
 
   @Input() alert!: Alert;
 
-  @Output() confirmed = new EventEmitter<void>();
-  @Output() canceled = new EventEmitter<void>();
+  @Output() pressed = new EventEmitter<number>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  cancel(): void {
-    this.canceled.emit();
-  }
-
-  confirm(): void {
-    this.confirmed.emit();
+  press(i: number): void {
+    this.pressed.emit(i);
   }
 
 }

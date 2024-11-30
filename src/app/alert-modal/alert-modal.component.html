@@ -3,8 +3,7 @@
         <div class="h1 title">{{ alert.title }}</div>
         <div class="text">{{ alert.text }}</div>
         <div class="buttons">
-            <button class="button" (click)="confirm()">{{ alert.button1 }}</button>
-            <button class="button" (click)="cancel()">{{ alert.button2 }}</button>
+            <button class="button" (click)="press(i)" *ngFor="let button of alert.buttons; index as i">{{ button.text }}</button>
         </div>
     </div>
 </div>
