@@ -83,12 +83,12 @@ export class StashService {
             type: AlertType.ModalConfirm,
             status: AlertStatus.Warning,
             title: "Confirm Overwrite",
-            text: `Would you like to overwrite the existing item ${existing.name} in your stash, or save into a new slot?`,
+            text: `Would you like to overwrite the existing item ${existing.name} ${existing.base} in your stash, or save into a new slot?`,
             lifetime: 1000,
             button1: "Overwrite",
             button2: "Save as a Copy",
             confirmCallback: async () => await this.replaceInStash(stash, i, existingIndex, autosave),
-            cancelCallback: async () => await this.finalizeStashAdd(stash, i, autosave)
+            cancelCallback: async () => await this.finalizeStashAdd(stash, StashedItem.From(item, true), autosave)
         }));
     }
     else {
