@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Item } from './item';
+import { Item, StashedItem } from './item';
 import { HttpClient } from '@angular/common/http';
 import { Templates } from './templates';
 import { Property, PropertyType } from './property';
@@ -15,7 +15,7 @@ export class ItemService {
 
   constructor(private http: HttpClient) {
     let item = Array.from(Templates.values())[Math.floor(Math.random() * Templates.size)];
-    this.item = item;
+    this.item = StashedItem.From(item);
     this.defaultMaxWidth = item.width;
   }
 
@@ -27,7 +27,7 @@ export class ItemService {
     // My desperate plea for a proper deep copy method in this accursed language.
     let template = Templates.get('Tabula Rasa, Simple Robe')!;
     let item = ItemService.DeepCopy(template);
-    this.item = item;
+    this.item = StashedItem.From(item, true);
 
     if (this.item.properties.length == 0 && Math.random() > 0.9) {
       this.item.properties = [{
