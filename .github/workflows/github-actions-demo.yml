@@ -1,4 +1,4 @@
-name: SFTP Deploy
+name: GitHub Pages
 on: 
   push:
     branches: [master]
@@ -30,16 +30,11 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
-      - run: cp ./.htaccess ./dist/.htaccess
-      - name: Deploy to Server
-        id: deployment
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      - run: cp ./dist/index.html ./dist/404.html
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-            username: ${{ secrets.SSH_USERNAME }}
-            password: ${{ secrets.SSH_PASSWORD }}
-            server: '${{ secrets.SERVER_IP }}'
-            port: 22
-            local_path: './dist/*'
-            remote_path: '/public_html'
-            delete_remote_files: true
-            sftp_only: true
+          path: './dist'
+      - name: Deploy to Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
