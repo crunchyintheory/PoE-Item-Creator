@@ -32,9 +32,9 @@ jobs:
       - run: npm run build
       - run: cp ./dist/index.html ./dist/404.html
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v4
         with:
           path: './dist'
       - name: Deploy to Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
