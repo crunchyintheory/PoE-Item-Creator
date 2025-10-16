@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Item, StashedItem } from '../item';
+import { StashedItem } from '../item';
 import { StashService } from '../stash.service';
 import { ItemService } from '../item-service.service';
 import { Alert, AlertService, AlertStatus, AlertType } from '../alert.service';
@@ -17,7 +17,7 @@ export class PageStashComponent implements OnInit {
   public items: StashedItem[] = [];
   public hovered = -1;
 
-  constructor(private is: ItemService, private stash: StashService, private alertService: AlertService, private router: Router) {
+  constructor(public is: ItemService, public stash: StashService, private alertService: AlertService, private router: Router) {
     this.alert = new Alert({ type: AlertType.Toast, title: 'Note', text: 'The stash is stored locally in your browser, so clearing your cache will delete these items.', status: AlertStatus.Warning });
   }
 
@@ -27,10 +27,11 @@ export class PageStashComponent implements OnInit {
     });
   }
 
-  public onClick(index: number) {
+  public async onClick(index: number) {
     let item = this.items[index];
     this.is.item = new StashedItem(item);
-    this.router.navigate(["/create"]);
+    this.is.itemImported.next(true);
+    await this.router.navigate(["/create"]);
   }
 
   public onHover(index: number) {
@@ -57,4 +58,7 @@ export class PageStashComponent implements OnInit {
     }));
   }
 
+  public saveShowUids() {
+      localStorage.setItem("showStashUids", JSON.stringify(this.stash.showUids));
+  }
 }

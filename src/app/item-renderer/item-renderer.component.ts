@@ -22,6 +22,7 @@ export class ItemRendererComponent implements OnInit {
   @Input() border: boolean = false;
   @Input() maxWidth: number = 500;
   @Input() maxWidthUnit: "px" | "%" = "px";
+  @Input() showUid: boolean = false;
 
   constructor() { }
 

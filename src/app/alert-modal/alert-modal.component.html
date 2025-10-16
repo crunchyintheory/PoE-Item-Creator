@@ -1,7 +1,8 @@
 <div class="modal-container">
-    <div class="modal modal-{{ alert.status }} border-dark-{{ alert.status }}">
+    <div class="modal modal-{{ alert.status }} border-dark-{{ alert.status }}" [ngSwitch]="alert.html">
         <div class="h1 title">{{ alert.title }}</div>
-        <div class="text">{{ alert.text }}</div>
+        <div class="text" *ngSwitchCase="true" [innerHTML]="alert.text"></div>
+        <div class="text" *ngSwitchDefault>{{ alert.text }}</div>
         <div class="buttons">
             <button class="button" (click)="press(i)" *ngFor="let button of alert.buttons; index as i">{{ button.text }}</button>
         </div>

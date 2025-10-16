@@ -4,18 +4,20 @@ import { HttpClient } from '@angular/common/http';
 import { Templates } from './templates';
 import { Property, PropertyType } from './property';
 import { Influence, Rarity } from './rarity';
-import { firstValueFrom } from 'rxjs';
+import { BehaviorSubject, firstValueFrom } from "rxjs";
 
 @Injectable()
 export class ItemService {
 
   public item!: Item;
-  private corruptedTabula?: Item;
+  public itemImported: BehaviorSubject<true>;
   public defaultMaxWidth = 440;
 
   constructor(private http: HttpClient) {
     let item = Array.from(Templates.values())[Math.floor(Math.random() * Templates.size)];
     this.item = StashedItem.From(item);
+    this.itemImported = new BehaviorSubject<true>(true);
+    this.itemImported.next(true);
     this.defaultMaxWidth = item.width;
   }
 
@@ -47,6 +49,7 @@ export class ItemService {
       }
       Templates.set("Tabula Rasa, Simple Robe", ItemService.DeepCopy(item));
     }
+    this.itemImported.next(true);
     return this.item;
   }
 
@@ -97,6 +100,7 @@ export class ItemService {
       i.size,
       i.properties.map(mapper)
     );
+    this.itemImported.next(true);
 
     return this.item;
   }
@@ -105,6 +109,6 @@ export class ItemService {
     console.log(url);
     let data = await firstValueFrom(this.http.get(url))
     console.log(data);
-    this.import(JSON.stringify(data));
+    await this.import(JSON.stringify(data));
   }
 }

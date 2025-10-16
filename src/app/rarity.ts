@@ -18,10 +18,11 @@ export class Rarity implements ISerializable {
         this.thickness = thickness!;
         this.displayColor = displayColor;
         if(typeof data == "object") {
-            Object.assign(this, data);
+            Object.assign(this as any, data);
         }
     }
 
+    // noinspection DuplicatedCode
     get displayName(): string {
         let n: string[] = this.name.split('-');
         if(n[1]) {
@@ -31,42 +32,42 @@ export class Rarity implements ISerializable {
             return n[0].charAt(0).toUpperCase() + n[0].slice(1);
         }
     }
-    
+
     static readonly Normal = new Rarity(
         'normal',
         RarityThickness.OneLine
     )
-    
+
     static readonly Magic = new Rarity(
         'magic',
         RarityThickness.OneLine,
         "#8888ff"
     )
-    
+
     static readonly Gem = new Rarity(
         'gem',
         RarityThickness.OneLine,
         "#1aa29b"
     )
-    
+
     static readonly Prophecy = new Rarity(
         'prophecy',
         RarityThickness.OneLine,
         "#b54bff"
     )
-    
+
     static readonly Currency = new Rarity(
         'currency',
         RarityThickness.OneLine,
         "#aa9e82"
     )
-    
+
     static readonly Rare = new Rarity(
         'rare',
         RarityThickness.TwoLine,
         "#ffff77"
     )
-    
+
     static readonly Unique = new Rarity(
         'unique',
         RarityThickness.TwoLine,
@@ -96,7 +97,7 @@ export class Rarity implements ISerializable {
         RarityThickness.ThickOneLine,
         "#f7e6ca"
     )
-    
+
     static readonly rarities: Rarity[] = [
         Rarity.Normal,
         Rarity.Magic,
@@ -121,7 +122,7 @@ export class Influence implements ISerializable {
         return this._has_background;
     }
 
-    private set has_background(value: boolean) {
+    public set has_background(value: boolean) {
         this._has_background = value;
     }
 
@@ -129,7 +130,7 @@ export class Influence implements ISerializable {
     public constructor(name: string, icon?: string, has_background?: boolean)
     public constructor(data: string | any, icon?: string, has_background = false) {
         if(typeof(data) == 'object') {
-            Object.assign(this, data);
+            Object.assign(this as any, data);
         }
         else {
             this.name = data;
@@ -138,6 +139,7 @@ export class Influence implements ISerializable {
         }
     }
 
+    // noinspection DuplicatedCode
     get displayName(): string {
         let n: string[] = this.name.split('-');
         if(n[1]) {

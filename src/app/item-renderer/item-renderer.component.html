@@ -1,13 +1,13 @@
 <div [class]="getClass()" id="item" [ngStyle]="getMaxWidth()">
   <div [class]="'itemheader ' + item.rarity.thickness + ' foil-' + item.foilType.name.toLowerCase()" id="itemheader">
-    <span class="left"><img *ngIf="item.influence.icon != 'none'" src="{{ item.influence.icon }}" class="influence-symbol"/></span>
+    <span class="left"><img *ngIf="item.influence.icon != 'none'" src="{{ item.influence.icon }}" class="influence-symbol" [alt]="item.influence.displayName[0]"/></span>
     <div class="itemheader-name">
       <span class="itemheader-name-line1" id="name1o" *ngIf="item.rarity.thickness === RarityThickness.TwoLine">{{item.name}}</span>
       <span class="itemheader-name-line2" id="name2o">{{item.base}}</span>
     </div>
     <span class="right">
-      <img *ngIf="item.influence2.icon != 'none'" src="{{ item.influence2.icon }}" class="influence-symbol"/>
-      <img *ngIf="item.influence2.icon == 'none' && item.influence.icon != 'none'" src="{{ item.influence.icon }}" class="influence-symbol"/>
+      <img *ngIf="item.influence2.icon != 'none'" [src]="item.influence2.icon" class="influence-symbol" [alt]="item.influence2.displayName[0]"/>
+      <img *ngIf="item.influence2.icon == 'none' && item.influence.icon != 'none'" [src]="item.influence.icon" class="influence-symbol" [alt]="item.influence2.displayName[0]"/>
     </span>
   </div>
   <div class="itembody" id="itembody" *ngIf="showBody">
@@ -19,7 +19,9 @@
   <div class="itemimg">
     <div class="influencebg" [class]="item.influence.name.toLowerCase()" [ngStyle]="{backgroundImage: this.getInfluenceBackground(item.influence)}"></div>
     <div class="influencebg" [class]="item.influence2.name.toLowerCase()" [ngStyle]="{backgroundImage: this.getInfluenceBackground(item.influence2)}"></div>
-    <img id="imageo" [src]="item.image"/>
+    <!--suppress HtmlRequiredAltAttribute -->
+      <img id="imageo" [src]="item.image"/>
     <div class="image-foil foil-{{item.foilType.name.toLowerCase()}}" *ngIf="item.foilType.name != FoilType.None.name" [ngStyle]="{'mask-image': 'url(' + item.image + ')'}"></div>
   </div>
+    <div *ngIf="showUid" class="uid prop-gray">{{ $any(item).uid }}</div>
 </div>

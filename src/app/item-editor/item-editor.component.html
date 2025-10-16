@@ -9,11 +9,15 @@
         <a [routerLink]="['import']" data-tooltip="Import from PoE" class="button export orb-btn orb-mirror" *ngIf="false">
           <img src="assets/ic_content_paste_black_24px.svg" alt="Import" />
         </a>
-        <button data-tooltip="Save to Stash" class="button save orb-btn orb-eternal" data-tooltip="Save to Stash" (click)="save()" id="save-btn">
+        <button class="button save orb-btn orb-eternal" data-tooltip="Save to Stash" (click)="save()" id="save-btn">
           <img src="assets/ic_download_black_24px.svg" alt="Save to Stash" />
         </button>
       </div>
       <br/>
+      <div *ngIf="editingItem !== false" class="uid" style="font-size: 1.1em">
+        <span>Currently Editing: <a routerLink="/stash" style="color: inherit"><strong>{{ this.editingItem ? this.editingItem.name : "" }} {{ this.editingItem ? this.editingItem.base : "" }}</strong></a></span>
+        <span class="prop-gray" *ngIf="this.stash.showUids">&nbsp;({{ this.editingItem ? $any(this.editingItem).uid : "" }})</span>
+      </div>
     </div>
     <span class="iteminf">
       <div class="header">Item Base</div>
@@ -55,7 +59,7 @@
     <div class="header">Item Affixes</div>
     <ul id="properties" class="properties">
       <li *ngFor='let property of item.properties;let index = index;' [class]="'prop-' + property.type.className">
-        <poe-prop-field-group [property]="property" [index]="index" [attr.fields]="property.type.fields"></poe-prop-field-group>
+        <poe-prop-field-group [property]="property" [index]="index"></poe-prop-field-group>
       </li>
       <button (click)="item.appendProperty()" class="add-after add-first-prop orb-btn orb-exalt" *ngIf='item.properties.length === 0'>
           <img src="assets/ic_add_black_24px.svg" alt="+" />
