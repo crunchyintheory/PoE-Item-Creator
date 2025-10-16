@@ -1,11 +1,17 @@
 <div class="sidebar" id="sidebar">
     <div class="h1" style="margin-bottom: 20px;">Stash ({{ items.length }} item{{ items.length != 1 ? "s" : ""}})</div>
+    <div class="show-uids">
+        <label>
+            Show UIDs?
+            <input type="checkbox" [(ngModel)]="stash.showUids" (ngModelChange)="saveShowUids()" />
+        </label>
+    </div>
     <div class="stash-notice">
         <poe-alert-toast [alert]="alert"></poe-alert-toast>
     </div>
     <div class="stash-items">
         <div class="stash-item" *ngFor="let i of items; index as index" (contextmenu)="onRightClick(index, $event)" (mouseenter)="onHover(index)" (mouseleave)="onHover(-1)">
-            <poe-item-renderer [showBody]="false" [item]="i" (click)="onClick(index)" [maxWidth]="100" maxWidthUnit="%"></poe-item-renderer>
+            <poe-item-renderer [showUid]="stash.showUids" [showBody]="false" [item]="i" (click)="onClick(index)" [maxWidth]="100" maxWidthUnit="%" [ngClass]="{ 'active': $any(this.is.item).uid === i.uid }"></poe-item-renderer>
             <div class="stash-item-controls float-right">
                 <button class="button delete orb-btn orb-scour" (click)="promptDeletion(index)" data-tooltip="Delete">
                     <img src="assets/ic_delete_forever_black_18px.svg" alt="Delete" />

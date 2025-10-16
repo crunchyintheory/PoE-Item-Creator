@@ -2,7 +2,7 @@
 
 .item {
     background-color: $black;
-    font-family: "fontin";
+    font-family: "fontin", serif;
     font-size: 22.5px;
     margin: auto auto;
     text-align: center;
@@ -167,7 +167,7 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
         background-position-y: top;
     }
 }
-  
+
 .sep {
     background-image: url("../../assets/seps.png");
     background-repeat: no-repeat;
@@ -175,7 +175,7 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
     margin: 7.5px auto;
     width: 331.5px;
 }
-  
+
 
 .unique-flavor {
     display: flex;
@@ -183,13 +183,13 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
     font-style: italic;
     color: $unique;
 }
-  
+
 .gray-flavor {
     display: flex;
     flex-direction: column;
     font-style: italic;
 }
-  
+
 %unique {
     color: $unique;
     .sep {
@@ -200,7 +200,7 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
 %passive {
     color: $passive;
 }
-  
+
 @mixin unique-itemheader($url) {
     .itemheader {
       background-image: url($url);
@@ -210,20 +210,20 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
       }
     }
 }
-  
+
 .unique {
     @extend %unique;
     @include unique-itemheader("../../assets/headers/itemheader_unique.png");
-    background-size: cover contain;
+    background-size: cover / contain;
 }
-  
+
 %rare {
     color: $rare;
     .sep {
       background-position: 0 -6px;
     }
 }
-  
+
 @mixin rare-itemheader($url) {
     .itemheader {
       background-image: url($url);
@@ -233,12 +233,12 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
       }
     }
 }
-  
+
 .rare {
     @extend %rare;
     @include rare-itemheader("../../assets/headers/itemheader_rare.png");
 }
-  
+
 .normal {
     color: $normal;
     .sep {
@@ -252,7 +252,7 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
       }
     }
 }
-  
+
 .magic {
     color: $magic;
     .sep {
@@ -266,7 +266,7 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
         }
     }
 }
-  
+
 .gem {
     color: $gem;
     .sep {
@@ -285,7 +285,7 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
         flex-direction: column;
     }
 }
-  
+
 .prophecy {
     color: $prophecy;
     .sep {
@@ -308,7 +308,7 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
         color: $white;
     }
 }
-  
+
 .currency {
     color: $currency;
     .sep {
@@ -394,7 +394,7 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
         }
     }
 }
-  
+
 img {
     &#imageo {
         max-width: 156px;
@@ -419,4 +419,8 @@ img {
     &.shaper {
         z-index: 1;
     }
+}
+
+.uid {
+    font-size: 0.8em;
 }

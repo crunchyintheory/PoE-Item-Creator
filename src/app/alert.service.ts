@@ -31,6 +31,7 @@ type AlertArgType = {
   text: string;
   lifetime?: number;
   buttons?: AlertButton[];
+  html?: boolean;
 }
 
 export class Alert {
@@ -40,14 +41,16 @@ export class Alert {
   text: string;
   lifetime: number;
   buttons: AlertButton[];
+  html: boolean = false;
 
-  constructor({ type = AlertType.Toast, status = AlertStatus.Success, title = "", text = "", lifetime = -1, buttons = [{text: "Confirm", callback: () => {}}, {text: "Cancel", callback: () => {}}] }: AlertArgType) {
+  constructor({ type = AlertType.Toast, status = AlertStatus.Success, title = "", text = "", lifetime = -1, buttons = [{text: "Confirm", callback: () => {}}, {text: "Cancel", callback: () => {}}], html = false }: AlertArgType) {
     this.type = type;
     this.status = status;
     this.title = title;
     this.text = text;
-    this.lifetime = lifetime;
-    this.buttons = buttons;
+    this.lifetime = lifetime ?? -1;
+    this.buttons = buttons ?? [{text: "Confirm", callback: () => {}}, {text: "Cancel", callback: () => {}}];
+    this.html = html ?? false;
   }
 }
 
