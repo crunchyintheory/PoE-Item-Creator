@@ -5,7 +5,9 @@
       <button class="reset orb-btn orb-scour" id="reset-btn" (click)="reset()" data-tooltip="Reset">
         <img src="assets/ic_refresh_black_24px.svg" alt="Reset" />
       </button>
-      <div style="flex-grow: 1"></div>
+        <div style="flex-grow: 1; justify-content: center; display: flex;">
+          <poe-poe2-switcher></poe-poe2-switcher>
+        </div>
       <button class="button capture orb-btn orb-mirror" (click)="capture.emit()" data-tooltip="Capture Image">
         <img src="assets/ic_photo_camera_black_24px.svg" alt="Capture" />
       </button>

@@ -201,19 +201,19 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
     color: $passive;
 }
 
-@mixin unique-itemheader($url) {
+@mixin itemheader($filename, $url: "../../assets/headers/") {
     .itemheader {
-      background-image: url($url);
-      .left,
-      .right {
-        background-image: url($url);
-      }
+        background-image: url($url + $filename);
+        .left,
+        .right {
+            background-image: url($url + $filename);
+        }
     }
 }
 
 .unique {
     @extend %unique;
-    @include unique-itemheader("../../assets/headers/itemheader_unique.png");
+    @include itemheader("itemheader_unique.png");
     background-size: cover / contain;
 }
 
@@ -224,19 +224,9 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
     }
 }
 
-@mixin rare-itemheader($url) {
-    .itemheader {
-      background-image: url($url);
-      .left,
-      .right {
-        background-image: url($url);
-      }
-    }
-}
-
 .rare {
     @extend %rare;
-    @include rare-itemheader("../../assets/headers/itemheader_rare.png");
+    @include itemheader("itemheader_rare.png");
 }
 
 .normal {
@@ -244,13 +234,8 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
     .sep {
       background-position: 0 0;
     }
-    .itemheader {
-      background-image: url("../../assets/headers/itemheader_normal.png");
-      .left,
-      .right {
-        background-image: url("../../assets/headers/itemheader_normal.png");
-      }
-    }
+
+    @include itemheader("itemheader_normal.png");
 }
 
 .magic {
@@ -258,13 +243,8 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
     .sep {
         background-position: 0 -3px;
     }
-    .itemheader {
-        background-image: url("../../assets/headers/itemheader_magic.png");
-        .left,
-        .right {
-            background-image: url("../../assets/headers/itemheader_magic.png");
-        }
-    }
+
+    @include itemheader("itemheader_magic.png");
 }
 
 .gem {
@@ -272,13 +252,9 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
     .sep {
         background-position: 0 -15px;
     }
-    .itemheader {
-        background-image: url("../../assets/headers/itemheader_gem.png");
-        .left,
-        .right {
-            background-image: url("../../assets/headers/itemheader_gem.png");
-        }
-    }
+
+    @include itemheader("itemheader_gem.png");
+
     .unique-flavor {
         color: $gem;
         display: flex;
@@ -291,13 +267,9 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
     .sep {
         background-position: 0 -21px;
     }
-    .itemheader {
-        background-image: url("../../assets/headers/itemheader_prophecy.png");
-        .left,
-        .right {
-            background-image: url("../../assets/headers/itemheader_prophecy.png");
-        }
-    }
+
+    @include itemheader("itemheader_prophecy.png");
+
     .unique-flavor {
         color: $unique;
         display: flex;
@@ -314,62 +286,45 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
     .sep {
         background-position: 0 -12px;
     }
-    .itemheader {
-        background-image: url("../../assets/headers/itemheader_currency.png");
-        .left,
-        .right {
-            background-image: url("../../assets/headers/itemheader_currency.png");
-        }
-    }
+    @include itemheader("itemheader_currency.png");
 }
 
 .passive {
     @extend %passive;
-    .itemheader {
-        background-image: url("../../assets/headers/itemheader_passive.png");
-        .left,
-        .right {
-            background-image: url("../../assets/headers/itemheader_passive.png");
-        }
-    }
+    @include itemheader("itemheader_passive.png");
 }
 
 .notable {
     @extend %passive;
-    .itemheader {
-        background-image: url("../../assets/headers/itemheader_notable.png");
-        .left,
-        .right {
-            background-image: url("../../assets/headers/itemheader_notable.png");
-        }
-    }
+    @include itemheader("itemheader_notable.png");
 }
 
 .keystone {
     @extend %passive;
-    .itemheader {
-        background-image: url("../../assets/headers/itemheader_keystone.png");
-        .left,
-        .right {
-            background-image: url("../../assets/headers/itemheader_keystone.png");
-        }
-    }
+    @include itemheader("itemheader_keystone.png");
 }
 
 .socket-jewel {
     @extend %passive;
-    .itemheader {
-        background-image: url("../../assets/headers/itemheader_socket.png");
-        .left,
-        .right {
-            background-image: url("../../assets/headers/itemheader_socket.png");
-        }
-    }
+    @include itemheader("itemheader_socket.png");
 }
 
 .item.foil.unique {
     @extend %unique;
-    @include unique-itemheader("../../assets/headers/itemheader_unique_foil.png");
+    @include itemheader("itemheader_unique_foil.png");
+}
+
+$poe2-rarities: (
+    "rare": "itemheader_rare.png",
+    "magic": "itemheader_magic.png",
+    "normal": "itemheader_normal.png",
+    "currency": "itemheader_currency.png",
+);
+
+@each $rarity, $filename in $poe2-rarities {
+    .poe2.#{$rarity} {
+        @include itemheader($filename, "../../assets/headers/poe2/");
+    }
 }
 
 .itemimg {

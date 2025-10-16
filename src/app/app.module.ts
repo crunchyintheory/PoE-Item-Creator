@@ -20,6 +20,7 @@ import { PageStashComponent } from './page-stash/page-stash.component';
 import { AlertModalComponent } from './alert-modal/alert-modal.component';
 import { AlertToastComponent } from './alert-toast/alert-toast.component';
 import { AlertHandlerComponent, ToastContainerDirective } from './alert-handler/alert-handler.component';
+import { Poe2SwitcherComponent } from './poe2-switcher/poe2-switcher.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AlertHandlerComponent, ToastContainerDirective } from './alert-handler/
     AlertModalComponent,
     AlertToastComponent,
     AlertHandlerComponent,
-    ToastContainerDirective
+    ToastContainerDirective,
+    Poe2SwitcherComponent
   ],
   imports: [
     BrowserModule,

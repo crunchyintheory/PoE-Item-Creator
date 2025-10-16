@@ -3,6 +3,7 @@ import { Item } from '../item';
 import { PropertyType } from '../property';
 import { Rarity, RarityThickness, Influence, FoilType } from '../rarity';
 import { Templates } from '../templates';
+import {PoeGameSwitcherService} from "../poe-game-switcher.service";
 
 @Component({
   selector: 'poe-item-renderer',
@@ -26,7 +27,11 @@ export class ItemRendererComponent implements OnInit {
 
   @ViewChild("container", { static: false }) public container?: ElementRef;
 
-  constructor() { }
+  protected gameType : 'poe1' | 'poe2' = 'poe1';
+
+  constructor(public switcherService: PoeGameSwitcherService) {
+    this.switcherService.switchValue.subscribe(x => this.gameType = x);
+  }
 
   ngOnInit(): void {
   }
@@ -52,7 +57,8 @@ export class ItemRendererComponent implements OnInit {
       this.border ? 'border border-' + this.item.rarity.name : '',
       'foil-' + this.item.foilType.name,
       this.item.foilType.name != FoilType.None.name ? 'foil' : '',
-      ((this.item.rarity == Rarity.Rare|| this.item.rarity == Rarity.Unique) && (this.item.base == "" || this.item.name == "")) ? "single-line" : ""
+      ((this.item.rarity == Rarity.Rare|| this.item.rarity == Rarity.Unique) && (this.item.base == "" || this.item.name == "")) ? "single-line" : "",
+      this.gameType
     ]
     return classes.join(' ');
   }
