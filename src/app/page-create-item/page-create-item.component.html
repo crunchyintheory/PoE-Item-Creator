@@ -1,4 +1,4 @@
 <div class="sidebar" id="sidebar" style="overflow: visible;">
-    <poe-item-editor (maxWidth)="updateMaxWidth($event)"></poe-item-editor>
+    <poe-item-editor (capture)="capture()" (maxWidth)="updateMaxWidth($event)"></poe-item-editor>
 </div>
-<poe-item-renderer [item]="item" [maxWidth]="maxWidth"></poe-item-renderer>
+<poe-item-renderer #renderer [item]="item" [maxWidth]="maxWidth"></poe-item-renderer>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import { Item } from '../item';
 import { PropertyType } from '../property';
 import { Rarity, RarityThickness, Influence, FoilType } from '../rarity';
@@ -23,6 +23,8 @@ export class ItemRendererComponent implements OnInit {
   @Input() maxWidth: number = 500;
   @Input() maxWidthUnit: "px" | "%" = "px";
   @Input() showUid: boolean = false;
+
+  @ViewChild("container", { static: false }) public container?: ElementRef;
 
   constructor() { }
 
