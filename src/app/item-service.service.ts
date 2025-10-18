@@ -20,14 +20,10 @@ export class ItemService {
     this.itemImported.next(true);
   }
 
-  private static DeepCopy<T extends Object>(object: T): T {
-    return Object.assign(Object.create(Object.getPrototypeOf(object)), structuredClone(object));
-  }
-
   async reset(): Promise<Item> {
     // My desperate plea for a proper deep copy method in this accursed language.
     let template = Templates.get('Tabula Rasa, Simple Robe')!;
-    let item = ItemService.DeepCopy(template);
+    let item = this.parse(this.export(template));
     this.item = StashedItem.From(item, true);
 
     if (this.item.properties.length == 0 && Math.random() > 0.9) {
@@ -46,7 +42,7 @@ export class ItemService {
         this.item.influence = corruptInfluences[Math.floor(Math.random() * (corruptInfluences.length - 1))];
         this.item.influence2 = Influence.influences[Math.floor(Math.random() * (Influence.influences.length - 2)) + 1];
       }
-      Templates.set("Tabula Rasa, Simple Robe", ItemService.DeepCopy(item));
+      Templates.set("Tabula Rasa, Simple Robe", this.parse(this.export(item)));
     }
     this.itemImported.next(true);
     return this.item;
@@ -72,15 +68,16 @@ export class ItemService {
       properties: properties,
       influences: [item.influence.name, item.influence2.name],
       foilType: item.foilType.name,
-      width: item.width
+      width: item.width,
+      size: item.size
     };
     if(forStash) ret.uid = (item as StashedItem).uid;
     return ret;
   }
 
-  async parse(item: SerializedItem): Promise<Item>
-  async parse(data: string): Promise<Item>
-  async parse(data: string|SerializedItem): Promise<Item> {
+  public parse(item: SerializedItem): Item
+  public parse(data: string): Item
+  public parse(data: string|SerializedItem): Item {
     let i: SerializedItem;
     if(typeof data === "string") {
       i = JSON.parse(data) as SerializedItem;
@@ -112,7 +109,7 @@ export class ItemService {
   }
 
   async import(data: string): Promise<Item> {
-    this.item = await this.parse(data);
+    this.item = this.parse(data);
     this.itemImported.next(true);
 
     return this.item;

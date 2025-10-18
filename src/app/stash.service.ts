@@ -62,7 +62,7 @@ export class StashService {
     let appliedMigration = await this.migrateStash(loadedItems);
 
     for (let i = 0; i < loadedItems.length; i++) {
-      parsedItems[i] = await this.is.parse(loadedItems[i]);
+      parsedItems[i] = this.is.parse(loadedItems[i]);
       parsedItems[i].uid = loadedItems[i].uid;
     }
 
