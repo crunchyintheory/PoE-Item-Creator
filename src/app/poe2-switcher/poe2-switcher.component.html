@@ -1,4 +1,4 @@
-<input type="radio" name="poe2-switcher" id="switcher-poe1" class="poe2-switcher" value="poe1" [(ngModel)]="switchValue" (change)="onValueChange($event)">
+<input type="radio" name="poe2-switcher" id="switcher-poe1" class="poe2-switcher" value="poe1" [ngModel]="game" (ngModelChange)="gameChange.emit($event)">
 <label for="switcher-poe1">PoE 1</label>
-<input type="radio" name="poe2-switcher" id="switcher-poe2" class="poe2-switcher" value="poe2" [(ngModel)]="switchValue" (change)="onValueChange($event)">
+<input type="radio" name="poe2-switcher" id="switcher-poe2" class="poe2-switcher" value="poe2" [ngModel]="game" (ngModelChange)="gameChange.emit($event)">
 <label for="switcher-poe2">PoE 2</label>

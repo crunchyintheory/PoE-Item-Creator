@@ -1,9 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import { Item } from '../item';
-import { PropertyType } from '../property';
 import { Rarity, RarityThickness, Influence, FoilType } from '../rarity';
 import { Templates } from '../templates';
-import {PoeGameSwitcherService} from "../poe-game-switcher.service";
 
 @Component({
   selector: 'poe-item-renderer',
@@ -11,11 +9,7 @@ import {PoeGameSwitcherService} from "../poe-game-switcher.service";
   styleUrls: ['./item-renderer.component.scss']
 })
 export class ItemRendererComponent implements OnInit {
-
-  get types(): PropertyType[] { return PropertyType.types }
-  get Rarity(): any { return Rarity }
   get RarityThickness(): any { return RarityThickness }
-  get Influence(): any { return Influence }
   get FoilType(): any { return FoilType }
 
   @Input() item: Item = Templates.get("Tabula Rasa")!;
@@ -28,10 +22,6 @@ export class ItemRendererComponent implements OnInit {
   @ViewChild("container", { static: false }) public container?: ElementRef;
 
   protected gameType : 'poe1' | 'poe2' = 'poe1';
-
-  constructor(public switcherService: PoeGameSwitcherService) {
-    this.switcherService.switchValue.subscribe(x => this.gameType = x);
-  }
 
   ngOnInit(): void {
   }
@@ -58,7 +48,7 @@ export class ItemRendererComponent implements OnInit {
       'foil-' + this.item.foilType.name,
       this.item.foilType.name != FoilType.None.name ? 'foil' : '',
       ((this.item.rarity == Rarity.Rare|| this.item.rarity == Rarity.Unique) && (this.item.base == "" || this.item.name == "")) ? "single-line" : "",
-      this.gameType
+      this.item.game
     ]
     return classes.join(' ');
   }

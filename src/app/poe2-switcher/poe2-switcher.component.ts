@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PoeGameSwitcherService} from "../poe-game-switcher.service";
+import { GameType } from "../item";
 
 @Component({
   selector: 'poe-poe2-switcher',
@@ -8,17 +8,10 @@ import {PoeGameSwitcherService} from "../poe-game-switcher.service";
 })
 export class Poe2SwitcherComponent implements OnInit {
 
-  public switchValue: 'poe1' | 'poe2' = 'poe1';
-
-  constructor(public switcherService: PoeGameSwitcherService) {
-    this.switcherService.switchValue.subscribe(val => this.switchValue = val);
-  }
+  @Input() game: GameType = 'poe1';
+  @Output() gameChange = new EventEmitter<GameType>();
 
   ngOnInit(): void {
-  }
-
-  public onValueChange(value: Event) {
-    this.switcherService.switchValue.next(this.switchValue);
   }
 
 }

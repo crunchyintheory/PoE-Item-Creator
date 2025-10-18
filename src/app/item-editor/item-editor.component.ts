@@ -2,12 +2,12 @@ import {
     Component,
     EventEmitter,
     OnInit,
+    OnDestroy,
     Output
 } from "@angular/core";
 import { Router } from '@angular/router';
 import { Item, StashedItem } from "../item";
 import { ItemService } from '../item-service.service';
-import { PropertyType } from '../property';
 import { Rarity, RarityThickness, Influence, FoilType } from '../rarity';
 import { StashService } from '../stash.service';
 import { map, Observable, Subscription } from "rxjs";
@@ -22,7 +22,6 @@ export class ItemEditorComponent implements OnInit, OnDestroy {
   @Output() maxWidth = new EventEmitter<number>();
   @Output() capture = new EventEmitter<void>();
 
-  get types(): PropertyType[] { return PropertyType.types }
   get Rarity(): any { return Rarity }
   get RarityThickness(): any { return RarityThickness }
   get Influence(): any { return Influence }

@@ -10,13 +10,15 @@ export class Rarity implements ISerializable {
     readonly name: string;
     readonly thickness: RarityThickness;
     readonly displayColor?: string;
+    readonly patched?: boolean = false;
 
     public constructor(object: Object)
-    public constructor(name: string, thickness?: RarityThickness, displayColor?: string)
-    public constructor(data: string | Object, thickness?: RarityThickness, displayColor?: string) {
+    public constructor(name: string, thickness?: RarityThickness, displayColor?: string, patched?: boolean)
+    public constructor(data: string | Object, thickness?: RarityThickness, displayColor?: string, patched?: boolean) {
         this.name = data as string;
         this.thickness = thickness!;
         this.displayColor = displayColor;
+        this.patched = !!patched;
         if(typeof data == "object") {
             Object.assign(this as any, data);
         }
@@ -35,13 +37,16 @@ export class Rarity implements ISerializable {
 
     static readonly Normal = new Rarity(
         'normal',
-        RarityThickness.OneLine
+        RarityThickness.OneLine,
+        undefined,
+        true
     )
 
     static readonly Magic = new Rarity(
         'magic',
         RarityThickness.OneLine,
-        "#8888ff"
+        "#8888ff",
+        true
     )
 
     static readonly Gem = new Rarity(
@@ -65,13 +70,15 @@ export class Rarity implements ISerializable {
     static readonly Rare = new Rarity(
         'rare',
         RarityThickness.TwoLine,
-        "#ffff77"
+        "#ffff77",
+        true
     )
 
     static readonly Unique = new Rarity(
         'unique',
         RarityThickness.TwoLine,
-        "#af6025"
+        "#af6025",
+        true
     )
 
     static readonly Passive = new Rarity(
