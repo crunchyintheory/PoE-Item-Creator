@@ -76,7 +76,8 @@ export class ItemService {
   }
 
   public parse(item: SerializedItem): Item
-  public parse(data: string): Item
+  public parse(json: string): Item
+  public parse(data: string|SerializedItem): Item
   public parse(data: string|SerializedItem): Item {
     let i: SerializedItem;
     if(typeof data === "string") {
@@ -108,7 +109,9 @@ export class ItemService {
     );
   }
 
-  async import(data: string): Promise<Item> {
+  async import(item: SerializedItem): Promise<Item>
+  async import(json: string): Promise<Item>
+  async import(data: string|SerializedItem): Promise<Item> {
     this.item = this.parse(data);
     this.itemImported.next(true);
 

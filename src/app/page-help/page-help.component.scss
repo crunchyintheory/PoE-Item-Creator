@@ -1,0 +1,65 @@
+@import '../../styles/colors.scss';
+
+:host {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-template-columns: 5fr 2fr;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+}
+
+.page {
+    background-color: #000;
+    border-top: 1px solid $secondary;
+    border-bottom: 1px solid $secondary;
+    min-width: 0;
+
+    .content {
+        padding: 30px 30px 30px 30px;
+        max-width: 1000px;
+
+        .section {
+            border-left: 1px solid $secondary;
+            padding: 0.615em 0 0.615em 20px;
+            margin: 1.23em 0;
+
+            :first-child {
+                margin-top: 0;
+            }
+
+            :last-child {
+                margin-bottom: 0;
+            }
+
+            .inset {
+                padding-left: 20px;
+            }
+        }
+    }
+}
+
+.title-img {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: desaturate(lighten($secondary, 50), 30);
+}
+
+.format-showcase {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 30px;
+
+    .format {
+        background-color: rgba(45, 49, 54, 0.3);
+        padding: 6px 12px;
+        margin-top: 3px;
+    }
+
+    poe-item-renderer {
+        border: 1px solid #867100;
+        padding: 3px;
+        cursor: pointer;
+    }
+}

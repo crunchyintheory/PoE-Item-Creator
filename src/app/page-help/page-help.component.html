@@ -1,0 +1,88 @@
+<div class="page" style="font-size: 1.2em">
+  <div class="content">
+    <span class="title-img">
+      <!--suppress CheckImageSize -->
+      <img src="assets/symbol_shaper.png" height="30" alt="Icon"/>
+      <span class="h1">Path of Exile Item Creator</span>
+    </span>
+    <div class="section">
+      <h2 section-header>What is this?</h2>
+      <p>
+        This tool allows anyone to create custom item concepts and modifications to showcase their Path of Exile ideas. It was <a href="https://www.pathofexile.com/forum/view-thread/2088916" target="_blank">created in 2018</a> to supplant existing community tools that lacked visual accuracy and feature-completeness. It is available on GitHub <a href="https://github.com/crunchyintheory/poe-item-creator" target="_blank">here</a>.
+      </p>
+      <p>
+        This is a community project maintained by a single developer and is not endorsed by or affiliated with Grinding Gear Games or any official parties. All images and visual elements used on this website are the sole property of Grinding Gear Games.
+      </p>
+    </div>
+    <div class="section">
+      <h2 section-header>How do I create items?</h2>
+      <p>
+        In the <a routerLink="/create">creator</a>, configure your item's rarity & name, then add any number of lines of text by clicking <button class="icon-btn" style="display: inline-flex"><img src="/assets/ic_add_black_24px.svg"  alt="+"/></button>. This will insert a new affix after the row whose button was clicked. You can insert whatever text you like, it's your item! The affix type choices are there to make it simpler to match the game's formatting.
+      </p>
+      <div class="inset">
+        <h3 section-header>Adding Images</h3>
+        <p>
+          To add an image to your item, first upload the image to an online image sharing service, then place the URL in the "Image Url" field. The URL should begin with "https://" and end with a file extension (like .png or .jpg).
+        </p>
+      </div>
+    </div>
+    <div class="section">
+      <h2 section-header>Exporting Your Items</h2>
+      <p>
+        Your can export your items in two ways: as JSON (for later editing or backup), or as an image (for sharing). Both of these options are accessible by clicking the corresponding buttons at the top right of the item editor.
+      </p>
+      <div class="inset">
+        <h3 section-header>My foil doesn't work!</h3>
+        <p>
+          Foils do not export properly due to restrictions in the rendering library, <a href="https://github.com/niklasvh/html2canvas" target="_blank">html2canvas.js</a>. This issue is not fixable until the requisite changes are made to this library.
+        </p>
+        <h3 section-header>My image is blank!</h3>
+        <p>
+          This is likely caused by attempting to load a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS" target="_blank">cross-origin image</a>. This is not a bug with the tool, but rather a security feature of modern web browsers. You can try uploading the image to a different image sharing website that supports cross-origin loading to resolve this.
+        </p>
+        <h3 section-header>My image is weird in some other strange and disturbing fashion!</h3>
+        <p>
+          Please <a href="https://github.com/crunchyintheory/PoE-Item-Creator/issues/new" target="_blank">open an issue on GitHub</a> containing the image in question and the exported JSON of the item. Also specify your browser version to better narrow down the issue.
+        </p>
+      </div>
+    </div>
+    <div class="section">
+      <h2 section-header>Something is Missing / I Found a Bug</h2>
+      <p>
+        Please <a href="https://github.com/crunchyintheory/PoE-Item-Creator/issues/new" target="_blank">open an issue on GitHub</a>. If you are dealing with a bug, please try to provide as much information as you can about the steps taken that led to the issue. Please also provide your browser version (and, if it's a display bug, your window resolution).
+      </p>
+      <div class="inset">
+        <h3 section-header>How long until ___ is added?</h3>
+        <p>
+          Ideally, as soon as the wiki is updated, but I don't always have the time or energy to update this whenever a new item or affix type is added. Sometimes, I also don't know that a certain new thing has been added if I didn't play that league. If you'd like to help, please report what is missing as described <!--suppress HtmlUnknownAnchorTarget, HtmlUnknownTarget --> <a href="help#something_is_missing__i_found_a_bug" (click)="$event.stopPropagation()">above</a>.
+        </p>
+      </div>
+      <p>Knowing is half the battle, so any reports are greatly appreciated!</p>
+    </div>
+    <div class="section">
+      <h2 section-header>Formatting</h2>
+      <p>
+        The following custom formatting specifiers are allowed in all affix value fields:
+      </p>
+      <div class="format-showcase">
+        <div class="formats">
+          <div class="format" *ngFor="let format of formats">
+            <div class="raw">
+              <pre><code>%%{{ format[0] }}%%<span style="color: #888">{{ format[1] }}</span>%%{{ format[0] }}%%</code></pre>
+            </div>
+          </div>
+        </div>
+        <poe-item-renderer [item]="formatsItem" (click)="import(formatsItem)" title="Click to Edit"></poe-item-renderer>
+      </div>
+      <p>You may also use HTML-like formatting <span style="font-family: monospace">(&lt;crucible&gt;My Text&lt;/crucible&gt;)</span></p>
+    </div>
+    <div class="section">
+      <h2 section-header>Stash</h2>
+      <p>The <a routerLink="/stash">stash</a> can be used to store items you have created for later editing. Click the "Save to Stash" button at the top right of the item creator to save the item in your stash, then load the item again by clicking it from the stash.</p>
+      <p>While you are editing a stashed item, if you try to save it again, it will ask if you would like to overwrite the stashed item you are editing or save it as a new copy. The item currently being edited is indicated by a yellow border on the stash page.</p>
+      <div class="stash-notice">
+        <poe-alert-toast [alert]="stashAlert"></poe-alert-toast>
+      </div>
+    </div>
+  </div>
+</div>

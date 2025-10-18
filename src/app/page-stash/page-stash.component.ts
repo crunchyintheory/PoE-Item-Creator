@@ -4,6 +4,7 @@ import { StashService } from '../stash.service';
 import { ItemService } from '../item-service.service';
 import { Alert, AlertService, AlertStatus, AlertType } from '../alert.service';
 import { Router } from '@angular/router';
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'poe-page-stash',
@@ -17,8 +18,9 @@ export class PageStashComponent implements OnInit {
   public items: StashedItem[] = [];
   public hovered = -1;
 
-  constructor(public is: ItemService, public stash: StashService, private alertService: AlertService, private router: Router) {
+  constructor(public is: ItemService, public stash: StashService, private alertService: AlertService, private router: Router, private title: Title) {
     this.alert = new Alert({ type: AlertType.Toast, title: 'Note', text: 'The stash is stored locally in your browser, so clearing your cache will delete these items.', status: AlertStatus.Warning });
+    this.title.setTitle("Path of Exile Item Creator - Stash");
   }
 
   ngOnInit(): void {

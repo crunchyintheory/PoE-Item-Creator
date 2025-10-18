@@ -207,3 +207,22 @@ select, input, textarea {
         border-color: darken($color, 30%);
     }
 }
+
+a {
+    color: desaturate(lighten($secondary, 50), 30);
+
+    &:hover {
+        color: desaturate(lighten($secondary, 70), 30);
+    }
+}
+
+[section-header] .anchor {
+    visibility: hidden;
+    text-decoration: none;
+    color: $gray;
+    margin-left: 10px;
+}
+
+[section-header]:hover .anchor, [section-header] .anchor:hover {
+    visibility: visible;
+}

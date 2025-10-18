@@ -16,11 +16,11 @@
       <span [class]="'prop-val ' + property.type.valueRenderClass" *ngIf="property.type.fields > 0" [innerHTML]="item.properties[index] | value"></span>
     </div>
   </div>
-  <div class="itemimg">
+  <div class="itemimg" *ngIf="item.image">
     <div class="influencebg" [class]="item.influence.name.toLowerCase()" [ngStyle]="{backgroundImage: this.getInfluenceBackground(item.influence)}"></div>
     <div class="influencebg" [class]="item.influence2.name.toLowerCase()" [ngStyle]="{backgroundImage: this.getInfluenceBackground(item.influence2)}"></div>
     <!--suppress HtmlRequiredAltAttribute -->
-      <img id="imageo" *ngIf="item.image" [src]="item.image"/>
+      <img id="imageo" [src]="item.image"/>
     <div class="image-foil foil-{{item.foilType.name.toLowerCase()}}" *ngIf="item.foilType.name != FoilType.None.name" [ngStyle]="{'mask-image': 'url(' + item.image + ')'}"></div>
   </div>
     <div *ngIf="showUid" class="uid prop-gray">{{ $any(item).uid }}</div>
