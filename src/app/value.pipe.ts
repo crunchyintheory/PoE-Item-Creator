@@ -13,10 +13,11 @@ export class ValuePipe implements PipeTransform {
   private replacements: [RegExp, string][] = [
     [/%%g%%(.*)%%g%%/g, '<span class="prop-gray">$1</span>'],
     [/%%w%%(.*)%%w%%/g, '<span class="prop-white">$1</span>'],
-    [/%%chaos%%(.*)%%chaos%%/g, '<span class="prop-chaos">$1</span>'],
-    [/%%fire%%(.*)%%fire%%/g, '<span class="prop-fire">$1</span>'],
-    [/%%cold%%(.*)%%cold%%/g, '<span class="prop-cold">$1</span>'],
-    [/%%lightning%%(.*)%%lightning%%/g, '<span class="prop-lightning">$1</span>'],
+    [/%%b%%(.*)%%b%%/g, '<span class="prop-blue">$1</span>'],
+    [/%%(?<tag>chaos|fire|cold|lightning)%%(.*)%%\k<tag>%%/g, '<span class="prop-$1">$2</span>'],
+    [/%%(?<tag>i|em|strong)%%(.*)%%\k<tag>%%/g, '<$1>$2</$1>'],
+    [/%%u%%(.*)%%u%%/g, '<span style="text-decoration: underline">$1</span>'],
+    [/%%bold%%(.*)%%bold%%/g, '<strong>$1</strong>'],
     [/%%color(#[a-fA-F0-9]{3,8})%%(.*)%%color(#[a-fA-F0-9]{3,8})?%%/g, '<span class="prop-color" style="color: $1">$2</span>'],
   ];
 
