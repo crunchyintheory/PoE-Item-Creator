@@ -3,7 +3,7 @@
 :host {
     display: grid;
     grid-template-rows: subgrid;
-    grid-template-columns: 5fr 2fr;
+    grid-template-columns: minmax(1fr, 1000px) auto;
     background-color: rgba(0,0,0,0.8);
     backdrop-filter: blur(5px);
 }
@@ -61,5 +61,16 @@
         border: 1px solid #867100;
         padding: 3px;
         cursor: pointer;
+    }
+}
+
+@media(max-width: 768px) {
+    .format-showcase {
+        flex-direction: column;
+        padding-left: 0;
+
+        poe-item-renderer {
+            margin-top: 20px;
+        }
     }
 }
