@@ -67,44 +67,48 @@ export class StashService {
     return firstValueFrom(this.Stash);
   }
 
-  public async AddToStash(item: Item, autosave = true) {
-    if (this.stashKey != this.getStashKey())
-      await this.ReloadStash();
+  public AddToStash(item: Item, autosave = true): Promise<string|undefined> {
+    return new Promise(async (resolve, _) => {
 
-    let stash = this._stash.getValue();
-    let i = StashedItem.From(new Item(item));
+      if (this.stashKey != this.getStashKey())
+        await this.ReloadStash();
 
-    let existingIndex = stash.findIndex(x => x.uid == i.uid);
-    let existing = stash[existingIndex];
+      let stash = this._stash.getValue();
+      let i = StashedItem.From(new Item(item));
 
-    let showUids = !!JSON.parse(localStorage.getItem("showStashUids") ?? "false");
+      let existingIndex = stash.findIndex(x => x.uid == i.uid);
+      let existing = stash[existingIndex];
 
-    if(existing) {
+      let showUids = !!JSON.parse(localStorage.getItem("showStashUids") ?? "false");
+
+      if(existing) {
         this.alert.Dispatch(new Alert({
-            type: AlertType.ModalConfirm,
-            status: AlertStatus.Warning,
-            title: "Confirm Overwrite",
-            text: `Would you like to overwrite the existing item <strong>${this.sanitizer.sanitize(SecurityContext.HTML, existing.name)} ${this.sanitizer.sanitize(SecurityContext.HTML, existing.base)}</strong>${showUids ? " (" + this.sanitizer.sanitize(SecurityContext.HTML, existing.uid ?? "") + ")" : ""} in your stash, or save into a new slot?`,
-            lifetime: 1000,
-            buttons: [
-                {
-                    text: "Cancel"
-                },
-                {
-                    text: "Overwrite",
-                    callback: () => this.replaceInStash(stash, i, existingIndex, autosave)
-                },
-                {
-                    text: "Save as a Copy",
-                    callback: () => this.finalizeStashAdd(stash, StashedItem.From(item, true), autosave)
-                }
-            ],
-            html: true
+          type: AlertType.ModalConfirm,
+          status: AlertStatus.Warning,
+          title: "Confirm Overwrite",
+          text: `Would you like to overwrite the existing item <strong>${this.sanitizer.sanitize(SecurityContext.HTML, existing.name)} ${this.sanitizer.sanitize(SecurityContext.HTML, existing.base)}</strong>${showUids ? " (" + this.sanitizer.sanitize(SecurityContext.HTML, existing.uid ?? "") + ")" : ""} in your stash, or save into a new slot?`,
+          lifetime: 1000,
+          buttons: [
+            {
+              text: "Cancel",
+              callback: () => resolve(undefined)
+            },
+            {
+              text: "Overwrite",
+              callback: async () => resolve(await this.replaceInStash(stash, i, existingIndex, autosave))
+            },
+            {
+              text: "Save as a Copy",
+              callback: async () => resolve(await this.finalizeStashAdd(stash, StashedItem.From(item, true), autosave))
+            }
+          ],
+          html: true
         }));
-    }
-    else {
-        await this.finalizeStashAdd(stash, i, autosave);
-    }
+      }
+      else {
+        resolve(await this.finalizeStashAdd(stash, i, autosave));
+      }
+    });
   }
 
   private async finalizeStashAdd(stash: StashedItem[], item: StashedItem, autosave: boolean) {
@@ -114,6 +118,8 @@ export class StashService {
 
     if (autosave)
       await this.saveStash();
+
+    return item.uid!;
   }
 
   private async replaceInStash(stash: StashedItem[], item: StashedItem, index: number, autosave: boolean) {
@@ -122,6 +128,8 @@ export class StashService {
 
     if (autosave)
       await this.saveStash();
+
+    return item.uid!;
   }
 
   public async RemoveFromStash(item: number, autosave = true): Promise<Item[] | false> {

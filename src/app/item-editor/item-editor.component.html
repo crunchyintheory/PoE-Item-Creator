@@ -1,68 +1,66 @@
 <div style="margin-bottom: 15px">
-    <div style="margin: 0 0 20px 0; overflow: visible;">
-      <div style="display: flex; align-items: center;">
-        <span class="h1">Properties</span>
-        <button class="reset orb-btn orb-scour" id="reset-btn" (click)="reset()" data-tooltip="Reset">
-          <img src="assets/ic_refresh_black_24px.svg" alt="Reset" />
-        </button>
-        <div style="flex-grow: 1"></div>
-        <a [routerLink]="['import']" data-tooltip="Import from PoE" class="button export orb-btn orb-mirror" *ngIf="false">
-          <img src="assets/ic_content_paste_black_24px.svg" alt="Import" />
-        </a>
-        <button class="button save orb-btn orb-eternal" data-tooltip="Save to Stash" (click)="save()" id="save-btn">
-          <img src="assets/ic_download_black_24px.svg" alt="Save to Stash" />
-        </button>
-      </div>
-      <br/>
-      <div *ngIf="editingItem !== false" class="uid" style="font-size: 1.1em">
-        <span>Currently Editing: <a routerLink="/stash" style="color: inherit"><strong>{{ this.editingItem ? this.editingItem.name : "" }} {{ this.editingItem ? this.editingItem.base : "" }}</strong></a></span>
-        <span class="prop-gray" *ngIf="this.stash.showUids">&nbsp;({{ this.editingItem ? $any(this.editingItem).uid : "" }})</span>
-      </div>
+  <div style="margin: 0 0 20px 0; overflow: visible;">
+    <div style="display: flex; align-items: center;">
+      <span class="h1">Properties</span>
+      <button class="reset orb-btn orb-scour" id="reset-btn" (click)="reset()" data-tooltip="Reset">
+        <img src="assets/ic_refresh_black_24px.svg" alt="Reset" />
+      </button>
+      <div style="flex-grow: 1"></div>
+      <a (click)="showImporter = !showImporter" data-tooltip="Import/Export" class="button export orb-btn orb-mirror">
+        <img src="assets/ic_content_paste_black_24px.svg" alt="Import" />
+      </a>
+      <button class="button save orb-btn orb-eternal" data-tooltip="Save to Stash" (click)="save()" id="save-btn">
+        <img src="assets/ic_download_black_24px.svg" alt="Save to Stash" />
+      </button>
     </div>
-    <span class="iteminf">
-      <div class="header">Item Base</div>
-      <poe-field-group label="Type/Rarity" [(value)]="item.rarity" [valueChoices]="Rarity.rarities"></poe-field-group>
-      <poe-field-group label="Name/Base Type" [(value)]="item.name" [(value2)]="item.base" [fields]="item.rarity.thickness === RarityThickness.TwoLine ? 2 : 1" hide="value"></poe-field-group>
-      <poe-field-group label="Influence" [(value)]="item.influence" [(value2)]="item.influence2" [fields]="2" [valueChoices]="Influence.influences" [value2Choices]="Influence.influences"></poe-field-group>
-      <poe-field-group label="Foil Variant" [(value)]="item.foilType" [valueChoices]="FoilType.types"></poe-field-group>
-    </span>
     <br/>
-    <br/>
-    <span class="imageselect">
-      <label for="image">Image URL:</label>
-      <input type="text" class="Image" id="image" [(ngModel)]="item.image" />
-      <button (click)="removeImage()"
-        style="position: relative; display: inline-flex"
-        data-tooltip="Remove Image"
-        class="icon-btn">
-        <img src="assets/ic_close_black_24px.svg" alt="X" />
-      </button>
-    </span>
-    <br/>
-    <span class="maxwidth">
-        <label for="maxwidth">Maximum Width (in pixels):</label>
-        <input type="number" id="maxwidth" [(ngModel)]="maxWidthInput" (change)="updateMaxWidth()"/>
-    </span>
-    <br/>
-    <br/>
-    <span class="itemsize" *ngIf="item.influence.has_background || item.influence2.has_background">
-      <label for="itemsize">Item Size (For Influence Background):</label>
-      <select id="itemsize" [(ngModel)]="item.size">
-        <option value="x1x1">1x1</option>
-        <option value="x1x2">1x2</option>
-        <option value="x1x3">1x3</option>
-        <option value="x2x1">2x1</option>
-        <option value="x2x2">2x2</option>
-        <option value="x2x3">2x3</option>
-      </select>
-    </span>
-    <div class="header">Item Affixes</div>
-    <ul id="properties" class="properties">
-      <li *ngFor='let property of item.properties;let index = index;' [class]="'prop-' + property.type.className">
-        <poe-prop-field-group [property]="property" [index]="index"></poe-prop-field-group>
-      </li>
-      <button (click)="item.appendProperty()" class="add-after add-first-prop orb-btn orb-exalt" *ngIf='item.properties.length === 0'>
-          <img src="assets/ic_add_black_24px.svg" alt="+" />
-      </button>
-    </ul>
+    <div *ngIf="editingItem !== false" class="uid" style="font-size: 1.1em">
+      <span>Currently Editing: <a routerLink="/stash" style="color: inherit"><strong>{{ this.editingItem ? this.editingItem.name : "" }} {{ this.editingItem ? this.editingItem.base : "" }}</strong></a></span>
+      <span class="prop-gray" *ngIf="this.stash.showUids">&nbsp;({{ this.editingItem ? $any(this.editingItem).uid : "" }})</span>
+    </div>
   </div>
+  <span class="iteminf">
+    <div class="header">Item Base</div>
+    <poe-field-group label="Type/Rarity" [(value)]="item.rarity" [valueChoices]="Rarity.rarities"></poe-field-group>
+    <poe-field-group label="Name/Base Type" [(value)]="item.name" [(value2)]="item.base" [fields]="item.rarity.thickness === RarityThickness.TwoLine ? 2 : 1" hide="value"></poe-field-group>
+    <poe-field-group label="Influence" [(value)]="item.influence" [(value2)]="item.influence2" [fields]="2" [valueChoices]="Influence.influences" [value2Choices]="Influence.influences"></poe-field-group>
+    <poe-field-group label="Foil Variant" [(value)]="item.foilType" [valueChoices]="FoilType.types"></poe-field-group>
+  </span>
+  <br/>
+  <br/>
+  <span class="imageselect">
+    <label for="image">Image URL:</label>
+    <input type="text" class="Image" id="image" [(ngModel)]="item.image" />
+    <button (click)="removeImage()" style="position: relative; display: inline-flex" data-tooltip="Remove Image" class="icon-btn">
+      <img src="assets/ic_close_black_24px.svg" alt="X" />
+    </button>
+  </span>
+  <br/>
+  <span class="maxwidth">
+    <label for="maxwidth">Maximum Width (in pixels):</label>
+    <input type="number" id="maxwidth" [(ngModel)]="maxWidthInput" (change)="updateMaxWidth()"/>
+  </span>
+  <br/>
+  <br/>
+  <span class="itemsize" *ngIf="item.influence.has_background || item.influence2.has_background">
+    <label for="itemsize">Item Size (For Influence Background):</label>
+    <select id="itemsize" [(ngModel)]="item.size">
+      <option value="x1x1">1x1</option>
+      <option value="x1x2">1x2</option>
+      <option value="x1x3">1x3</option>
+      <option value="x2x1">2x1</option>
+      <option value="x2x2">2x2</option>
+      <option value="x2x3">2x3</option>
+    </select>
+  </span>
+  <div class="header">Item Affixes</div>
+  <ul id="properties" class="properties">
+    <li *ngFor='let property of item.properties;let index = index;' [class]="'prop-' + property.type.className">
+      <poe-prop-field-group [property]="property" [index]="index"></poe-prop-field-group>
+    </li>
+    <button (click)="item.appendProperty()" class="add-after add-first-prop orb-btn orb-exalt" *ngIf='item.properties.length === 0'>
+      <img src="assets/ic_add_black_24px.svg" alt="+" />
+    </button>
+  </ul>
+</div>
+<poe-import-export-modal *ngIf="showImporter" (close)="showImporter = false"></poe-import-export-modal>

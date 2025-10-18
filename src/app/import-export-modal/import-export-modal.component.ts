@@ -1,47 +1,79 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { ItemService } from '../item-service.service';
 import { Item } from '../item';
-import { Router, ActivatedRoute } from '../../../node_modules/@angular/router';
+
+export function debounce(func: (...args: any) => any, wait: number) {
+  let timeout: NodeJS.Timeout;
+  return function (...args: any) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(null, args), wait);
+  };
+}
 
 @Component({
-  selector: 'app-import-export-modal',
+  selector: 'poe-import-export-modal',
   templateUrl: './import-export-modal.component.html',
-  styleUrls: ['./import-export-modal.component.scss']
+  styleUrls: ['../alert-modal/alert-modal.component.scss', './import-export-modal.component.scss']
 })
 export class ImportExportModalComponent implements OnInit {
 
-  public get item(): Item {
-    return this.is.item;
-  } 
+  @Output() public close: EventEmitter<void> = new EventEmitter();
+
+  private _item: Item;
+
+  public get item() {
+    return this._item;
+  }
+
+  public set item(value: Item) {
+    this._item = value;
+    this.export();
+  }
 
   itemDataTextarea: string = '';
   gisturl = '';
-  
-  constructor(private is: ItemService, private router: Router, private route: ActivatedRoute) { }
+
+  jsonError: string = '';
+  debounceLoadJSON = debounce(() => this.loadJSON(), 500);
+
+  constructor(private is: ItemService) {
+    this._item = this.is.item;
+  }
 
   ngOnInit() {
-
+    this.export();
   }
 
   export() {
-    this.is.export().then((x: {}) => {
-      this.itemDataTextarea = JSON.stringify(x);
-    })
+    this.jsonError = '';
+    this.itemDataTextarea = JSON.stringify(this.is.export(this._item));
   }
 
-  import() {
-    this.is.import(this.itemDataTextarea).then(x => {
-      this.router.navigate(['..'], { relativeTo: this.route });
-    });
+  reload() {
+    this.item = this.is.item;
+  }
+
+  async loadJSON() {
+    this.jsonError = '';
+    try {
+      this._item = await this.is.parse(this.itemDataTextarea);
+    }
+    catch (error) {
+      this.jsonError = "Failed to parse JSON data.";
+    }
+  }
+
+  async import() {
+    await this.is.import(this.itemDataTextarea);
+    this.close.emit();
   }
 
   async importgist() {
-    await this.is.importgist(this.gisturl)
-    const regex = /https:\/\/gist\.githubusercontent.com\/([\d\w]+)\/([\d\w]+)\/raw\/([\d\w]+)\/([^\x00-\x1F\x7F\x20<>#%"{}|\\^[\]`;\/?:@&=+$,]+)/i
-    const matches: any = this.gisturl.match(regex);
-    if(matches) {
-      this.router.navigateByUrl(`/gist/${matches[1]}/${matches[2]}/${matches[3]}/${matches[4]}`);
-    }
+    this.item = await this.is.importgist(this.gisturl);
+  }
+
+  closeClick() {
+    this.close.emit();
   }
 
 }

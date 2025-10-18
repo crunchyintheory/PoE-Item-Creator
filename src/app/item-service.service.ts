@@ -3,8 +3,8 @@ import { Item, StashedItem } from './item';
 import { HttpClient } from '@angular/common/http';
 import { Templates } from './templates';
 import { Property, PropertyType } from './property';
-import { Influence, Rarity } from './rarity';
-import { BehaviorSubject, firstValueFrom } from "rxjs";
+import { FoilType, Influence, Rarity } from "./rarity";
+import { BehaviorSubject, catchError } from "rxjs";
 
 @Injectable()
 export class ItemService {
@@ -18,7 +18,6 @@ export class ItemService {
     this.item = StashedItem.From(item);
     this.itemImported = new BehaviorSubject<true>(true);
     this.itemImported.next(true);
-    this.defaultMaxWidth = item.width;
   }
 
   private static DeepCopy<T extends Object>(object: T): T {
@@ -53,7 +52,10 @@ export class ItemService {
     return this.item;
   }
 
-  async export(): Promise<{}> {
+  export(item?: Item) {
+    if(!(item instanceof Item)) {
+      item = this.item;
+    }
     const mapper = (currentValue: Property) => {
       return {
         type: currentValue.type.className,
@@ -61,17 +63,20 @@ export class ItemService {
         value: currentValue.value
       };
     }
-    const properties: Array<{ type: string, name: string, value: string }> = this.item.properties.map(mapper);
+    const properties: Array<{ type: string, name: string, value: string }> = item.properties.map(mapper);
     return {
-      rarity: this.item.rarity.name,
-      name: this.item.name,
-      base: this.item.base,
-      image: this.item.image,
-      properties: properties
+      rarity: item.rarity.name,
+      name: item.name,
+      base: item.base,
+      image: item.image,
+      properties: properties,
+      influences: [item.influence.name, item.influence2.name],
+      foilType: item.foilType.name,
+      width: item.width
     };
   }
 
-  async import(data: string): Promise<Item> {
+  async parse(data: string): Promise<Item> {
     let i: {
       rarity: string,
       name: string,
@@ -82,7 +87,10 @@ export class ItemService {
         type: string,
         name: string,
         value: string
-      }>
+      }>,
+      influences: string[],
+      foilType: string,
+      width: number
     } = JSON.parse(data);
 
     let mapper = (currentValue: { type: string, name: string, value: string }) => {
@@ -92,23 +100,37 @@ export class ItemService {
         currentValue.value
       )
     }
-    this.item = new Item(
+
+    return new Item(
       Rarity.rarities.find((x) => { return x.name === i.rarity }) || Rarity.Rare,
       i.name,
       i.base,
       i.image,
       i.size,
-      i.properties.map(mapper)
+      i.properties.map(mapper),
+      i.influences && i.influences.length >= 1 ? Influence.influences.find(x => x.name === i.influences[0]) || Influence.None : Influence.None,
+      i.influences && i.influences.length >= 2 ? Influence.influences.find(x => x.name === i.influences[1]) || Influence.None : Influence.None,
+      FoilType.types.find(x => x.name === i.foilType) || FoilType.None,
+      i.width > 0 ? i.width : this.defaultMaxWidth
     );
+  }
+
+  async import(data: string): Promise<Item> {
+    this.item = await this.parse(data);
     this.itemImported.next(true);
 
     return this.item;
   }
 
-  async importgist(url: string) {
-    console.log(url);
-    let data = await firstValueFrom(this.http.get(url))
-    console.log(data);
-    await this.import(JSON.stringify(data));
+  importgist(url: string): Promise<Item> {
+    return new Promise(async (resolve, reject) => {
+      this.http.get(url, {
+        responseType: "text"
+      }).pipe(
+        catchError(async (x) => reject(x))
+      ).subscribe(data => {
+        resolve(this.parse(data || ""));
+      });
+    });
   }
 }

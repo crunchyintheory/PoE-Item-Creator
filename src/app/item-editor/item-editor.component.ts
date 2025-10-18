@@ -38,6 +38,8 @@ export class ItemEditorComponent implements OnInit, OnDestroy {
 
   public maxWidthInput = 500;
 
+  public showImporter = false;
+
   constructor(public is: ItemService, public stash: StashService, private router: Router) {
     this.maxWidthInput = is.defaultMaxWidth;
     this.editingItemObs = this.is.itemImported.asObservable().pipe(
@@ -46,20 +48,17 @@ export class ItemEditorComponent implements OnInit, OnDestroy {
             return this.stash.FindByUid(uid);
         })
     );
-    this.eISub = this.editingItemObs.subscribe((val) => this.editingItem = val);
-      /*this.is.itemImported.subscribe(() => {
-          if (item instanceof Item) {
-              this.isEditingStashItem = true; // have to do this for eslint
-              this.editingItem = { name: item.name + " " + item.base, uid };
-              console.log(this.editingItem);
-          }
-          else {
-              this.isEditingStashItem = false;
-          }
-      });*/
+    this.eISub = this.editingItemObs.subscribe((val) => {
+      this.editingItem = val;
+      if(this.is.item.width > 0) {
+        this.maxWidthInput = this.is.item.width;
+        this.updateMaxWidth();
+      }
+    });
   }
 
   ngOnInit(): void {
+    this.maxWidthInput = this.is.item.width > 0 ? this.is.item.width : this.is.defaultMaxWidth;
     this.updateMaxWidth();
   }
 
@@ -73,7 +72,9 @@ export class ItemEditorComponent implements OnInit, OnDestroy {
   }
 
   async save() {
-    await this.stash.AddToStash(this.item);
+    let uid = await this.stash.AddToStash(this.item);
+    let stashed = this.stash.FindByUid(uid);
+    if(stashed !== false) this.editingItem = stashed;
   }
 
   removeImage() {
