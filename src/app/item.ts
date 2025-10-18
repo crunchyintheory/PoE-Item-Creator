@@ -87,3 +87,20 @@ export class StashedItem extends Item {
         return i;
     }
 }
+
+export interface SerializedItem {
+  rarity: string;
+  name: string;
+  base: string;
+  image: string;
+  size?: string;
+  properties: Array<{
+    type: string,
+    name: string,
+    value: string,
+  }>,
+  influences: string[];
+  foilType: string;
+  width: number;
+  uid?: string;
+}

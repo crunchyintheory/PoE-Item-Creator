@@ -31,7 +31,6 @@ export class ValuePipe implements PipeTransform {
       let t = this.replacements.reduce((acc, [regex, replacement]) => {
         return acc.replaceAll(regex, replacement);
       }, text as string);
-      console.log(t);
       return this.sanitizer.bypassSecurityTrustHtml(t); // We have just sanitized the text and replaced the contents with known-safe fixed templates.
     }
   }
