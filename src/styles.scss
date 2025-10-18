@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: "fontin";
-    src: url("./assets/Fontin-SmallCaps.woff") format("woff");
+    src: url("/assets/Fontin-SmallCaps.woff") format("woff");
 }
 
 html, body {
@@ -95,7 +95,7 @@ button, .button {
 
                 @each $name, $icon in $orbs {
                     &.orb-#{$name} {
-                        background-image: url('./assets/#{$icon}');
+                        background-image: url('/assets/#{$icon}');
                     }
                 }
 

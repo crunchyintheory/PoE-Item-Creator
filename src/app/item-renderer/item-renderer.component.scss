@@ -135,7 +135,7 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
 
         @each $foil in $foils {
             &.foil-#{$foil}::after {
-                background-image: url("../../assets/foils/#{$foil}.png")
+                background-image: url("/assets/foils/#{$foil}.png")
             }
         }
     }
@@ -169,7 +169,7 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
 }
 
 .sep {
-    background-image: url("../../assets/seps.png");
+    background-image: url("/assets/seps.png");
     background-repeat: no-repeat;
     height: 3px;
     margin: 7.5px auto;
@@ -213,7 +213,7 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
 
 .unique {
     @extend %unique;
-    @include unique-itemheader("../../assets/headers/itemheader_unique.png");
+    @include unique-itemheader("/assets/headers/itemheader_unique.png");
     background-size: cover / contain;
 }
 
@@ -236,7 +236,7 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
 
 .rare {
     @extend %rare;
-    @include rare-itemheader("../../assets/headers/itemheader_rare.png");
+    @include rare-itemheader("/assets/headers/itemheader_rare.png");
 }
 
 .normal {
@@ -245,10 +245,10 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
       background-position: 0 0;
     }
     .itemheader {
-      background-image: url("../../assets/headers/itemheader_normal.png");
+      background-image: url("/assets/headers/itemheader_normal.png");
       .left,
       .right {
-        background-image: url("../../assets/headers/itemheader_normal.png");
+        background-image: url("/assets/headers/itemheader_normal.png");
       }
     }
 }
@@ -259,10 +259,10 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
         background-position: 0 -3px;
     }
     .itemheader {
-        background-image: url("../../assets/headers/itemheader_magic.png");
+        background-image: url("/assets/headers/itemheader_magic.png");
         .left,
         .right {
-            background-image: url("../../assets/headers/itemheader_magic.png");
+            background-image: url("/assets/headers/itemheader_magic.png");
         }
     }
 }
@@ -273,10 +273,10 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
         background-position: 0 -15px;
     }
     .itemheader {
-        background-image: url("../../assets/headers/itemheader_gem.png");
+        background-image: url("/assets/headers/itemheader_gem.png");
         .left,
         .right {
-            background-image: url("../../assets/headers/itemheader_gem.png");
+            background-image: url("/assets/headers/itemheader_gem.png");
         }
     }
     .unique-flavor {
@@ -292,10 +292,10 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
         background-position: 0 -21px;
     }
     .itemheader {
-        background-image: url("../../assets/headers/itemheader_prophecy.png");
+        background-image: url("/assets/headers/itemheader_prophecy.png");
         .left,
         .right {
-            background-image: url("../../assets/headers/itemheader_prophecy.png");
+            background-image: url("/assets/headers/itemheader_prophecy.png");
         }
     }
     .unique-flavor {
@@ -315,10 +315,10 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
         background-position: 0 -12px;
     }
     .itemheader {
-        background-image: url("../../assets/headers/itemheader_currency.png");
+        background-image: url("/assets/headers/itemheader_currency.png");
         .left,
         .right {
-            background-image: url("../../assets/headers/itemheader_currency.png");
+            background-image: url("/assets/headers/itemheader_currency.png");
         }
     }
 }
@@ -326,10 +326,10 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
 .passive {
     @extend %passive;
     .itemheader {
-        background-image: url("../../assets/headers/itemheader_passive.png");
+        background-image: url("/assets/headers/itemheader_passive.png");
         .left,
         .right {
-            background-image: url("../../assets/headers/itemheader_passive.png");
+            background-image: url("/assets/headers/itemheader_passive.png");
         }
     }
 }
@@ -337,10 +337,10 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
 .notable {
     @extend %passive;
     .itemheader {
-        background-image: url("../../assets/headers/itemheader_notable.png");
+        background-image: url("/assets/headers/itemheader_notable.png");
         .left,
         .right {
-            background-image: url("../../assets/headers/itemheader_notable.png");
+            background-image: url("/assets/headers/itemheader_notable.png");
         }
     }
 }
@@ -348,10 +348,10 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
 .keystone {
     @extend %passive;
     .itemheader {
-        background-image: url("../../assets/headers/itemheader_keystone.png");
+        background-image: url("/assets/headers/itemheader_keystone.png");
         .left,
         .right {
-            background-image: url("../../assets/headers/itemheader_keystone.png");
+            background-image: url("/assets/headers/itemheader_keystone.png");
         }
     }
 }
@@ -359,17 +359,17 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
 .socket-jewel {
     @extend %passive;
     .itemheader {
-        background-image: url("../../assets/headers/itemheader_socket.png");
+        background-image: url("/assets/headers/itemheader_socket.png");
         .left,
         .right {
-            background-image: url("../../assets/headers/itemheader_socket.png");
+            background-image: url("/assets/headers/itemheader_socket.png");
         }
     }
 }
 
 .item.foil.unique {
     @extend %unique;
-    @include unique-itemheader("../../assets/headers/itemheader_unique_foil.png");
+    @include unique-itemheader("/assets/headers/itemheader_unique_foil.png");
 }
 
 .itemimg {
@@ -389,7 +389,7 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
         @each $f in $foils {
             &.foil-#{$f} {
                 background-size: 100% 300%;
-                background-image: url("../../assets/foils/#{$f}.png");
+                background-image: url("/assets/foils/#{$f}.png");
             }
         }
     }

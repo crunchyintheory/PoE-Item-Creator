@@ -1,7 +1,7 @@
 @import '../styles/colors.scss';
 
 :host {
-    background: #000 url('../assets/synthesis-bg.jpg') no-repeat top center fixed;
+    background: #000 url('/assets/synthesis-bg.jpg') no-repeat top center fixed;
     background-size: contain;
     min-height: 100%;
     display: flex;
@@ -39,7 +39,7 @@
             }
         }
     }
-    
+
     router-outlet {
         display: none;
     }
@@ -47,8 +47,8 @@
 
 @media(max-width: 1000px) {
     .grid {
-        padding-left: 0px;
-        padding-right: 0px;
+        padding-left: 0;
+        padding-right: 0;
     }
 }
 
@@ -90,7 +90,7 @@
     li {
         display: inline;
         list-style-type: none;
-        
+
         a {
             color: desaturate(lighten($secondary, 50), 30);
             text-decoration: none;

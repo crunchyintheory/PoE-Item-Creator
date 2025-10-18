@@ -52,12 +52,16 @@ export class PageCreateItemComponent implements OnInit {
     });
 
     let url = canvas.toDataURL("image/png");
-    let a = document.createElement("a");
-    let name = this.item.name ? this.item.name : this.item.base;
-    a.setAttribute("download", name + ".png");
-    a.href = url;
-    a.click();
-    //window.location.href = url.replace("image/png", "image/octet-stream");
+    if(!window.location.search.includes("debug")) {
+      let a = document.createElement("a");
+      let name = this.item.name ? this.item.name : this.item.base;
+      a.setAttribute("download", name + ".png");
+      a.href = url;
+      a.click();
+    }
+    else {
+      window.location.href = url.replace("image/png", "image/octet-stream");
+    }
   }
 
 }
