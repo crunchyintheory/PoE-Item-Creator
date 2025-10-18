@@ -12,6 +12,7 @@ export class ValuePipe implements PipeTransform {
 
   private replacements: [RegExp, string][] = [
     [/%%g%%(.*)%%g%%/g, '<span class="prop-gray">$1</span>'],
+    [/%%w%%(.*)%%w%%/g, '<span class="prop-white">$1</span>'],
     [/%%chaos%%(.*)%%chaos%%/g, '<span class="prop-chaos">$1</span>'],
     [/%%fire%%(.*)%%fire%%/g, '<span class="prop-fire">$1</span>'],
     [/%%cold%%(.*)%%cold%%/g, '<span class="prop-cold">$1</span>'],
