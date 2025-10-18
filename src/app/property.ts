@@ -121,7 +121,23 @@ export class PropertyType implements ISerializable {
         valueRenderClass: 'prop-crucible',
         fields: 1
     }
-    
+
+    static readonly Fractured: PropertyType = {
+        name: 'Fractured Affix',
+        className: 'fractured',
+        nameRenderClass: null,
+        valueRenderClass: 'prop-fractured',
+        fields: 1
+    }
+
+    static readonly MemoryStrands: PropertyType = {
+        name: 'Memory Strands',
+        className: 'memory',
+        nameRenderClass: 'prop-crafted',
+        valueRenderClass: 'prop-white',
+        fields: 2
+    }
+
     static readonly types: PropertyType[] = [
         PropertyType.ItemType,
         PropertyType.Affix,
@@ -133,6 +149,8 @@ export class PropertyType implements ISerializable {
         PropertyType.Crafted,
         PropertyType.StatReq,
         PropertyType.Corrupted,
-        PropertyType.Crucible
+        PropertyType.Crucible,
+        PropertyType.Fractured,
+        PropertyType.MemoryStrands,
     ]
 }

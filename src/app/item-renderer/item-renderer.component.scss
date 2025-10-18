@@ -20,23 +20,47 @@
 }
 
 :host {
-  align-items: center;
-  display: flex;
-  overflow-y: auto;
+    align-items: center;
+    display: flex;
+    overflow-y: auto;
 }
 
 .itembody {
-  padding: 10.5px 7.5px;
+    padding: 10.5px 7.5px;
 }
 
 .property {
-  line-height: 32px;
-  margin-top: 4px;
-  .prop-name {
-    &::after {
-      content: ": ";
+    line-height: 32px;
+    margin-top: 4px;
+
+    &.memory {
+        height: 65px;
+        vertical-align: middle;
+        background-image: url(/assets/memory-title.png);
+        line-height: 65px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center -5px;
+        margin-top: 0;
+
+        &::after {
+            display: inline-block;
+            content: " ";
+            background-image: url("/assets/memory-icon.png");
+            width: 66.66px;
+            height: 60px;
+            vertical-align: middle;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
     }
-  }
+
+    .prop-name {
+        &::after {
+            content: ": ";
+        }
+    }
 }
 
 .statreq {

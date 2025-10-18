@@ -183,6 +183,8 @@ export class Influence implements ISerializable {
 
     static readonly Exarch = new Influence("Searing Exarch", "assets/symbol_searing.png");
 
+    static readonly Originator = new Influence("Originator");
+
     static readonly influences: Influence[] = [
         Influence.None,
         Influence.Shaper,
@@ -195,7 +197,8 @@ export class Influence implements ISerializable {
         Influence.Warlord,
         Influence.Replica,
         Influence.Eater,
-        Influence.Exarch
+        Influence.Exarch,
+        Influence.Originator
     ]
 }
 

@@ -237,6 +237,11 @@ export const Templates = [
                 '441'
             ),
             new Property(
+                PropertyType.MemoryStrands,
+                'Memory Strands',
+                '37'
+            ),
+            new Property(
                 PropertyType.Separator,
                 '',
                 '',
@@ -296,7 +301,8 @@ export const Templates = [
                 '',
                 'Corrupted'
             )
-        ]
+        ],
+        Influence.Originator
     ),
     new Item(
         Rarity.Unique,
