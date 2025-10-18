@@ -48,7 +48,8 @@ export class PageCreateItemComponent implements OnInit {
           (item as HTMLElement).style.backgroundImage = (item as HTMLElement).style.backgroundImage.replace("_foil", "");
         });
       },
-      useCORS: true
+      useCORS: true,
+      allowTaint: true
     });
 
     let url = canvas.toDataURL("image/png");
@@ -58,10 +59,12 @@ export class PageCreateItemComponent implements OnInit {
       a.setAttribute("download", name + ".png");
       a.href = url;
       a.click();
+      a.remove();
     }
     else {
-      window.location.href = url.replace("image/png", "image/octet-stream");
+      window.open(url, "_blank");
     }
+    canvas.remove();
   }
 
 }
