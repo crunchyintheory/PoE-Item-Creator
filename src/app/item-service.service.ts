@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Item, StashedItem } from './item';
+import { Item, SerializedItem, StashedItem } from "./item";
 import { HttpClient } from '@angular/common/http';
 import { Templates } from './templates';
 import { Property, PropertyType } from './property';
@@ -52,8 +52,8 @@ export class ItemService {
     return this.item;
   }
 
-  export(item?: Item) {
-    if(!(item instanceof Item)) {
+  public export(item?: Item, forStash = false): SerializedItem {
+    if(!(typeof item === "object")) {
       item = this.item;
     }
     const mapper = (currentValue: Property) => {
@@ -64,7 +64,7 @@ export class ItemService {
       };
     }
     const properties: Array<{ type: string, name: string, value: string }> = item.properties.map(mapper);
-    return {
+    let ret: SerializedItem = {
       rarity: item.rarity.name,
       name: item.name,
       base: item.base,
@@ -74,24 +74,20 @@ export class ItemService {
       foilType: item.foilType.name,
       width: item.width
     };
+    if(forStash) ret.uid = (item as StashedItem).uid;
+    return ret;
   }
 
-  async parse(data: string): Promise<Item> {
-    let i: {
-      rarity: string,
-      name: string,
-      base: string,
-      image: string,
-      size: string,
-      properties: Array<{
-        type: string,
-        name: string,
-        value: string
-      }>,
-      influences: string[],
-      foilType: string,
-      width: number
-    } = JSON.parse(data);
+  async parse(item: SerializedItem): Promise<Item>
+  async parse(data: string): Promise<Item>
+  async parse(data: string|SerializedItem): Promise<Item> {
+    let i: SerializedItem;
+    if(typeof data === "string") {
+      i = JSON.parse(data) as SerializedItem;
+    }
+    else {
+      i = data;
+    }
 
     let mapper = (currentValue: { type: string, name: string, value: string }) => {
       return new Property(
@@ -106,12 +102,12 @@ export class ItemService {
       i.name,
       i.base,
       i.image,
-      i.size,
+      i.size || "",
       i.properties.map(mapper),
       i.influences && i.influences.length >= 1 ? Influence.influences.find(x => x.name === i.influences[0]) || Influence.None : Influence.None,
       i.influences && i.influences.length >= 2 ? Influence.influences.find(x => x.name === i.influences[1]) || Influence.None : Influence.None,
       FoilType.types.find(x => x.name === i.foilType) || FoilType.None,
-      i.width > 0 ? i.width : this.defaultMaxWidth
+      i.width > 0 ? i.width : this.defaultMaxWidth,
     );
   }
 

@@ -1,6 +1,6 @@
 import { Injectable, SecurityContext } from "@angular/core";
 import { ItemService } from "./item-service.service";
-import { Item, StashedItem } from "./item";
+import { Item, SerializedItem, StashedItem } from "./item";
 import { BehaviorSubject, firstValueFrom } from "rxjs";
 import { Alert, AlertService, AlertStatus, AlertType } from "./alert.service";
 import { DomSanitizer } from "@angular/platform-browser";
@@ -13,17 +13,17 @@ export class StashService {
   private stashKey?: string;
   public showUids = false;
 
-  private readonly _stash: BehaviorSubject<StashedItem[]>;
+  private readonly _stash = new BehaviorSubject<StashedItem[]>([]);
   public get Stash() {
     return this._stash.asObservable();
   }
 
   constructor(private is: ItemService, private alert: AlertService, private sanitizer: DomSanitizer) {
-    this._stash = new BehaviorSubject(this.loadStash());
+    this.loadStash();
     this.showUids = !!JSON.parse(localStorage.getItem("showStashUids") ?? "false");
   }
 
-  private async saveStash(checkKey = true): Promise<boolean> {
+  private async saveStash(checkKey = true, backup = false): Promise<boolean> {
     let key = this.getStashKey();
 
     if (checkKey && key !== this.stashKey) {
@@ -32,11 +32,13 @@ export class StashService {
 
     try {
       let stash = await firstValueFrom(this.Stash);
-      localStorage.setItem("stash", JSON.stringify(stash));
+      if(backup) localStorage.setItem("preMigrationStash", localStorage.getItem("stash") ?? "");
+      localStorage.setItem("stash", JSON.stringify(stash.map(x => this.is.export(x, true))));
       this.setStashKey();
       return true;
     }
     catch (e) {
+      console.error(e);
       return false;
     }
   }
@@ -52,18 +54,64 @@ export class StashService {
     localStorage.setItem("stashId", key);
   }
 
-  private loadStash(): StashedItem[] {
+  private async loadStash() {
     this.stashKey = this.getStashKey();
-    let loadedItems = JSON.parse(localStorage.getItem("stash") ?? "[]") as StashedItem[];
+    let loadedItems = JSON.parse(localStorage.getItem("stash") ?? "[]") as SerializedItem[];
+    let parsedItems: StashedItem[] = [];
+
+    let appliedMigration = await this.migrateStash(loadedItems);
+
     for (let i = 0; i < loadedItems.length; i++) {
-      loadedItems[i] = new StashedItem(loadedItems[i]);
+      parsedItems[i] = await this.is.parse(loadedItems[i]);
+      parsedItems[i].uid = loadedItems[i].uid;
     }
-    return loadedItems;
+
+    this._stash.next(parsedItems);
+
+    if(appliedMigration) {
+      let status = await this.saveStash(true, true);
+      if(!status) {
+        this.alert.Dispatch(new Alert({
+          status: AlertStatus.Success,
+          text: "Unable to migrate stash to the latest version. Corrupted data may appear. A backup is located at the 'preMigrationStash' Local Storage key.",
+          title: "Stash Migration Failed",
+          type: AlertType.Toast,
+          lifetime: 5000
+        }));
+      }
+      else {
+        this.alert.Dispatch(new Alert({
+          status: AlertStatus.Success,
+          text: "Migrated stash to the latest version. Minor changes may appear. A backup is located at the 'preMigrationStash' Local Storage key.",
+          title: "Stash Migrated",
+          type: AlertType.Toast,
+          lifetime: 5000
+        }));
+      }
+    }
+  }
+
+  private async migrateStash(stash: SerializedItem[]) {
+    let appliedMigration = false;
+
+    for(let i = 0; i < stash.length; i++) {
+      if(!stash[i].uid) {
+        stash[i].uid = crypto.randomUUID();
+        appliedMigration = true;
+      }
+
+      // noinspection SuspiciousTypeOfGuard
+      if(typeof stash[i].rarity !== "string") {
+        stash[i] = this.is.export(stash[i] as any, true); // Try to parse an unknown format.
+        appliedMigration = true;
+      }
+    }
+
+    return appliedMigration;
   }
 
   public async ReloadStash(): Promise<Item[]> {
-    let stash = this.loadStash();
-    this._stash.next(stash);
+    await this.loadStash();
     return firstValueFrom(this.Stash);
   }
 
