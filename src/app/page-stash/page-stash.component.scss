@@ -72,3 +72,16 @@ poe-item-renderer.active {
     border: 1px solid #867100;
     padding: 2px;
 }
+
+@media(max-width: 768px) {
+    :host {
+        display: flex;
+    }
+    #main-render-container {
+        display: none;
+    }
+    .sidebar .stash-items {
+        align-items: center;
+        flex-direction: column;
+    }
+}

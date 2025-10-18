@@ -23,3 +23,10 @@ poe-item-renderer {
     border-top: 1px solid $secondary;
     border-bottom: 1px solid $secondary;
 }
+
+@media(max-width: 768px) {
+    :host {
+        display: flex;
+        flex-direction: column;
+    }
+}
