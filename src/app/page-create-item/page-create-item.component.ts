@@ -36,7 +36,6 @@ export class PageCreateItemComponent implements OnInit {
   }
 
   async capture() {
-    console.log(this.renderer);
     if(!this.renderer || !this.renderer.container) return;
 
     let canvas = await html2canvas(this.renderer.container.nativeElement, {
@@ -48,7 +47,8 @@ export class PageCreateItemComponent implements OnInit {
         element.querySelectorAll(".itemheader, .itemheader .left, .itemheader .right").forEach(item => {
           (item as HTMLElement).style.backgroundImage = (item as HTMLElement).style.backgroundImage.replace("_foil", "");
         });
-      }
+      },
+      useCORS: true
     });
 
     let url = canvas.toDataURL("image/png");
