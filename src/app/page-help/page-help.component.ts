@@ -28,6 +28,8 @@ export class PageHelpComponent implements OnInit {
     ["lightning", "Lightning"],
     ["chaos", "Chaos"],
     ["crucible", "Crucible"],
+    ["crafted", "Crafted"],
+    ["fractured", "Fractured"],
     ["color#b83fdc", "Custom Hex Colors"]
   ];
 

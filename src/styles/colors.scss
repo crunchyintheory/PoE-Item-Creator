@@ -31,6 +31,7 @@ $cold: #366492;
 $lightning: gold;
 
 $crucible: #ff7339;
+$fractured: #a29162;
 
 $rarities: (
     "unique": $unique,
@@ -49,11 +50,12 @@ $colors: map.merge($rarities, (
     "white": $white,
     "crafted": $crafted,
     "red": $red,
-    "crucible": $crucible,
     "chaos": $chaos,
     "fire": $fire,
     "cold": $cold,
     "lightning": $lightning,
+    "crucible": $crucible,
+    "fractured": $fractured,
     "success": rgb(24, 154, 24),
     "warning": rgb(220, 166, 2),
     "error": $chaos
