@@ -26,7 +26,7 @@ html, body {
     font-size: 1.5em;
     font-weight: bold;
 }
-  
+
 button, .button {
     cursor: pointer;
     outline: none;
@@ -46,7 +46,7 @@ button, .button {
     }
     &[data-tooltip] {
         position: relative;
-        
+
         &.weird-tooltip {
             &::after {
                 display: block;
@@ -92,17 +92,25 @@ button, .button {
                 background-size: auto 70%;
                 background-position: center;
                 background-repeat: no-repeat;
-            
+
                 @each $name, $icon in $orbs {
                     &.orb-#{$name} {
                         background-image: url('./assets/#{$icon}');
                     }
                 }
-            
+
                 img {
                     opacity: 0;
                 }
             }
+        }
+    }
+    &.disabled, &[disabled] {
+        cursor: default;
+        color: gray;
+
+        &:hover {
+            background-color: initial;
         }
     }
 
@@ -110,8 +118,8 @@ button, .button {
         height: 18px;
     }
 }
-  
-select, input {
+
+select, input, textarea {
     background-color: $input;
     border: 0;
     color: $offwhite;
@@ -174,7 +182,7 @@ select, input {
         }
     }
 }
-  
+
 @keyframes animatetop {
     from {
       opacity: 0;

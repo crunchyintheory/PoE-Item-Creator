@@ -15,9 +15,11 @@ export class Item {
 
     size: string;
 
+    width = 500;
+
     constructor(data: Object)
-    constructor(rarity:Rarity, name:string, base:string, image:string, size: string, properties:Property[], influence?: Influence, influence2?: Influence, foilType?: FoilType)
-    constructor(data:Rarity | any, name?:string, base?:string, image?:string, size?: string, properties?:Property[], influence?: Influence, influence2?: Influence, foilType?: FoilType) {
+    constructor(rarity:Rarity, name:string, base:string, image:string, size: string, properties:Property[], influence?: Influence, influence2?: Influence, foilType?: FoilType, width?: number)
+    constructor(data:Rarity | any, name?:string, base?:string, image?:string, size?: string, properties?:Property[], influence?: Influence, influence2?: Influence, foilType?: FoilType, width: number = 0) {
         this.rarity = data as Rarity;
         this.name = name!;
         this.base = base!;
@@ -27,6 +29,8 @@ export class Item {
         this.influence = influence || Influence.None;
         this.influence2 = influence2 || Influence.None;
         this.foilType = foilType || FoilType.None;
+
+        if(width) this.width = width;
 
         if(name === undefined) {
             Object.assign(this as any, data);
@@ -40,6 +44,7 @@ export class Item {
             this.influence = data.influence ? new Influence(data.influence) : Influence.None;
             this.influence2 = data.influence2 ? new Influence(data.influence2) : Influence.None;
             this.foilType = data.foilType ? new FoilType(data.foilType.name, data.foilType.colors) : FoilType.None;
+            if(data.width) this.width = data.width;
         }
     }
 

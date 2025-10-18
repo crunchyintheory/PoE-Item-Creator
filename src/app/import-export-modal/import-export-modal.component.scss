@@ -1,0 +1,36 @@
+.modal {
+    max-width: 1000px;
+    height: 100%;
+}
+
+.text {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 20px;
+
+    textarea {
+        grid-column: 1/2;
+        grid-row: 2/3;
+        font-family: Consolas, monospace;
+        resize: none;
+    }
+
+    .gist {
+        grid-column: 1/2;
+        grid-row: 1/2;
+        display: flex;
+    }
+
+    poe-item-renderer {
+        grid-column: 2/3;
+        grid-row: 1/4;
+    }
+
+    .error {
+        grid-column: 1/2;
+        grid-row: 3/4;
+
+        color: #f00;
+    }
+}
