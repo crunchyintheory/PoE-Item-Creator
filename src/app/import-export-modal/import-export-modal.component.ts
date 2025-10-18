@@ -53,10 +53,10 @@ export class ImportExportModalComponent implements OnInit {
     this.item = this.is.item;
   }
 
-  async loadJSON() {
+  loadJSON() {
     this.jsonError = '';
     try {
-      this._item = await this.is.parse(this.itemDataTextarea);
+      this._item = this.is.parse(this.itemDataTextarea);
     }
     catch (error) {
       this.jsonError = "Failed to parse JSON data.";
