@@ -19,13 +19,17 @@ export class ValuePipe implements PipeTransform {
     [/%%u%%(.*)%%u%%/g, '<span style="text-decoration: underline">$1</span>'],
     [/%%bold%%(.*)%%bold%%/g, '<strong>$1</strong>'],
     [/%%color(#[a-fA-F0-9]{3,8})%%(.*)%%color(#[a-fA-F0-9]{3,8})?%%/g, '<span class="prop-color" style="color: $1">$2</span>'],
+    [/%%crucible%%(.*)%%crucible%%/g, '<span class="prop-crucible">$1</span>'],
   ];
 
   transform(value: any, args?: any): any {
-    let text = value.value;
+    let text = value;
+    if(typeof value === 'object') {
+      text = value.value;
+    }
     if(typeof text == "string") text = (text as string).replaceAll(/<\/?|>/g, "%%");
     text = this.sanitizer.sanitize(SecurityContext.HTML, text);
-    if(value.type.className === PropertyType.StatReq.className) {
+    if(value.type?.className === PropertyType.StatReq.className) {
       return text.replace(/(\d+)/g, '<span class="prop-white">$1</span>');
     }
     else {

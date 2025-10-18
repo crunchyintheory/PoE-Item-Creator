@@ -5,6 +5,7 @@ import { Item } from '../item';
 import { ItemService } from '../item-service.service';
 import { ItemRendererComponent } from "../item-renderer/item-renderer.component";
 import html2canvas from "html2canvas";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'poe-page-create-item',
@@ -20,7 +21,9 @@ export class PageCreateItemComponent implements OnInit {
 
   @ViewChild("renderer", { static: false }) renderer?: ItemRendererComponent;
 
-  constructor(private route: ActivatedRoute, public is: ItemService) { }
+  constructor(private route: ActivatedRoute, public is: ItemService, private title: Title) {
+    this.title.setTitle("Path of Exile Item Creator");
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {

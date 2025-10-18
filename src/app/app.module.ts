@@ -8,7 +8,6 @@ import { ValuePipe } from './value.pipe';
 import { FormsModule } from '@angular/forms';
 
 import { ImportExportModalComponent } from './import-export-modal/import-export-modal.component';
-import { RouterModule } from '@angular/router';
 import { ItemService } from './item-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemRendererComponent } from './item-renderer/item-renderer.component';
@@ -20,6 +19,8 @@ import { PageStashComponent } from './page-stash/page-stash.component';
 import { AlertModalComponent } from './alert-modal/alert-modal.component';
 import { AlertToastComponent } from './alert-toast/alert-toast.component';
 import { AlertHandlerComponent, ToastContainerDirective } from './alert-handler/alert-handler.component';
+import { PageHelpComponent } from './page-help/page-help.component';
+import { SectionHeaderDirective } from './section-header.directive';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import { AlertHandlerComponent, ToastContainerDirective } from './alert-handler/
     AlertModalComponent,
     AlertToastComponent,
     AlertHandlerComponent,
-    ToastContainerDirective
+    ToastContainerDirective,
+    PageHelpComponent,
+    SectionHeaderDirective
   ],
   imports: [
     BrowserModule,

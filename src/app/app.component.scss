@@ -45,6 +45,13 @@
     }
 }
 
+@media(max-width: 1600px) {
+    .grid {
+        padding-left: 65px;
+        padding-right: 65px;
+    }
+}
+
 @media(max-width: 1000px) {
     .grid {
         padding-left: 0;
@@ -92,12 +99,7 @@
         list-style-type: none;
 
         a {
-            color: desaturate(lighten($secondary, 50), 30);
             text-decoration: none;
-
-            &:hover {
-                color: desaturate(lighten($secondary, 70), 30);
-            }
         }
 
         &:not(:first-child)::before {

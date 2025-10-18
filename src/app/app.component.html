@@ -1,5 +1,6 @@
 <div id="navbar">
-  <img src="assets/symbol_shaper.png" height="30"/>
+  <!--suppress CheckImageSize -->
+  <img src="assets/symbol_shaper.png" height="30" alt="Icon"/>
   <span class="h1" style="margin-left: 5px;">Path of Exile Item Creator</span>
   <div style="flex-grow: 1"></div>
   <ul class="right">
@@ -10,7 +11,7 @@
       <a href="https://www.pathofexile.com/forum/view-thread/2088916" target="_blank">Forum Post</a>
     </li>
     <li>
-      <a href="https://github.com/crunchyintheory/PoE-Item-Creator/issues" target="_blank">Report Bug</a>
+      <a href="https://github.com/crunchyintheory/PoE-Item-Creator/issues/new" target="_blank">Report Bug</a>
     </li>
   </ul>
 </div>
@@ -18,6 +19,8 @@
   <div class="tabber">
     <div class="tab" routerLink="/create" routerLinkActive="active">Create Item</div>
     <div class="tab" routerLink="/stash" routerLinkActive="active">Stash</div>
+    <div class="spacer" style="width: 30px"></div>
+    <div class="tab" routerLink="/help" routerLinkActive="active">Help</div>
   </div>
   <router-outlet></router-outlet>
 </div>

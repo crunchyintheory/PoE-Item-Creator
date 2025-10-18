@@ -12,6 +12,7 @@ poe-item-renderer {
     border-bottom: 1px solid $secondary;
     padding: 30px 30px;
     grid-column: 2 / 3;
+    backdrop-filter: blur(5px);
 }
 
 .sidebar {
