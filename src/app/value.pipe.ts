@@ -16,7 +16,8 @@ export class ValuePipe implements PipeTransform {
     [/%%chaos%%(.*)%%chaos%%/g, '<span class="prop-chaos">$1</span>'],
     [/%%fire%%(.*)%%fire%%/g, '<span class="prop-fire">$1</span>'],
     [/%%cold%%(.*)%%cold%%/g, '<span class="prop-cold">$1</span>'],
-    [/%%lightning%%(.*)%%lightning%%/g, '<span class="prop-lightning">$1</span>']
+    [/%%lightning%%(.*)%%lightning%%/g, '<span class="prop-lightning">$1</span>'],
+    [/%%color(#[a-fA-F0-9]{3,8})%%(.*)%%color(#[a-fA-F0-9]{3,8})?%%/g, '<span class="prop-color" style="color: $1">$2</span>'],
   ];
 
   transform(value: any, args?: any): any {
@@ -27,9 +28,11 @@ export class ValuePipe implements PipeTransform {
       return text.replace(/(\d+)/g, '<span class="prop-white">$1</span>');
     }
     else {
-      return this.replacements.reduce((acc, [regex, replacement]) => {
+      let t = this.replacements.reduce((acc, [regex, replacement]) => {
         return acc.replaceAll(regex, replacement);
       }, text as string);
+      console.log(t);
+      return this.sanitizer.bypassSecurityTrustHtml(t); // We have just sanitized the text and replaced the contents with known-safe fixed templates.
     }
   }
 
