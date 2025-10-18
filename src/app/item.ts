@@ -1,6 +1,8 @@
 import { Rarity, Influence, FoilType } from './rarity';
 import { Property, PropertyType } from './property';
 
+export type GameType = 'poe1' | 'poe2';
+
 export class Item {
     rarity: Rarity;
     influence: Influence;
@@ -14,8 +16,9 @@ export class Item {
     properties: Property[];
 
     size: string;
-
     width = 500;
+
+    game: GameType = "poe1";
 
     constructor(data: Object)
     constructor(rarity:Rarity, name:string, base:string, image:string, size: string, properties:Property[], influence?: Influence, influence2?: Influence, foilType?: FoilType, width?: number)
