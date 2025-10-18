@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { ActivatedRoute } from '@angular/router';
 
-import { Rarity, RarityThickness, Influence } from '../rarity';
 import { Item } from '../item';
-import { PropertyType } from '../property';
-import { HttpClient } from '@angular/common/http';
 import { ItemService } from '../item-service.service';
+import { ItemRendererComponent } from "../item-renderer/item-renderer.component";
+import html2canvas from "html2canvas";
 
 @Component({
   selector: 'poe-page-create-item',
@@ -16,15 +15,13 @@ export class PageCreateItemComponent implements OnInit {
   public get item(): Item {
     return this.is.item;
   }
-  get types(): PropertyType[] { return PropertyType.types }
-  get Rarity(): any { return Rarity }
-  get RarityThickness(): any { return RarityThickness }
-  get Influence(): any { return Influence }
 
   public maxWidth: number = 500;
-  
-  constructor(private route: ActivatedRoute, private http: HttpClient, public is: ItemService, private router: Router) { }
-  
+
+  @ViewChild("renderer", { static: false }) renderer?: ItemRendererComponent;
+
+  constructor(private route: ActivatedRoute, public is: ItemService) { }
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       if(params['username'] && params['gistid'] && params['fileid'] && params['filename']) {
@@ -36,6 +33,26 @@ export class PageCreateItemComponent implements OnInit {
 
   updateMaxWidth(width: number) {
     this.maxWidth = width;
+  }
+
+  async capture() {
+    console.log(this.renderer);
+    if(!this.renderer || !this.renderer.container) return;
+
+    let canvas = await html2canvas(this.renderer.container.nativeElement, {
+      backgroundColor: "#000000",
+      onclone: (document, element) => {
+        element.querySelectorAll(".itemheader html2canvaspseudoelement,.image-foil").forEach(item => {
+          item.remove();
+        });
+        element.querySelectorAll(".itemheader, .itemheader .left, .itemheader .right").forEach(item => {
+          (item as HTMLElement).style.backgroundImage = (item as HTMLElement).style.backgroundImage.replace("_foil", "");
+        });
+      }
+    });
+
+    let url = canvas.toDataURL("image/png");
+    window.open(url, "_blank");
   }
 
 }

@@ -21,6 +21,7 @@ import { map, Observable, Subscription } from "rxjs";
 export class ItemEditorComponent implements OnInit, OnDestroy {
 
   @Output() maxWidth = new EventEmitter<number>();
+  @Output() capture = new EventEmitter<void>();
 
   get types(): PropertyType[] { return PropertyType.types }
   get Rarity(): any { return Rarity }

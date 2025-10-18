@@ -6,7 +6,10 @@
         <img src="assets/ic_refresh_black_24px.svg" alt="Reset" />
       </button>
       <div style="flex-grow: 1"></div>
-      <a (click)="showImporter = !showImporter" data-tooltip="Import/Export" class="button export orb-btn orb-mirror">
+      <button class="button capture orb-btn orb-mirror" (click)="capture.emit()" data-tooltip="Capture Image">
+        <img src="assets/ic_photo_camera_black_24px.svg" alt="Capture" />
+      </button>
+      <a (click)="showImporter = !showImporter" data-tooltip="Import/Export" class="button export orb-btn orb-lock">
         <img src="assets/ic_content_paste_black_24px.svg" alt="Import" />
       </a>
       <button class="button save orb-btn orb-eternal" data-tooltip="Save to Stash" (click)="save()" id="save-btn">
