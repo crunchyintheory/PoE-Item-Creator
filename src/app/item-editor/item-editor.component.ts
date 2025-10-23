@@ -83,6 +83,7 @@ export class ItemEditorComponent implements OnInit, OnDestroy {
   }
 
   updateMaxWidth() {
+    this.item.width = this.maxWidthInput;
     this.maxWidth.emit(this.maxWidthInput);
   }
 

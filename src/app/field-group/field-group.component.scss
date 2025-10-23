@@ -7,7 +7,7 @@
     column-gap: 3px;
     grid-template-columns: 1fr 1fr 1fr;
     margin-top: 3px;
-    
+
     .value {
         grid-column: 2/4;
     }
@@ -33,7 +33,7 @@
     .value,
     .value2 {
         input {
-            min-width: 0px;
+            min-width: 0;
         }
         grid-row: 1/2;
     }
@@ -89,8 +89,7 @@ input[readonly] {
     color: #999;
     border: 5px solid;
     border-color: #999 #0000 #0000;
-    border-bottom-width: 0px;
-    border-width: 5px 5px 0;
+    border-bottom-width: 0;
     right: 8px;
     transition: transform 0.2s;
 }
@@ -117,22 +116,30 @@ input[readonly] {
     overflow-y: scroll;
     ul {
         list-style-type: none;
-        padding: 0; 
+        padding: 0;
         margin: 0;
     }
     li {
-        background-color: #1e2124;
         line-height: 18px;
-        color: $primary;
         padding: 6px 12px;
         cursor: default;
 
-        &.selected {
-            background-color: #2d3136
+        &.heading {
+            background-color: darken(#1e2124, 1);
+            color: lighten($secondary, 20%);
         }
 
-        &:hover {
-            background-color: #465260;
+        &.choice {
+            color: $primary;
+            background-color: #1e2124;
+
+            &.selected {
+                background-color: #2d3136
+            }
+
+            &:hover {
+                background-color: #465260;
+            }
         }
     }
 }

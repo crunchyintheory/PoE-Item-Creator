@@ -1,12 +1,12 @@
-import { Item } from "./item";
+import { Item, SerializedItem } from "./item";
 import { Property, PropertyType } from "./property";
 import { FoilType, Influence, Rarity } from "./rarity";
 
-const reducer = (accumulator: Map<string, Item>, currentValue: Item) => {
+const reducer = (accumulator: Map<string, SerializedItem|Item>, currentValue: SerializedItem|Item) => {
     return accumulator.set(`${currentValue.name}, ${currentValue.base}`, currentValue);
 }
 
-export const Templates = [
+export const Templates: Map<string, Item|SerializedItem> = [
     new Item(
         Rarity.Unique,
         'Starforge',
@@ -675,7 +675,8 @@ export const Templates = [
         undefined,
         undefined,
         700
-    )
+    ),
+    {"rarity":"gem","name":"","base":"Cyclone","image":"assets/items/VaalCyclone.png","properties":[{"type":"desc","name":"","value":"Attack, AoE, Duration, Vaal, Melee, Movement, Channelling"},{"type":"quant","name":"Level","value":"1"},{"type":"quant","name":"Cost","value":"2 Mana"},{"type":"quant","name":"Attack Speed","value":"300% of base"},{"type":"quant","name":"Attack Damage","value":"68.2% of base"},{"type":"quant","name":"Effectiveness of Added Damage","value":"69%"},{"type":"sep","name":"","value":""},{"type":"statreq","name":"","value":"Requires Level 28, 29 Str, 42 Dex"},{"type":"sep","name":"","value":""},{"type":"flavor","name":"","value":"Channel this skill to move towards a targeted location while spinning constantly attacking enemies in an area around you. While channelling this skill, you cannot be knocked back."},{"type":"sep","name":"","value":""},{"type":"qual","name":"","value":"15% increased Area of Effect per 0.1 metre additional Melee Strike Range"},{"type":"qual","name":"","value":"30% less Movement Speed"},{"type":"sep","name":"","value":""},{"type":"header gem vaal","name":"","value":"Vaal Cyclone"},{"type":"sep","name":"","value":""},{"type":"quant","name":"Souls Per Use","value":"25"},{"type":"statreq","name":"","value":"Can Store 1 Use"},{"type":"quant","name":"Soul Gain Prevention","value":"5 sec"},{"type":"quant","name":"Attack Speed","value":"300% of base"},{"type":"quant","name":"Attack Damage","value":"108.1% of base"},{"type":"quant","name":"Effectiveness of Added Damage","value":"108%"},{"type":"flavor","name":"","value":"Spin and attack in place, damaging nearby enemies and pulling others towards you. While using this skill, you cannot be stunned or knocked back. Cannot be supported by Ruthless."},{"type":"qual","name":"","value":"Base duration is 5.00 seconds"},{"type":"qual","name":"","value":"Modifiers to Skill Effect Duration also apply to this Skill's Soul Gain Prevention"},{"type":"qual","name":"","value":"15% increased Area of Effect per 0.1 metre additional Melee Strike Range"},{"type":"qual","name":"","value":"Can't be Evaded"},{"type":"sep","name":"","value":""},{"type":"vaal","name":"","value":"Corrupted"}],"influences":["None","None"],"foilType":"None","width":1200,"size":"x2x3"}
 ].reduce(reducer, new Map<string, Item>());
 
 // noinspection UnnecessaryLocalVariableJS

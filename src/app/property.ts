@@ -67,7 +67,7 @@ export class PropertyType implements ISerializable {
     }
 
     static readonly FlavorU: PropertyType = {
-        name: 'Unique Flavor Text',
+        name: 'Flavor Text',
         className: 'flavor',
         nameRenderClass: null,
         valueRenderClass: 'unique-flavor',
@@ -132,10 +132,26 @@ export class PropertyType implements ISerializable {
 
     static readonly MemoryStrands: PropertyType = {
         name: 'Memory Strands',
-        className: 'memory',
+        className: 'header memory',
         nameRenderClass: 'prop-crafted',
         valueRenderClass: 'prop-white',
         fields: 2
+    }
+
+    static readonly GemHeader: PropertyType = {
+        name: 'Gem Header',
+        className: 'header gem',
+        nameRenderClass: 'prop-gem',
+        valueRenderClass: 'prop-gem',
+        fields: 1
+    }
+
+    static readonly VaalGemHeader: PropertyType = {
+        name: 'Vaal Gem Header',
+        className: 'header gem vaal',
+        nameRenderClass: 'prop-gem',
+        valueRenderClass: 'prop-gem',
+        fields: 1
     }
 
     static readonly types: PropertyType[] = [
@@ -152,5 +168,31 @@ export class PropertyType implements ISerializable {
         PropertyType.Crucible,
         PropertyType.Fractured,
         PropertyType.MemoryStrands,
+        PropertyType.GemHeader,
+        PropertyType.VaalGemHeader,
     ]
+
+    static readonly sortedTypes: { [key: string]: PropertyType[] } = {
+        "Base": [
+            PropertyType.ItemType,
+            PropertyType.Stat,
+            PropertyType.StatAug,
+            PropertyType.StatReq
+        ],
+        "Mods": [
+            PropertyType.Affix,
+            PropertyType.Crafted,
+            PropertyType.Fractured,
+            PropertyType.Crucible
+        ],
+        "Other": [
+            PropertyType.Separator,
+            PropertyType.FlavorU,
+            PropertyType.FlavorG,
+            PropertyType.Corrupted,
+            PropertyType.MemoryStrands,
+            PropertyType.GemHeader,
+            PropertyType.VaalGemHeader,
+        ]
+    }
 }
