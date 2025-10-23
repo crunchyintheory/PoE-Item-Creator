@@ -1,6 +1,4 @@
-import { Component, EventEmitter, HostBinding, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { NgModel } from '@angular/forms';
-import { ItemService } from '../item-service.service';
+import { Component, EventEmitter, HostBinding, Input, OnChanges, Output } from '@angular/core';
 import { ISerializable } from '../serializable';
 
 type Serializable = ISerializable | string | number;
@@ -18,9 +16,9 @@ export class FieldGroupComponent implements OnChanges {
   @Input("value2") value2Input?: any;
   @Input() labelEditable = false;
 
-  @Input() labelChoices?: any[];
-  @Input() valueChoices?: any[];
-  @Input() value2Choices?: any[];
+  @Input() labelChoices?: Serializable[]|{ [key:string]: Serializable[] };
+  @Input() valueChoices?: Serializable[]|{ [key:string]: Serializable[] };
+  @Input() value2Choices?: Serializable[]|{ [key:string]: Serializable[] };
 
   @Input() @HostBinding('attr.hide') hide: "value" | "value2" = "value2";
 
@@ -34,7 +32,7 @@ export class FieldGroupComponent implements OnChanges {
 
   protected choicesShown = false;
   protected choicesShownName = "";
-  protected currentChoices: Serializable[] = [];
+  protected currentChoices: [string, Serializable[]][] = [];
   protected current?: Serializable;
   protected currentCallback: (event: any) => void = () => {};
 
@@ -104,7 +102,13 @@ export class FieldGroupComponent implements OnChanges {
   protected focusLabel(focus = true) {
     if(this.labelChoices) {
       this.choicesShown = focus && !this.choicesShown;
-      this.currentChoices = this.labelChoices;
+      if(Array.isArray(this.labelChoices)) {
+        this.currentChoices = [["", this.labelChoices]];
+      }
+      else {
+        this.currentChoices = Object.entries(this.labelChoices);
+      }
+      console.log(this.currentChoices);
       this.current = this.label;
       this.currentCallback = this.labelChanged;
       this.choicesShownName = this.choicesShown ? "label" : "";
@@ -114,7 +118,12 @@ export class FieldGroupComponent implements OnChanges {
   protected focusValue(focus = true) {
     if(this.valueChoices) {
       this.choicesShown = focus && !this.choicesShown;
-      this.currentChoices = this.valueChoices;
+      if(Array.isArray(this.valueChoices)) {
+        this.currentChoices = [["", this.valueChoices]];
+      }
+      else {
+        this.currentChoices = Object.entries(this.valueChoices);
+      }
       this.current = this.value;
       this.currentCallback = this.valueChanged;
       this.choicesShownName = this.choicesShown ? "value" : "";
@@ -124,7 +133,12 @@ export class FieldGroupComponent implements OnChanges {
   protected focusValue2(focus = true) {
     if(this.value2Choices) {
       this.choicesShown = focus && !this.choicesShown;
-      this.currentChoices = this.value2Choices;
+      if(Array.isArray(this.value2Choices)) {
+        this.currentChoices = [["", this.value2Choices]];
+      }
+      else {
+        this.currentChoices = Object.entries(this.value2Choices);
+      }
       this.current = this.value2;
       this.currentCallback = this.value2Changed;
       this.choicesShownName = this.choicesShown ? "value2" : "";

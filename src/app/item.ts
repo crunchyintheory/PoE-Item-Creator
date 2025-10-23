@@ -53,7 +53,7 @@ export class Item {
             this.properties.indexOf(property) + 1,
             0,
             new Property(
-                PropertyType.Separator,
+                property.type,
                 '',
                 ''
             )

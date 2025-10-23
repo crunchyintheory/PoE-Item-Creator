@@ -33,26 +33,39 @@
     line-height: 32px;
     margin-top: 4px;
 
-    &.memory {
+    &.header {
         height: 65px;
         vertical-align: middle;
-        background-image: url(/assets/memory-title.png);
         line-height: 65px;
         background-size: contain;
         background-repeat: no-repeat;
-        background-position: center -5px;
+        background-position: center;
         margin-top: 0;
 
-        &::after {
-            display: inline-block;
-            content: " ";
-            background-image: url("/assets/memory-icon.png");
-            width: 66.66px;
-            height: 60px;
-            vertical-align: middle;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center center;
+        &.gem {
+            background-image: url('/assets/hybrid-title.png');
+            font-size: 30px;
+
+            &.vaal {
+                background-image: url('/assets/vaal-title.png');
+            }
+        }
+
+        &.memory {
+            background-image: url(/assets/memory-title.png);
+            background-position: center -5px;
+
+            &::after {
+                display: inline-block;
+                content: " ";
+                background-image: url("/assets/memory-icon.png");
+                width: 66.66px;
+                height: 60px;
+                vertical-align: middle;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
         }
     }
 

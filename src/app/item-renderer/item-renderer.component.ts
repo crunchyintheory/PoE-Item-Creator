@@ -17,7 +17,7 @@ export class ItemRendererComponent implements OnInit {
   get Influence(): any { return Influence }
   get FoilType(): any { return FoilType }
 
-  @Input() item: Item = Templates.get("Tabula Rasa")!;
+  @Input() item: Item = Templates.get("Tabula Rasa")! as Item;
   @Input() showBody: boolean = true;
   @Input() border: boolean = false;
   @Input() maxWidth: number = 500;

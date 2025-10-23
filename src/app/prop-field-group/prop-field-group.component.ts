@@ -9,7 +9,7 @@ import { ItemService } from '../item-service.service';
   styleUrls: ['./prop-field-group.component.scss']
 })
 export class PropFieldGroupComponent implements OnInit {
-  get types(): PropertyType[] { return PropertyType.types }
+  get types(): { [key: string]: PropertyType[] } { return PropertyType.sortedTypes; }
   public get item(): Item {
     return this.is.item;
   }

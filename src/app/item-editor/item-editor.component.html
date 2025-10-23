@@ -18,7 +18,7 @@
     </div>
     <br/>
     <div *ngIf="editingItem !== false" class="uid" style="font-size: 1.1em">
-      <span>Currently Editing: <a routerLink="/stash" style="color: inherit"><strong>{{ this.editingItem ? this.editingItem.name : "" }} {{ this.editingItem ? this.editingItem.base : "" }}</strong></a></span>
+      <span>Currently Editing: <a routerLink="/stash" style="color: inherit"><strong>{{ (this.editingItem && this.editingItem.rarity.thickness === RarityThickness.TwoLine) ? this.editingItem.name : "" }} {{ this.editingItem ? this.editingItem.base : "" }}</strong></a></span>
       <span class="prop-gray" *ngIf="this.stash.showUids">&nbsp;({{ this.editingItem ? $any(this.editingItem).uid : "" }})</span>
     </div>
   </div>
@@ -26,7 +26,7 @@
     <div class="header">Item Base</div>
     <poe-field-group label="Type/Rarity" [(value)]="item.rarity" [valueChoices]="Rarity.rarities"></poe-field-group>
     <poe-field-group label="Name/Base Type" [(value)]="item.name" [(value2)]="item.base" [fields]="item.rarity.thickness === RarityThickness.TwoLine ? 2 : 1" hide="value"></poe-field-group>
-    <poe-field-group label="Influence" [(value)]="item.influence" [(value2)]="item.influence2" [fields]="2" [valueChoices]="Influence.influences" [value2Choices]="Influence.influences"></poe-field-group>
+    <poe-field-group label="Influence" [(value)]="item.influence" [(value2)]="item.influence2" [fields]="2" [valueChoices]="Influence.sortedInfluences" [value2Choices]="Influence.sortedInfluences"></poe-field-group>
     <poe-field-group label="Foil Variant" [(value)]="item.foilType" [valueChoices]="FoilType.types"></poe-field-group>
   </span>
   <br/>

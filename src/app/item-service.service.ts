@@ -15,7 +15,12 @@ export class ItemService {
 
   constructor(private http: HttpClient) {
     let item = Array.from(Templates.values())[Math.floor(Math.random() * Templates.size)];
-    this.item = StashedItem.From(item);
+    if(typeof item.rarity === "string") {
+      this.item = StashedItem.From(this.parse(item as SerializedItem));
+    }
+    else {
+      this.item = StashedItem.From(item as Item);
+    }
     this.itemImported = new BehaviorSubject<true>(true);
     this.itemImported.next(true);
   }
@@ -23,7 +28,13 @@ export class ItemService {
   async reset(): Promise<Item> {
     // My desperate plea for a proper deep copy method in this accursed language.
     let template = Templates.get('Tabula Rasa, Simple Robe')!;
-    let item = this.parse(this.export(template));
+    let item;
+    if(typeof template.rarity === "string") {
+      item = this.parse(template as SerializedItem);
+    }
+    else {
+      item = this.parse(this.export(template as Item));
+    }
     this.item = StashedItem.From(item, true);
 
     if (this.item.properties.length == 0 && Math.random() > 0.9) {

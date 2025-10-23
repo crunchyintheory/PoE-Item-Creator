@@ -110,7 +110,7 @@ export class Rarity implements ISerializable {
         Rarity.Notable,
         Rarity.Keystone,
         Rarity.JewelSocket
-    ]
+    ];
 }
 
 export class Influence implements ISerializable {
@@ -199,7 +199,33 @@ export class Influence implements ISerializable {
         Influence.Eater,
         Influence.Exarch,
         Influence.Originator
-    ]
+    ];
+
+    static readonly sortedInfluences: { [key: string]: Influence[] } = {
+        "": [
+            Influence.None,
+        ],
+        "Atlas": [
+            Influence.Shaper,
+            Influence.Elder,
+        ],
+        "Conquerors": [
+            Influence.Crusader,
+            Influence.Hunter,
+            Influence.Redeemer,
+            Influence.Warlord,
+        ],
+        "Eldritch": [
+            Influence.Eater,
+            Influence.Exarch,
+        ],
+        "Other": [
+            Influence.Fractured,
+            Influence.Synthesised,
+            Influence.Replica,
+            Influence.Originator
+        ]
+    }
 }
 
 export class FoilType {

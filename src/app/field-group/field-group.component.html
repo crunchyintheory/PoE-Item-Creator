@@ -12,8 +12,11 @@
 </div>
 <div class="choices" *ngIf='choicesShown' [ngStyle]="{display: choicesShown ? 'block' : 'none'}">
     <ul>
-        <li *ngFor="let choice of currentChoices" [ngStyle]="{color: getDisplayColor(choice)}" [attr.dataValue]="getName(choice)" [ngClass]="{selected: render(choice) == current}" (mousedown)="currentCallback(choice)">
+        <div *ngFor="let group of currentChoices">
+          <li class="heading" *ngIf="group[0] !== ''">{{ group[0] }}</li>
+          <li *ngFor="let choice of group[1]" class="choice" [ngStyle]="{color: getDisplayColor(choice)}" [attr.dataValue]="getName(choice)" [ngClass]="{selected: render(choice) == current}" (mousedown)="currentCallback(choice)">
             <img height="13" *ngIf='getDisplayImage(choice)' [src]='getDisplayImage(choice)'/>&nbsp;{{ render(choice) }}
-        </li>
+          </li>
+        </div>
     </ul>
 </div>
