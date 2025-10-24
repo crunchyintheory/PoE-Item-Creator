@@ -99,8 +99,9 @@ export class FieldGroupComponent implements OnChanges {
     this.value2Change.emit(event);
   }
 
-  protected focusLabel(focus = true) {
+  protected focusLabel(event: Event, focus = true) {
     if(this.labelChoices) {
+      event.preventDefault();
       this.choicesShown = focus && !this.choicesShown;
       if(Array.isArray(this.labelChoices)) {
         this.currentChoices = [["", this.labelChoices]];
@@ -115,8 +116,9 @@ export class FieldGroupComponent implements OnChanges {
     }
   }
 
-  protected focusValue(focus = true) {
+  protected focusValue(event: Event, focus = true) {
     if(this.valueChoices) {
+      event.preventDefault();
       this.choicesShown = focus && !this.choicesShown;
       if(Array.isArray(this.valueChoices)) {
         this.currentChoices = [["", this.valueChoices]];
@@ -130,8 +132,9 @@ export class FieldGroupComponent implements OnChanges {
     }
   }
 
-  protected focusValue2(focus = true) {
+  protected focusValue2(event: Event, focus = true) {
     if(this.value2Choices) {
+      event.preventDefault();
       this.choicesShown = focus && !this.choicesShown;
       if(Array.isArray(this.value2Choices)) {
         this.currentChoices = [["", this.value2Choices]];
