@@ -154,6 +154,13 @@ export class PropertyType implements ISerializable {
         fields: 1
     }
 
+    static readonly Foulborn: PropertyType = {
+        name: 'Foulborn Mod',
+        className: 'foulborn',
+        valueRenderClass: 'prop-foulborn',
+        fields: 1
+    }
+
     static readonly types: PropertyType[] = [
         PropertyType.ItemType,
         PropertyType.Affix,
@@ -170,6 +177,7 @@ export class PropertyType implements ISerializable {
         PropertyType.MemoryStrands,
         PropertyType.GemHeader,
         PropertyType.VaalGemHeader,
+        PropertyType.Foulborn,
     ]
 
     static readonly sortedTypes: { [key: string]: PropertyType[] } = {
@@ -183,7 +191,8 @@ export class PropertyType implements ISerializable {
             PropertyType.Affix,
             PropertyType.Crafted,
             PropertyType.Fractured,
-            PropertyType.Crucible
+            PropertyType.Crucible,
+            PropertyType.Foulborn,
         ],
         "Other": [
             PropertyType.Separator,
@@ -192,7 +201,7 @@ export class PropertyType implements ISerializable {
             PropertyType.Corrupted,
             PropertyType.MemoryStrands,
             PropertyType.GemHeader,
-            PropertyType.VaalGemHeader,
+            PropertyType.VaalGemHeader
         ]
     }
 }

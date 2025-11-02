@@ -30,6 +30,7 @@ export class PageHelpComponent implements OnInit {
     ["crucible", "Crucible"],
     ["crafted", "Crafted"],
     ["fractured", "Fractured"],
+    ["foulborn", "Foulborn"],
     ["color#b83fdc", "Custom Hex Colors"]
   ];
 

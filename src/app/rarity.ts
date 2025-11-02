@@ -185,6 +185,8 @@ export class Influence implements ISerializable {
 
     static readonly Originator = new Influence("Originator");
 
+    static readonly Foulborn = new Influence("Foulborn");
+
     static readonly influences: Influence[] = [
         Influence.None,
         Influence.Shaper,
@@ -198,7 +200,8 @@ export class Influence implements ISerializable {
         Influence.Replica,
         Influence.Eater,
         Influence.Exarch,
-        Influence.Originator
+        Influence.Originator,
+        Influence.Foulborn
     ];
 
     static readonly sortedInfluences: { [key: string]: Influence[] } = {
@@ -223,7 +226,8 @@ export class Influence implements ISerializable {
             Influence.Fractured,
             Influence.Synthesised,
             Influence.Replica,
-            Influence.Originator
+            Influence.Originator,
+            Influence.Foulborn
         ]
     }
 }
