@@ -14,7 +14,7 @@ export class ValuePipe implements PipeTransform {
     [/%%g%%(.*)%%g%%/g, '<span class="prop-gray">$1</span>'],
     [/%%w%%(.*)%%w%%/g, '<span class="prop-white">$1</span>'],
     [/%%b%%(.*)%%b%%/g, '<span class="prop-blue">$1</span>'],
-    [/%%(?<tag>chaos|fire|cold|lightning|crafted|crucible|fractured)%%(.*)%%\k<tag>%%/g, '<span class="prop-$1">$2</span>'],
+    [/%%(?<tag>chaos|fire|cold|lightning|crafted|crucible|fractured|foulborn)%%(.*)%%\k<tag>%%/g, '<span class="prop-$1">$2</span>'],
     [/%%(?<tag>i|em|strong)%%(.*)%%\k<tag>%%/g, '<$1>$2</$1>'],
     [/%%u%%(.*)%%u%%/g, '<span style="text-decoration: underline">$1</span>'],
     [/%%bold%%(.*)%%bold%%/g, '<strong>$1</strong>'],
