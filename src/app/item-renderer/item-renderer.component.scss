@@ -318,6 +318,7 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
     }
     .unique-flavor {
         color: $gem;
+        font-style: normal;
         display: flex;
         flex-direction: column;
     }
