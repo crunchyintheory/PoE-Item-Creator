@@ -1,10 +1,13 @@
-# PoeItemCreator
+# PoE Item Creator
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+## What is this?
+This tool allows anyone to create custom item concepts and modifications to showcase their Path of Exile ideas. It was created in 2018 with a focus on visual accuracy and feature-completeness. The source code is available on GitHub here.
+
+This is a community project maintained by a single developer and is not endorsed by or affiliated with Grinding Gear Games or any official parties. All images and visual elements used on this website are the sole property of Grinding Gear Games. 
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `make start` or `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -12,15 +15,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Run `make build` or `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Further help
 
