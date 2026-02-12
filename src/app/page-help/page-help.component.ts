@@ -50,7 +50,8 @@ export class PageHelpComponent implements OnInit {
   constructor(public is: ItemService, public router: Router, private title: Title) {
 
     this.formats = this.customFormats.map(x => typeof x === "string" ? [x.toLowerCase(), x] : x) as [string, string][];
-    this.formats.push(["color#b83fdc", "Custom Hex Colors"] as [string, string]);
+    let randomHex = Math.floor((Math.random() * (16**6))).toString(16).padStart(6, "0");
+    this.formats.push([`color#${randomHex}`, "Custom Hex Colors!"] as [string, string]);
 
     let properties = this.formats.map(format => {
       return new Property(
