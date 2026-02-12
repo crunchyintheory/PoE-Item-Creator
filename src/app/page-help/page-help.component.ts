@@ -14,7 +14,7 @@ import { Title } from "@angular/platform-browser";
 })
 export class PageHelpComponent implements OnInit {
 
-  formats = [
+  customFormats = [
     ["i", "Italics"],
     ["em", "Italics"],
     ["strong", "Bold"],
@@ -23,22 +23,35 @@ export class PageHelpComponent implements OnInit {
     ["g", "Gray"],
     ["w", "White"],
     ["b", "Blue"],
-    ["fire", "Fire"],
-    ["cold", "Cold"],
-    ["lightning", "Lightning"],
-    ["chaos", "Chaos"],
-    ["crucible", "Crucible"],
-    ["crafted", "Crafted"],
-    ["fractured", "Fractured"],
-    ["foulborn", "Foulborn"],
-    ["color#b83fdc", "Custom Hex Colors"]
+    "Fire",
+    "Cold",
+    "Lightning",
+    "Chaos",
+    "Crucible",
+    "Crafted",
+    "Fractured",
+    "Foulborn",
+    "Normal",
+    "Magic",
+    "Rare",
+    "Unique",
+    "Currency",
+    "Gem",
+    "Prophecy",
+    "Passive"
   ];
+
+  formats: [string, string][];
 
   formatsItem: Item;
 
   stashAlert: Alert;
 
   constructor(public is: ItemService, public router: Router, private title: Title) {
+
+    this.formats = this.customFormats.map(x => typeof x === "string" ? [x.toLowerCase(), x] : x) as [string, string][];
+    this.formats.push(["color#b83fdc", "Custom Hex Colors"] as [string, string]);
+
     let properties = this.formats.map(format => {
       return new Property(
         PropertyType.Affix,
@@ -64,9 +77,9 @@ export class PageHelpComponent implements OnInit {
 
   }
 
-  import(item: Item) {
-    this.is.import(this.is.export(item));
-    this.router.navigate(["/create"]);
+  async import(item: Item) {
+    await this.is.import(this.is.export(item));
+    await this.router.navigate(["/create"]);
   }
 
 }
