@@ -19,18 +19,21 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    container: node:16.17
+    container: node:24
     steps:
       - name: Checkout
         uses: actions/checkout@v7
         with:
           lfs: true
       - name: Checkout LFS objects
-        run: git lfs checkout
+        run: |
+          apt update
+          apt install git-lfs
+          git lfs checkout
       - name: Install Dependences
         uses: actions/setup-node@v3
         with:
-          node-version: 16.17
+          node-version: 24
           cache: 'npm'
       - run: npm ci
       - run: npm run build
