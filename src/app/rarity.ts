@@ -186,13 +186,15 @@ export class Influence implements ISerializable {
 
     static readonly Replica = new Influence("Replica");
 
-    static readonly Eater = new Influence("Eater of Worlds", "assets/symbol_eater.png");
+    static readonly Eater = new Influence("Eater of Worlds", "/assets/symbol_eater.png");
 
-    static readonly Exarch = new Influence("Searing Exarch", "assets/symbol_searing.png");
+    static readonly Exarch = new Influence("Searing Exarch", "/assets/symbol_searing.png");
 
     static readonly Originator = new Influence("Originator");
 
     static readonly Foulborn = new Influence("Foulborn");
+
+    static readonly Desecrated = new Influence("Desecrated (Abyssal)", "/assets/symbol_desecrated.png");
 
     static readonly influences: Influence[] = [
         Influence.None,
@@ -208,7 +210,8 @@ export class Influence implements ISerializable {
         Influence.Eater,
         Influence.Exarch,
         Influence.Originator,
-        Influence.Foulborn
+        Influence.Foulborn,
+        Influence.Desecrated
     ];
 
     static readonly sortedInfluences: { [key: string]: Influence[] } = {
@@ -234,7 +237,8 @@ export class Influence implements ISerializable {
             Influence.Synthesised,
             Influence.Replica,
             Influence.Originator,
-            Influence.Foulborn
+            Influence.Foulborn,
+            Influence.Desecrated
         ]
     }
 }

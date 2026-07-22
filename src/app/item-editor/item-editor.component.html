@@ -60,8 +60,9 @@
   </span>
   <div class="header">Item Affixes</div>
   <ul id="properties" class="properties">
-    <li *ngFor='let property of item.properties;let index = index;' [class]="'prop-' + property.type.className">
-      <poe-prop-field-group [property]="property" [index]="index"></poe-prop-field-group>
+    <li *ngFor='let property of item.properties;let index = index;' [class]="'prop-' + property.type.className" [ngSwitch]="property.type.className">
+      <poe-prop-field-group-veiled *ngSwitchCase="PropertyType.Veiled.className" [property]="property" [index]="index"></poe-prop-field-group-veiled>
+      <poe-prop-field-group *ngSwitchDefault [property]="property" [index]="index"></poe-prop-field-group>
     </li>
     <button (click)="item.appendProperty()" class="add-after add-first-prop orb-btn orb-exalt" *ngIf='item.properties.length === 0'>
       <img src="assets/ic_add_black_24px.svg" alt="+" />

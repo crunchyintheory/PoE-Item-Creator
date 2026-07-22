@@ -21,8 +21,6 @@ export class ItemRendererComponent implements OnInit {
 
   @ViewChild("container", { static: false }) public container?: ElementRef;
 
-  protected gameType : 'poe1' | 'poe2' = 'poe1';
-
   ngOnInit(): void {
   }
 

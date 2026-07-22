@@ -1,0 +1,55 @@
+.property.veiled {
+    height:18px;
+    padding:0;
+    white-space: nowrap;
+    user-select: auto;
+    margin: 14px 0 10px 50%;
+    transform: translateX(-50%) scale(1.5);
+
+    &.prefix {
+        width:158px;
+    }
+    &.suffix {
+        width:85px;
+    }
+}
+
+.poe2 .property.veiled {
+    height: 29px;
+    will-change: background-position;
+    background: #0000 center/auto 100%;
+    animation: animate-veiled-mod 2.6s steps(39) reverse infinite;
+}
+
+@each $size in ("prefix", "suffix") {
+    @for $i from 1 through 6 {
+        $fname: "#{$size}_0#{$i}.png";
+        .property.veiled.#{$size}-#{$i} {
+            background-image: url("/assets/veiled/#{$fname}");
+        }
+        .poe2 .property.veiled.#{$size}-#{$i} {
+            background-image: url("/assets/veiled/poe2/#{$fname}");
+
+            @if $i < 4 {
+                background-position: -12480px;
+                width: 160px;
+            }
+            @else {
+                background-position: -18720px;
+                width:240px;
+            }
+        }
+    }
+}
+
+@keyframes animate-veiled-mod {
+    to {
+        background-position:0
+    }
+}
+
+.property.desecrated {
+    border-image-source: url(/assets/border_desecrated.webp);
+    border-image-slice: 10 140 10 140 fill;
+    border-image-width: auto 140px;
+}
