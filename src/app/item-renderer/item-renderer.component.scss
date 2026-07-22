@@ -1,6 +1,6 @@
 @use "sass:map";
-@import '../../styles/colors.scss';
-@import './veiled-mods.scss';
+@import "../../styles/colors.scss";
+@import "./veiled-mods.scss";
 
 .item {
     background-color: $black;
@@ -45,11 +45,11 @@
         margin-top: 0;
 
         &.gem {
-            background-image: url('/assets/hybrid-title.png');
+            background-image: url("/assets/hybrid-title.png");
             font-size: 30px;
 
             &.vaal {
-                background-image: url('/assets/vaal-title.png');
+                background-image: url("/assets/vaal-title.png");
             }
         }
 
@@ -163,7 +163,7 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
     &:not(.foil-none) {
         &::after {
             @extend %foil;
-            content: ' ';
+            content: " ";
             position: absolute;
             top: 0;
             bottom: 0;
@@ -371,21 +371,29 @@ $poe2-rarities: (
     }
 }
 
-.poe2.gem .itemheader {
-    @extend .thicksingle;
-    $path: "/assets/headers/poe2/" +  map.get($poe2-rarities, "gem");
-    background-image: linear-gradient(to right, #ffffff 0%, #aaaaaa 30%, #000000 60%), url($path);
-    background-blend-mode: multiply;
-    .right {
-        background-image: none;
-
-        .influence-symbol {
-            display: none;
-        }
+.poe2 {
+    .itemheader .itemheader-name {
+        font-size: 28px;
+        line-height: 29px;
     }
 
-    .itemheader-name {
-        text-align: start;
+    &.gem .itemheader {
+        @extend .thicksingle;
+        $path: "/assets/headers/poe2/" +  map.get($poe2-rarities, "gem");
+        background-image: linear-gradient(to right, #ffffff 0%, #aaaaaa 30%, #000000 60%), url($path);
+        background-blend-mode: multiply;
+
+        .right {
+            background-image: none;
+
+            .influence-symbol {
+                display: none;
+            }
+        }
+
+        .itemheader-name {
+            text-align: start;
+        }
     }
 }
 
