@@ -11,6 +11,7 @@ import { ItemService } from '../item-service.service';
 import { Rarity, RarityThickness, Influence, FoilType } from '../rarity';
 import { StashService } from '../stash.service';
 import { map, Observable, Subscription } from "rxjs";
+import { PropertyType } from "../property";
 
 @Component({
   selector: 'poe-item-editor',
@@ -85,4 +86,5 @@ export class ItemEditorComponent implements OnInit, OnDestroy {
     this.maxWidth.emit(this.maxWidthInput);
   }
 
+    protected readonly PropertyType = PropertyType;
 }

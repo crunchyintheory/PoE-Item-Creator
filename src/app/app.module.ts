@@ -22,6 +22,7 @@ import { AlertHandlerComponent, ToastContainerDirective } from './alert-handler/
 import { PageHelpComponent } from './page-help/page-help.component';
 import { SectionHeaderDirective } from './section-header.directive';
 import { Poe2SwitcherComponent } from './poe2-switcher/poe2-switcher.component';
+import { PropFieldGroupVeiledComponent } from "./prop-field-group-veiled/prop-field-group-veiled.component";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { Poe2SwitcherComponent } from './poe2-switcher/poe2-switcher.component';
     ToastContainerDirective,
     PageHelpComponent,
     SectionHeaderDirective,
-    Poe2SwitcherComponent
+    Poe2SwitcherComponent,
+    PropFieldGroupVeiledComponent
   ],
   imports: [
     BrowserModule,

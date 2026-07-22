@@ -11,9 +11,9 @@
     </span>
   </div>
   <div class="itembody" id="itembody" *ngIf="showBody">
-    <div *ngFor="let property of item.properties; let index = index;" [class]="(item.properties[index].type.className === 'sep' ? '' : 'property ') + item.properties[index].type.className">
-      <span [class]="'prop-name ' + property.type.nameRenderClass" *ngIf="property.type.fields === 2">{{item.properties[index].name}}</span>
-      <span [class]="'prop-val ' + property.type.valueRenderClass" *ngIf="property.type.fields > 0" [innerHTML]="item.properties[index] | value"></span>
+    <div *ngFor="let property of item.properties; let index = index;" [class]="(property.type.className === 'sep' ? '' : 'property ') + property.type.className + ' ' + property.extraClassName">
+      <span [class]="'prop-name ' + property.type.nameRenderClass" *ngIf="property.type.fields === 2">{{ property.name }}</span>
+      <span [class]="'prop-val ' + property.type.valueRenderClass" *ngIf="property.type.fields > 0" [innerHTML]="property | value"></span>
     </div>
   </div>
   <div class="itemimg" *ngIf="item.image">

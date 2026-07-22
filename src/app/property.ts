@@ -4,11 +4,13 @@ export class Property {
     type: PropertyType;
     name: string;
     value: string;
+    extraClassName?: string;
 
     constructor(type: PropertyType, name: string, value: string) {
         this.type = type;
         this.name = name;
         this.value = value;
+        this.extraClassName = "";
     }
 }
 
@@ -18,6 +20,7 @@ export class PropertyType implements ISerializable {
     readonly nameRenderClass?: string | null;
     readonly valueRenderClass?: string | null;
     readonly fields: number = 0;
+    readonly displayImage?: string;
 
     public constructor(data: Object)
     public constructor(name: string, className: string, nameRenderClass: string | null, valueRenderClass: string | null, fields: number)
@@ -33,6 +36,8 @@ export class PropertyType implements ISerializable {
             this.fields = fields!;
         }
     }
+
+    private static poe2logo = "/assets/poe2.png";
 
     static readonly ItemType: PropertyType = {
         name: 'Item Type',
@@ -130,6 +135,15 @@ export class PropertyType implements ISerializable {
         fields: 1
     }
 
+    static readonly Sanctified: PropertyType = {
+        name: 'Sanctified',
+        className: 'sanctified',
+        nameRenderClass: null,
+        valueRenderClass: 'prop-sanctified',
+        fields: 1,
+        displayImage: PropertyType.poe2logo
+    }
+
     static readonly MemoryStrands: PropertyType = {
         name: 'Memory Strands',
         className: 'header memory',
@@ -161,6 +175,21 @@ export class PropertyType implements ISerializable {
         fields: 1
     }
 
+    static readonly Desecrated: PropertyType = {
+        name: 'Desecrated Mod',
+        className: 'desecrated',
+        valueRenderClass: 'prop-desecrated prop-blue prop-val',
+        fields: 1,
+        displayImage: PropertyType.poe2logo
+    }
+
+    static readonly Veiled: PropertyType = {
+        name: 'Veiled',
+        className: 'veiled',
+        valueRenderClass: 'prop-veiled',
+        fields: 1
+    }
+
     static readonly types: PropertyType[] = [
         PropertyType.ItemType,
         PropertyType.Affix,
@@ -178,6 +207,8 @@ export class PropertyType implements ISerializable {
         PropertyType.GemHeader,
         PropertyType.VaalGemHeader,
         PropertyType.Foulborn,
+        PropertyType.Desecrated,
+        PropertyType.Veiled
     ]
 
     static readonly sortedTypes: { [key: string]: PropertyType[] } = {
@@ -193,6 +224,7 @@ export class PropertyType implements ISerializable {
             PropertyType.Fractured,
             PropertyType.Crucible,
             PropertyType.Foulborn,
+            PropertyType.Desecrated,
         ],
         "Other": [
             PropertyType.Separator,
@@ -201,7 +233,9 @@ export class PropertyType implements ISerializable {
             PropertyType.Corrupted,
             PropertyType.MemoryStrands,
             PropertyType.GemHeader,
-            PropertyType.VaalGemHeader
+            PropertyType.VaalGemHeader,
+            PropertyType.Sanctified,
+            PropertyType.Veiled
         ]
     }
 }

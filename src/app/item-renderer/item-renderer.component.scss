@@ -1,4 +1,6 @@
+@use "sass:map";
 @import '../../styles/colors.scss';
+@import './veiled-mods.scss';
 
 .item {
     background-color: $black;
@@ -52,7 +54,7 @@
         }
 
         &.memory {
-            background-image: url(/assets/memory-title.png);
+            background-image: url("/assets/memory-title.png");
             background-position: center -5px;
 
             &::after {
@@ -261,16 +263,6 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
     }
 }
 
-@mixin rare-itemheader($url) {
-    .itemheader {
-      background-image: url($url);
-      .left,
-      .right {
-        background-image: url($url);
-      }
-    }
-}
-
 .rare {
     @extend %rare;
     @include itemheader("itemheader_rare.png");
@@ -362,19 +354,42 @@ $foils: ("amethyst", "verdant", "ruby", "cobalt", "sunset", "aureate");
     @include itemheader("itemheader_unique_foil.png");
 }
 
+/* Begin POE2 Rarity Changes */
+
 $poe2-rarities: (
     "unique": "itemheader_unique.png",
     "rare": "itemheader_rare.png",
     "magic": "itemheader_magic.png",
     "normal": "itemheader_normal.png",
     "currency": "itemheader_currency.png",
+    "gem": "itemheader_gem.png"
 );
 
 @each $rarity, $filename in $poe2-rarities {
     .poe2.#{$rarity} {
-        @include itemheader($filename, "../../assets/headers/poe2/");
+        @include itemheader($filename, "/assets/headers/poe2/");
     }
 }
+
+.poe2.gem .itemheader {
+    @extend .thicksingle;
+    $path: "/assets/headers/poe2/" +  map.get($poe2-rarities, "gem");
+    background-image: linear-gradient(to right, #ffffff 0%, #aaaaaa 30%, #000000 60%), url($path);
+    background-blend-mode: multiply;
+    .right {
+        background-image: none;
+
+        .influence-symbol {
+            display: none;
+        }
+    }
+
+    .itemheader-name {
+        text-align: start;
+    }
+}
+
+/* End POE2 Rarity Changes */
 
 .itemimg {
     display: inline-flex;

@@ -1,0 +1,25 @@
+@import '../../styles/colors.scss';
+
+:host {
+    border-width: 1px;
+    border-style: none solid;
+    border-color: $secondary;
+    display: flex;
+    flex-direction: row;
+    height: 39px;
+    padding: 0 2px;
+    gap: 2px;
+}
+input {
+    display: none;
+}
+label {
+    background-color: rgba(45, 49, 54, 0.3);
+    min-width: 48px;
+}
+input:checked + label {
+    background-color: #35383b;
+}
+img {
+    height: 24px;
+}

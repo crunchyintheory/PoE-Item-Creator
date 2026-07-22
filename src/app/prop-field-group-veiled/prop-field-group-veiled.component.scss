@@ -1,0 +1,28 @@
+@import '../../styles/colors.scss';
+
+:host {
+    display: grid;
+    grid-gap: 3px;
+    column-gap: 3px;
+    grid-template-columns: auto 3fr auto; 
+    margin-top: 3px;
+
+    poe-field-group {
+        grid-column: 2/3;
+        margin-top: 0 !important;
+    }
+}
+
+button, .button {
+    width: 39px;
+    height: 30px;
+    padding: 0;
+
+    img {
+        height: 18px;
+    }
+}
+
+.proptype {
+    color: $primary;
+}

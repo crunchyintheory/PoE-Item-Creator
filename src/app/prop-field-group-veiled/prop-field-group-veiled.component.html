@@ -5,9 +5,9 @@
   [labelEditable]="true"
   [(label)]="item.properties[index].type"
   [labelChoices]="types"
-  [(value)]="item.properties[index].name"
-  [(value2)]="item.properties[index].value"
-  [fields]="item.properties[index].type.fields"
+  [(value2)]="current"
+  (value2Change)="this.update()"
+  [value2Choices]="variants"
   hide="value">
 </poe-field-group>
 <button (click)="item.insertPropertyAfter(property)" class="add-after orb-btn orb-exalt">

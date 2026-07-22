@@ -49,11 +49,11 @@
         position: relative;
         img {
             position: absolute;
-            top: 6px;
-            left: 4px;
+            top: 8px;
+            left: 10px;
 
             & + input {
-                padding-left: 26px;
+                padding-left: 30px;
             }
         }
         input {
@@ -130,6 +130,7 @@ input[readonly] {
         }
 
         &.choice {
+            position: relative;
             color: $primary;
             background-color: #1e2124;
 
@@ -139,6 +140,16 @@ input[readonly] {
 
             &:hover {
                 background-color: #465260;
+            }
+
+            img {
+                position: absolute;
+                top: 8px;
+                left: 10px;
+
+                & + span {
+                    padding-left: 16px;
+                }
             }
         }
     }
