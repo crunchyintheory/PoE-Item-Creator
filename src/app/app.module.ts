@@ -21,6 +21,7 @@ import { AlertToastComponent } from './alert-toast/alert-toast.component';
 import { AlertHandlerComponent, ToastContainerDirective } from './alert-handler/alert-handler.component';
 import { PageHelpComponent } from './page-help/page-help.component';
 import { SectionHeaderDirective } from './section-header.directive';
+import { Poe2SwitcherComponent } from './poe2-switcher/poe2-switcher.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SectionHeaderDirective } from './section-header.directive';
     AlertHandlerComponent,
     ToastContainerDirective,
     PageHelpComponent,
-    SectionHeaderDirective
+    SectionHeaderDirective,
+    Poe2SwitcherComponent
   ],
   imports: [
     BrowserModule,
