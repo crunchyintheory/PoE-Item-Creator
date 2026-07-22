@@ -72,6 +72,7 @@ export class ItemService {
     }
     const properties: Array<{ type: string, name: string, value: string }> = item.properties.map(mapper);
     let ret: SerializedItem = {
+      game: item.game ?? "poe1",
       rarity: item.rarity.name,
       name: item.name,
       base: item.base,
@@ -117,6 +118,7 @@ export class ItemService {
       i.influences && i.influences.length >= 2 ? Influence.influences.find(x => x.name === i.influences[1]) || Influence.None : Influence.None,
       FoilType.types.find(x => x.name === i.foilType) || FoilType.None,
       i.width > 0 ? i.width : this.defaultMaxWidth,
+      i.game ?? "poe1"
     );
   }
 

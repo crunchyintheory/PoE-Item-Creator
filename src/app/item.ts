@@ -21,8 +21,8 @@ export class Item {
     game: GameType = "poe1";
 
     constructor(data: Object)
-    constructor(rarity:Rarity, name:string, base:string, image:string, size: string, properties:Property[], influence?: Influence, influence2?: Influence, foilType?: FoilType, width?: number)
-    constructor(data:Rarity | any, name?:string, base?:string, image?:string, size?: string, properties?:Property[], influence?: Influence, influence2?: Influence, foilType?: FoilType, width: number = 0) {
+    constructor(rarity:Rarity, name:string, base:string, image:string, size: string, properties:Property[], influence?: Influence, influence2?: Influence, foilType?: FoilType, width?: number, game?: GameType)
+    constructor(data:Rarity | any, name?:string, base?:string, image?:string, size?: string, properties?:Property[], influence?: Influence, influence2?: Influence, foilType?: FoilType, width: number = 0, game?: GameType) {
         this.rarity = data as Rarity;
         this.name = name!;
         this.base = base!;
@@ -34,6 +34,8 @@ export class Item {
         this.foilType = foilType || FoilType.None;
 
         if(width) this.width = width;
+
+        this.game = game ?? "poe1";
 
         if(name === undefined) {
             Object.assign(this as any, data);
@@ -92,6 +94,7 @@ export class StashedItem extends Item {
 }
 
 export interface SerializedItem {
+  game?: GameType;
   rarity: string;
   name: string;
   base: string;
