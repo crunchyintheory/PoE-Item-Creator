@@ -21,15 +21,16 @@ jobs:
     runs-on: ubuntu-latest
     container: node:24
     steps:
+      - name: Install Dependencies
+        run: |
+          apt update
+          apt install git-lfs
       - name: Checkout
         uses: actions/checkout@v7
         with:
           lfs: true
       - name: Checkout LFS objects
-        run: |
-          apt update
-          apt install git-lfs
-          git lfs checkout
+        run: git lfs checkout
       - name: Install Dependences
         uses: actions/setup-node@v3
         with:
