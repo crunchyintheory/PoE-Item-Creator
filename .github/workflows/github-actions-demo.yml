@@ -1,5 +1,5 @@
 name: GitHub Pages
-on: 
+on:
   push:
     branches: [master]
   workflow_dispatch:
@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   deploy:
-    environment: 
+    environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
@@ -23,6 +23,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          lfs: true
+      - name: Checkout LFS objects
+        run: git lfs checkout
       - name: Install Dependences
         uses: actions/setup-node@v3
         with:
