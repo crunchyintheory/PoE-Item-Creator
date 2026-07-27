@@ -49,7 +49,16 @@
 }
 
 .property.desecrated {
-    border-image-source: url(/assets/border_desecrated.webp);
+    border-image-source: url("/assets/border_desecrated.webp");
     border-image-slice: 10 140 10 140 fill;
     border-image-width: auto 140px;
+
+    & > .prop-desecrated {
+        padding: 5px 0;
+        display: block;
+    }
+
+    & + .property.desecrated {
+        margin-top: 8px;
+    }
 }

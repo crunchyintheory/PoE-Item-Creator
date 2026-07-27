@@ -31,6 +31,7 @@ export class PageHelpComponent implements OnInit {
     "Crafted",
     "Fractured",
     "Foulborn",
+    "Vestigial",
     "Normal",
     "Magic",
     "Rare",

@@ -194,25 +194,11 @@ export class Influence implements ISerializable {
 
     static readonly Foulborn = new Influence("Foulborn");
 
+    static readonly Veiled = new Influence("Veiled");
+
     static readonly Desecrated = new Influence("Desecrated (Abyssal)", "/assets/symbol_desecrated.png");
 
-    static readonly influences: Influence[] = [
-        Influence.None,
-        Influence.Shaper,
-        Influence.Elder,
-        Influence.Fractured,
-        Influence.Synthesised,
-        Influence.Crusader,
-        Influence.Hunter,
-        Influence.Redeemer,
-        Influence.Warlord,
-        Influence.Replica,
-        Influence.Eater,
-        Influence.Exarch,
-        Influence.Originator,
-        Influence.Foulborn,
-        Influence.Desecrated
-    ];
+    static readonly Vestigial = new Influence("Vestigial");
 
     static readonly sortedInfluences: { [key: string]: Influence[] } = {
         "": [
@@ -232,14 +218,22 @@ export class Influence implements ISerializable {
             Influence.Eater,
             Influence.Exarch,
         ],
+        "Veiled": [
+            Influence.Veiled,
+            Influence.Desecrated
+        ],
         "Other": [
             Influence.Fractured,
             Influence.Synthesised,
             Influence.Replica,
             Influence.Originator,
             Influence.Foulborn,
-            Influence.Desecrated
+            Influence.Vestigial
         ]
+    }
+
+    static get influences(): Influence[] {
+        return Object.values(this.sortedInfluences).flat();
     }
 }
 

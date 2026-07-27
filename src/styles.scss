@@ -208,6 +208,10 @@ select, input, textarea {
     }
 }
 
+.statreq > .prop-val > .digits {
+    color: $white;
+}
+
 a {
     color: desaturate(lighten($secondary, 50), 30);
 

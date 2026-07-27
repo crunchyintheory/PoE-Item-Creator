@@ -34,6 +34,7 @@ $crucible: #ff7339;
 $fractured: #a29162;
 $sanctified: $fractured;
 $foulborn: #cd2285;
+$vestigial: #cba5f2;
 
 $rarities: (
     "unique": $unique,
@@ -60,6 +61,7 @@ $colors: map.merge($rarities, (
     "fractured": $fractured,
     "sanctified": $sanctified,
     "foulborn": $foulborn,
+    "vestigial": $vestigial,
     "success": rgb(24, 154, 24),
     "warning": rgb(220, 166, 2),
     "error": $chaos

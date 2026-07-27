@@ -104,7 +104,7 @@ export class PropertyType implements ISerializable {
     }
 
     static readonly StatReq: PropertyType = {
-        name: 'Stat Requirements',
+        name: 'Stat Requirements / Flask Effect',
         className: 'statreq',
         nameRenderClass: null,
         valueRenderClass: 'prop-gray',
@@ -187,29 +187,16 @@ export class PropertyType implements ISerializable {
         name: 'Veiled',
         className: 'veiled',
         valueRenderClass: 'prop-veiled',
-        fields: 1
+        fields: 1,
+        displayImage: PropertyType.poe2logo
     }
 
-    static readonly types: PropertyType[] = [
-        PropertyType.ItemType,
-        PropertyType.Affix,
-        PropertyType.Stat,
-        PropertyType.StatAug,
-        PropertyType.FlavorU,
-        PropertyType.FlavorG,
-        PropertyType.Separator,
-        PropertyType.Crafted,
-        PropertyType.StatReq,
-        PropertyType.Corrupted,
-        PropertyType.Crucible,
-        PropertyType.Fractured,
-        PropertyType.MemoryStrands,
-        PropertyType.GemHeader,
-        PropertyType.VaalGemHeader,
-        PropertyType.Foulborn,
-        PropertyType.Desecrated,
-        PropertyType.Veiled
-    ]
+    static readonly Vestigial: PropertyType = {
+        name: 'Vestigial',
+        className: 'vestigial',
+        valueRenderClass: 'prop-vestigial',
+        fields: 1
+    }
 
     static readonly sortedTypes: { [key: string]: PropertyType[] } = {
         "Base": [
@@ -225,6 +212,8 @@ export class PropertyType implements ISerializable {
             PropertyType.Crucible,
             PropertyType.Foulborn,
             PropertyType.Desecrated,
+            PropertyType.Vestigial,
+            PropertyType.Veiled
         ],
         "Other": [
             PropertyType.Separator,
@@ -234,8 +223,11 @@ export class PropertyType implements ISerializable {
             PropertyType.MemoryStrands,
             PropertyType.GemHeader,
             PropertyType.VaalGemHeader,
-            PropertyType.Sanctified,
-            PropertyType.Veiled
+            PropertyType.Sanctified
         ]
+    }
+
+    static get types(): PropertyType[] {
+        return Object.values(this.sortedTypes).flat();
     }
 }

@@ -45,7 +45,7 @@ export class ItemRendererComponent implements OnInit {
       this.border ? 'border border-' + this.item.rarity.name : '',
       'foil-' + this.item.foilType.name,
       this.item.foilType.name != FoilType.None.name ? 'foil' : '',
-      ((this.item.rarity == Rarity.Rare|| this.item.rarity == Rarity.Unique) && (this.item.base == "" || this.item.name == "")) ? "single-line" : "",
+      ((this.item.rarity.name == Rarity.Rare.name|| this.item.rarity.name == Rarity.Unique.name) && (this.item.base == "" || this.item.name == "")) ? "single-line" : "",
       this.item.game
     ]
     return classes.join(' ');
