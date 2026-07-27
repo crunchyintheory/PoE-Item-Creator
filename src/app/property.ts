@@ -1,4 +1,5 @@
 import { ISerializable } from "./serializable";
+import { VariantMap, VeiledVariants } from "./prop-field-group-veiled/prop-field-group-veiled.component";
 
 export class Property {
     type: PropertyType;
@@ -10,7 +11,9 @@ export class Property {
         this.type = type;
         this.name = name;
         this.value = value;
-        this.extraClassName = "";
+
+        if(this.type.extraClassNameMap) this.extraClassName = this.type.extraClassNameMap(this)
+        else this.extraClassName = "";
     }
 }
 
@@ -21,6 +24,7 @@ export class PropertyType implements ISerializable {
     readonly valueRenderClass?: string | null;
     readonly fields: number = 0;
     readonly displayImage?: string;
+    readonly extraClassNameMap?: (self: Property) => string;
 
     public constructor(data: Object)
     public constructor(name: string, className: string, nameRenderClass: string | null, valueRenderClass: string | null, fields: number)
@@ -187,6 +191,7 @@ export class PropertyType implements ISerializable {
         name: 'Veiled',
         className: 'veiled',
         valueRenderClass: 'prop-veiled',
+        extraClassNameMap: (self: Property) => { let variant = VariantMap.get(self.value) ?? VeiledVariants[0]; return `${variant.size} ${variant.name}`; },
         fields: 1,
         displayImage: PropertyType.poe2logo
     }

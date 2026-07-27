@@ -17,9 +17,7 @@ export class ItemService {
     const urlParams = new URLSearchParams(window.location.search);
     let templateIndex;
     if(urlParams.has("template")) templateIndex = Math.max(1, Math.min(Templates.size, +urlParams.get("template")!)) - 1;
-    else templateIndex = Math.floor(Math.random() * Templates.size)
-
-      console.log(templateIndex);
+    else templateIndex = Math.floor(Math.random() * Templates.size);
     let item = Array.from(Templates.values())[templateIndex];
     if(typeof item.rarity === "string") {
       this.item = StashedItem.From(this.parse(item as SerializedItem));

@@ -4,6 +4,8 @@ import { ItemService } from "../item-service.service";
 import { ISerializable } from "../serializable";
 
 type VeiledVariant = ISerializable & { size: string };
+export const VeiledVariants: VeiledVariant[] = ["Prefix", "Suffix"].map(size => [...Array(5).keys()].map(i => ({ displayName: `${size} ${i+1}`, name: `${size.toLowerCase()}-${i+1}`, size: size.toLowerCase() }))).flat();
+export const VariantMap = VeiledVariants.reduce((acc, x) => acc.set(x.name, x), new Map<string, VeiledVariant>());
 
 @Component({
   selector: 'poe-prop-field-group-veiled',
@@ -16,19 +18,18 @@ export class PropFieldGroupVeiledComponent extends PropFieldGroupComponent imple
 
     constructor(public override is: ItemService) {
         super(is);
-        this.variants = ["Prefix", "Suffix"].map(size => [...Array(5).keys()].map(i => ({ displayName: `${size} ${i+1}`, name: `${size.toLowerCase()}-${i+1}`, size: size.toLowerCase() }))).flat();
-        this.current = this.variants[0];
+        this.variants = VeiledVariants;
+        this.current = VeiledVariants[0];
     }
 
     override ngOnInit() {
         super.ngOnInit();
 
-        let i = this.variants.findIndex(x => x.name == this.property.value);
-        if(i !== -1) {
-            this.current = this.variants[i];
+        if(VariantMap.has(this.property.value)) {
+            this.current = VariantMap.get(this.property.value)!;
         } else {
-            this.current = this.variants[0];
-            this.property.value = this.variants[0].name;
+            this.current = VeiledVariants[0];
+            this.property.value = this.current.name;
         }
 
         this.update();
@@ -40,6 +41,6 @@ export class PropFieldGroupVeiledComponent extends PropFieldGroupComponent imple
 
     update() {
         this.property.value = this.current.name;
-        this.property.extraClassName = `${this.current.size} ${this.current.name}`;
+        this.property.extraClassName = this.property.type.extraClassNameMap!(this.property);
     }
 }
