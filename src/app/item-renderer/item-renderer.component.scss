@@ -53,20 +53,37 @@
             }
         }
 
-        &.memory {
-            background-image: url("/assets/memory-title.png");
+        &.item-resource {
             background-position: center -5px;
 
             &::after {
                 display: inline-block;
                 content: " ";
-                background-image: url("/assets/memory-icon.png");
-                width: 66.66px;
-                height: 60px;
                 vertical-align: middle;
                 background-size: contain;
                 background-repeat: no-repeat;
                 background-position: center center;
+            }
+
+            &.memory {
+                background-image: url("/assets/memory-title.png");
+
+                &::after {
+                    background-image: url("/assets/memory-icon.png");
+                    width: 66.66px;
+                    height: 60px;
+                }
+            }
+
+            &.intangibility {
+                background-image: url("/assets/intangibility-title.png");
+
+                &::after {
+                    background-image: url("/assets/intangibility-icon.png");
+                    width: 30px;
+                    height: 37px;
+                    margin-left: 5px;
+                }
             }
         }
     }

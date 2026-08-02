@@ -150,7 +150,7 @@ export class PropertyType implements ISerializable {
 
     static readonly MemoryStrands: PropertyType = {
         name: 'Memory Strands',
-        className: 'header memory',
+        className: 'header item-resource memory',
         nameRenderClass: 'prop-crafted',
         valueRenderClass: 'prop-white',
         fields: 2
@@ -203,6 +203,14 @@ export class PropertyType implements ISerializable {
         fields: 1
     }
 
+    static readonly Intangibility: PropertyType = {
+        name: 'Intangibility',
+        className: 'header item-resource intangibility',
+        nameRenderClass: 'prop-intangibility',
+        valueRenderClass: 'prop-white',
+        fields: 2
+    }
+
     static readonly sortedTypes: { [key: string]: PropertyType[] } = {
         "Base": [
             PropertyType.ItemType,
@@ -228,7 +236,8 @@ export class PropertyType implements ISerializable {
             PropertyType.MemoryStrands,
             PropertyType.GemHeader,
             PropertyType.VaalGemHeader,
-            PropertyType.Sanctified
+            PropertyType.Sanctified,
+            PropertyType.Intangibility
         ]
     }
 
